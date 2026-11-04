@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>AvtoTest YHQ — Prava Imtihoni</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Top Header Bar -->
+    <header class="app-header">
+      <div class="header-user">
+        <div class="user-avatar" id="user-avatar">🚗</div>
+        <div class="user-info">
+          <span class="user-name" id="user-name">Foydalanuvchi</span>
+          <span class="user-badge" id="user-badge">3 ta bilet ochiq</span>
+        </div>
+      </div>
+      <div class="header-action">
+        <a href="https://t.me/Kubayev_E" target="_blank" class="admin-btn">📞 Bog'lanish</a>
+      </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="main-content">
+      <!-- VIEW 1: Biletlar ro'yxati -->
+      <section id="view-tickets" class="view active">
+        <div class="hero-card">
+          <div class="hero-text">
+            <h2>🚗 YHQ Davlat Testlari</h2>
+            <p>O'zbekiston rasmiy haydovchilik imtihoniga tayyorgarlik</p>
+          </div>
+          <button class="hero-btn" onclick="startExamMode()">⚡ 20 talik Imtihonni topshirish</button>
+        </div>
+
+        <div class="section-title">
+          <h3>📚 Biletlar (1 – 10)</h3>
+          <span class="info-tag">1 bilet = 20 ta savol</span>
+        </div>
+
+        <div class="tickets-grid" id="tickets-grid">
+          <!-- Dynamically populated tickets -->
+        </div>
+      </section>
+
+      <!-- VIEW 2: Test Yechish Ekrani -->
+      <section id="view-quiz" class="view">
+        <div class="quiz-header">
+          <button class="back-btn" onclick="exitQuiz()">⬅ Chiqish</button>
+          <div class="quiz-timer" id="quiz-timer">⏱ 20:00</div>
+          <div class="quiz-counter" id="quiz-counter">1 / 20</div>
+        </div>
+
+        <div class="progress-bar">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+
+        <div class="question-card" id="question-card">
+          <div class="question-media" id="question-media">
+            <!-- Road diagram / sign SVG -->
+          </div>
+          <h3 class="question-text" id="question-text">Savol yuklanmoqda...</h3>
+          <div class="options-list" id="options-list">
+            <!-- Options A, B, C, D -->
+          </div>
+        </div>
+
+        <!-- AI Izoh / Qoida tushuntirishi -->
+        <div class="ai-box" id="ai-box" style="display: none;">
+          <div class="ai-title">🤖 <b>AI Qoida Tahlili:</b></div>
+          <div class="ai-text" id="ai-text"></div>
+        </div>
+
+        <div class="quiz-controls">
+          <button class="control-btn" id="prev-btn" onclick="prevQuestion()" disabled>⬅ Oldingisi</button>
+          <button class="control-btn primary" id="next-btn" onclick="nextQuestion()">Keyingisi ➡</button>
+        </div>
+      </section>
+
+      <!-- VIEW 3: Test Natijasi -->
+      <section id="view-result" class="view">
+        <div class="result-card">
+          <div class="result-icon" id="result-icon">🎉</div>
+          <h2 id="result-status">Muvaffaqiyatli topshirdingiz!</h2>
+          <div class="result-score" id="result-score">19 / 20</div>
+          <p id="result-msg">Siz Davlat YHQ imtihonidan o'tdingiz!</p>
+          
+          <div class="result-actions">
+            <button class="hero-btn" onclick="restartCurrentQuiz()">🔄 Qaytadan ishlash</button>
+            <button class="secondary-btn" onclick="openMistakesView()">🤖 Xatolar ustida ishlash</button>
+            <button class="text-btn" onclick="switchTab('tickets')">Bosh menyuga qaytish</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 4: AI Xatolar ustida ishlash -->
+      <section id="view-mistakes" class="view">
+        <div class="section-title">
+          <h3>🧠 Xatolar ustida ishlash (AI)</h3>
+          <span class="info-tag" id="mistakes-count">0 ta xato</span>
+        </div>
+        <p class="section-desc">Siz adashgan savollar to'g'ri javob berguningizcha qayta takrorlanadi.</p>
+
+        <div id="mistakes-empty" class="empty-state">
+          <div class="empty-icon">🌟</div>
+          <h4>Hozircha xatolar yo'q!</h4>
+          <p>Biletlarni ishlab, bilimingizni sinab ko'ring.</p>
+          <button class="hero-btn" onclick="switchTab('tickets')">Biletlarga o'tish</button>
+        </div>
+
+        <div id="mistakes-list" class="mistakes-list">
+          <!-- Dynamically populated mistakes -->
+        </div>
+
+        <button id="solve-mistakes-btn" class="hero-btn fixed-btn" style="display:none;" onclick="startMistakesPractice()">
+          🔁 Faqat xatolarni qayta ishlash
+        </button>
+      </section>
+
+      <!-- VIEW 5: Do'stlarni taklif qilish (Referral) -->
+      <section id="view-referral" class="view">
+        <div class="referral-card">
+          <div class="referral-icon">🎁</div>
+          <h2>Do'stlarni taklif qiling!</h2>
+          <p>Har bir taklif qilingan do'stingiz uchun <b>1 ta yangi bilet bepul</b> ochiladi.</p>
+
+          <div class="ref-stats">
+            <div class="stat-box">
+              <span class="stat-num" id="ref-invited-count">0</span>
+              <span class="stat-label">Taklif qilingan do'stlar</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-num" id="ref-earned-tickets">+0</span>
+              <span class="stat-label">Ochilgan biletlar</span>
+            </div>
+          </div>
+
+          <div class="share-box">
+            <input type="text" id="ref-link-input" readonly value="Yuklanmoqda...">
+            <button class="copy-btn" onclick="copyRefLink()">Nusxalash</button>
+          </div>
+
+          <button class="hero-btn" onclick="shareRefLink()">📲 Telegram'da ulashish</button>
+        </div>
+      </section>
+
+      <!-- VIEW 6: Bilet sotib olish / Obuna -->
+      <section id="view-buy" class="view">
+        <div class="section-title">
+          <h3>💳 Biletlar to'plami va Tariflar</h3>
+        </div>
+        <p class="section-desc">To'langan biletlar <b>3 oy (90 kun)</b> davomida profilingizda faol saqlanadi.</p>
+
+        <div class="tarifs-container">
+          <div class="tarif-item">
+            <div class="tarif-info">
+              <h4>🥉 4–6 biletlar (60 ta savol)</h4>
+              <p>Muddati: 3 oy kafolatlangan</p>
+            </div>
+            <div class="tarif-price">5 000 so'm</div>
+            <button class="buy-btn" onclick="openPaymentModal('pack_4_6', '4–6 biletlar', '5 000')">Tanlash</button>
+          </div>
+
+          <div class="tarif-item popular">
+            <div class="popular-badge">Tavsiya etiladi</div>
+            <div class="tarif-info">
+              <h4>🥈 7–10 biletlar (80 ta savol)</h4>
+              <p>Muddati: 3 oy kafolatlangan</p>
+            </div>
+            <div class="tarif-price">10 000 so'm</div>
+            <button class="buy-btn" onclick="openPaymentModal('pack_7_10', '7–10 biletlar', '10 000')">Tanlash</button>
+          </div>
+
+          <div class="tarif-item">
+            <div class="tarif-info">
+              <h4>🥇 11–14 biletlar (80 ta savol)</h4>
+              <p>Muddati: 3 oy kafolatlangan</p>
+            </div>
+            <div class="tarif-price">10 000 so'm</div>
+            <button class="buy-btn" onclick="openPaymentModal('pack_11_14', '11–14 biletlar', '10 000')">Tanlash</button>
+          </div>
+        </div>
+
+        <div class="help-card">
+          <h4>💡 To'lov qanday amalga oshiriladi?</h4>
+          <p>Tarifni tanlab, ko'rsatilgan karta raqamiga pul o'tkazing va to'lov cheki skrinshotini botga yuboring. Administrator tekshirib darhol biletlarni ochib beradi.</p>
+        </div>
+      </section>
+    </main>
+
+    <!-- Payment Modal -->
+    <div id="payment-modal" class="modal">
+      <div class="modal-content">
+        <button class="close-modal" onclick="closePaymentModal()">✕</button>
+        <div class="modal-header">
+          <h3 id="modal-title">To'lov ma'lumotlari</h3>
+          <div class="modal-price" id="modal-price">5 000 so'm</div>
+        </div>
+        <div class="card-box">
+          <span class="card-label">Karta raqam (UzCard / Humo):</span>
+          <div class="card-number-row">
+            <code id="modal-card">9860 1606 3439 0605</code>
+            <button class="card-copy-btn" onclick="copyCardNumber()">Nusxalash</button>
+          </div>
+          <span class="card-holder">Egasi: <b>K.E.</b></span>
+        </div>
+        <div class="modal-instruct">
+          <p>1. Yuqoridagi kartaga to'lov qiling.</p>
+          <p>2. To'lov cheki (skrinshotini) botga rasm qilib yuboring.</p>
+          <p>3. Admin tasdiqlashi bilan biletlar 3 oyga ochiladi!</p>
+        </div>
+        <button class="hero-btn" onclick="closeModalAndGoToBot()">📸 Chekni botga yuborish</button>
+      </div>
+    </div>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="bottom-nav">
+      <button class="nav-item active" onclick="switchTab('tickets')" id="nav-tickets">
+        <span class="nav-icon">📚</span>
+        <span class="nav-label">Biletlar</span>
+      </button>
+      <button class="nav-item" onclick="switchTab('mistakes')" id="nav-mistakes">
+        <span class="nav-icon">🤖</span>
+        <span class="nav-label">Xatolar</span>
+      </button>
+      <button class="nav-item" onclick="switchTab('referral')" id="nav-referral">
+        <span class="nav-icon">👥</span>
+        <span class="nav-label">Do'stlar</span>
+      </button>
+      <button class="nav-item" onclick="switchTab('buy')" id="nav-buy">
+        <span class="nav-icon">💎</span>
+        <span class="nav-label">Tariflar</span>
+      </button>
+    </nav>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>

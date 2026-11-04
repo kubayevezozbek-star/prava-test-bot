@@ -1,0 +1,3002 @@
+[
+  {
+    "id": 1,
+    "ticket_id": 1,
+    "question_num": 1,
+    "question": "[1-bilet, 1-savol] Ushbu yo'l belgisi nimani bildiradi?",
+    "image": "sign_danger",
+    "options": [
+      "Boshqa xavf-xatarlar mavjudligi haqida ogohlantiradi",
+      "Yo'l ta'mirlanayotgan joyni bildiradi",
+      "Harakatlanish taqiqlanganligini bildiradi",
+      "To'xtash taqiqlanganligini bildiradi"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 1.30-bandi: 'Boshqa xavflar' belgisi yo'lning boshqa ogohlantiruvchi belgilar bilan ko'zda tutilmagan xavfli qismiga yaqinlashayotganlik haqida ogohlantiradi."
+  },
+  {
+    "id": 2,
+    "ticket_id": 1,
+    "question_num": 2,
+    "question": "[1-bilet, 2-savol] Teng ahamiyatli chorrahada qaysi transport vositasi birinchi o'tadi?",
+    "image": "crossroad_equal",
+    "options": [
+      "To'g'riga harakatlanayotgan avtomobil",
+      "O'ng tomondan yaqinlashayotgan transport vositasi",
+      "Tezroq yetib kelgan avtomobil",
+      "Katta hajmli transport vositasi"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 13.11-bandi: Teng ahamiyatli yo'llar chorrahasida haydovchi o'ng tomondan yaqinlashayotgan transport vositalariga yo'l berishi shart ('O'ng qo'l qoidasi')."
+  },
+  {
+    "id": 3,
+    "ticket_id": 1,
+    "question_num": 3,
+    "question": "[1-bilet, 3-savol] Aholi punktlarida yengil avtomobillarning ruxsat etilgan eng yuqori tezligi qancha?",
+    "image": "speed_limit_60",
+    "options": [
+      "50 km/soat",
+      "60 km/soat",
+      "70 km/soat",
+      "80 km/soat"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 12.1-bandi (yangi tahrir): O'zbekiston Respublikasi bo'yicha aholi punktlarida barcha transport vositalariga 60 km/soat tezlikda harakatlanishga ruxsat etiladi."
+  },
+  {
+    "id": 4,
+    "ticket_id": 1,
+    "question_num": 4,
+    "question": "[1-bilet, 4-savol] Quyidagi vaziyatda qaysi avtomobil yo'l berishi shart?",
+    "image": "priority_main_road",
+    "options": [
+      "Asosiy yo'lda harakatlanayotgan avtomobil",
+      "Ikkinchi darajali yo'ldan chiqayotgan avtomobil",
+      "Ikkala haydovchi o'zaro kelishib o'tadi",
+      "O'ngga burilayotgan avtomobil"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 13.9-bandi: Ikkinchi darajali yo'lda harakatlanayotgan haydovchi asosiy yo'ldan yaqinlashayotgan transport vositalariga harakat yo'nalishidan qat'i nazar yo'l berishi shart."
+  },
+  {
+    "id": 5,
+    "ticket_id": 1,
+    "question_num": 5,
+    "question": "[1-bilet, 5-savol] Ushbu belgi ta'sir doirasida quvib o'tish mumkinmi?",
+    "image": "sign_no_overtaking",
+    "options": [
+      "Faqat soatiga 30 km dan kam tezlikda ketayotgan transport vositasini quvib o'tish mumkin",
+      "Barcha transport vositalarini quvib o'tish taqiqlanadi",
+      "Faqat mototsikllarni quvib o'tish mumkin",
+      "Yo'l bo'sh bo'lsa quvib o'tish mumkin"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 3.20-bandi: 'Quvib o'tish taqiqlanadi' belgisi ta'sir sohasida barcha transport vositalarini quvib o'tish qat'iyan taqiqlanadi."
+  },
+  {
+    "id": 6,
+    "ticket_id": 1,
+    "question_num": 6,
+    "question": "[1-bilet, 6-savol] Qaysi holatda orqaga qaytish (razvorot) taqiqlanadi?",
+    "image": "u_turn_rules",
+    "options": [
+      "Piyodalar o'tish joylarida va ko'priklarda",
+      "Faqat svetoforli chorrahalarda",
+      "Aholi punktlaridan tashqarida",
+      "Istalgan joyda ruxsat berilgan"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 8.11-bandi: Piyodalar o'tish joylarida, tonnellarda, ko'priklar, estakadalar va ularning tagida, temir yo'l kesishmalarida orqaga qaytish taqiqlanadi."
+  },
+  {
+    "id": 7,
+    "ticket_id": 1,
+    "question_num": 7,
+    "question": "[1-bilet, 7-savol] Svetoforning sariq miltillovchi signali nimani bildiradi?",
+    "image": "traffic_light_yellow_flash",
+    "options": [
+      "Tez orada qizil chiroq yonishini",
+      "Chorraha tartibga solinmaganligini va xavfli ekanligini",
+      "Harakatlanish to'liq taqiqlanganligini",
+      "Faqat o'ngga burilish mumkinligini"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 6.2-bandi: Sariq miltillovchi signal harakatlanishga ruxsat beradi va chorraha yoki piyodalar o'tish joyi tartibga solinmaganligidan ogohlantiradi."
+  },
+  {
+    "id": 8,
+    "ticket_id": 1,
+    "question_num": 8,
+    "question": "[1-bilet, 8-savol] Piyodalar o'tish joyiga yaqinlashganda haydovchi nima qilishi shart?",
+    "image": "pedestrian_cross",
+    "options": [
+      "Ovozli signal chalib o'tib ketishi kerak",
+      "Tezlikni kamaytirishi, qatnov qismiga chiqqan piyodalarga yo'l berishi shart",
+      "Faqat piyodalar chap tomonda bo'lsa yo'l beradi",
+      "Tezlikni oshirib o'tishi kerak"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 14.1-bandi: Tartibga solinmagan piyodalar o'tish joyiga yaqinlashayotgan transport vositasining haydovchisi yo'lni kesib o'tayotgan piyodalarga yo'l berishi shart."
+  },
+  {
+    "id": 9,
+    "ticket_id": 1,
+    "question_num": 9,
+    "question": "[1-bilet, 9-savol] Avtomagistralda harakatlanishda qaysi harakat taqiqlanadi?",
+    "image": "highway_rules",
+    "options": [
+      "Orqaga harakatlanish va o'quv mashqlarida haydash",
+      "O'ng bo'lakda 80 km/soat tezlikda yurish",
+      "Yoritish chiroqlarini yoqish",
+      "Quvib o'tish"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 16.1-bandi: Avtomagistralda piyodalar, ot-aravalarning harakati, orqaga harakatlanish hamda o'quv mashqi harakatlari taqiqlanadi."
+  },
+  {
+    "id": 10,
+    "ticket_id": 1,
+    "question_num": 10,
+    "question": "[1-bilet, 10-savol] Chorrahada chapga burilayotgan haydovchi qaysi transport vositalariga yo'l berishi kerak?",
+    "image": "turn_left_priority",
+    "options": [
+      "Faqat o'ngdan kelayotganlarga",
+      "Qarama-qarshi tomondan to'g'riga va o'ngga harakatlanayotgan transport vositalariga",
+      "Hech kimga yo'l bermaydi",
+      "Faqat tramvayga"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 13.4-bandi: Chapga burilish yoki orqaga qaytishda teng ahamiyatli yo'lda qarama-qarshi tomondan to'g'riga yoki o'ngga ketayotgan transport vositalariga yo'l berishi shart."
+  },
+  {
+    "id": 11,
+    "ticket_id": 1,
+    "question_num": 11,
+    "question": "[1-bilet, 11-savol] Svetoforning qizil signali bilan birga qo'shimcha yashil strelka yonganda nima qilish kerak?",
+    "image": "traffic_light_arrow",
+    "options": [
+      "Boshqa yo'nalishdagi barcha transport vositalariga yo'l berib, strelka yo'nalishida yurish mumkin",
+      "To'xtamasdan ustunlik bilan yurish mumkin",
+      "Yurish qat'iyan taqiqlanadi",
+      "Faqat to'g'riga yurish mumkin"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 13.5-bandi: Qo'shimcha tarmoq signali yoqilgan yo'nalishda harakatlanayotgan haydovchi boshqa yo'nalishlardan kelayotgan transport vositalariga yo'l berishi shart."
+  },
+  {
+    "id": 12,
+    "ticket_id": 1,
+    "question_num": 12,
+    "question": "[1-bilet, 12-savol] Temir yo'l kesishmasida qaysi masofada to'xtash taqiqlanadi?",
+    "image": "railway_crossing",
+    "options": [
+      "Kesishmagacha 50 metrdan yaqin masofada",
+      "Kesishmaga 10 metr qolganda",
+      "Faqat kesishma ustida",
+      "100 metrdan yaqin masofada"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 15.3-bandi: Temir yo'l kesishmasiga 50 metrdan kam masofada to'xtash va to'xtab turish qat'iyan taqiqlanadi."
+  },
+  {
+    "id": 13,
+    "ticket_id": 1,
+    "question_num": 13,
+    "question": "[1-bilet, 13-savol] Majburiy to'xtash sodir bo'lganda ogohlantiruvchi qizil uchburchak belgisi aholi punktida qanday masofaga qo'yiladi?",
+    "image": "emergency_triangle",
+    "options": [
+      "Kamida 5 metr",
+      "Kamida 15 metr",
+      "Kamida 30 metr",
+      "Kamida 50 metr"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 7.2-bandi: Avariya sababli to'xtaganda ogohlantiruvchi belgi aholi punktida kamida 15 metr, aholi punktidan tashqarida esa kamida 30 metr masofada o'rnatiladi."
+  },
+  {
+    "id": 14,
+    "ticket_id": 1,
+    "question_num": 14,
+    "question": "[1-bilet, 14-savol] Qaysi transport vositasiga harakatlanishda har doim ustunlik beriladi?",
+    "image": "emergency_vehicle",
+    "options": [
+      "Faqat yuk avtomobillariga",
+      "Ko'k miltillovchi mayoqchasi va maxsus tovushli signali yoqilgan transport vositasiga",
+      "Taksi xizmatiga",
+      "Tramvayga"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 3.1-bandi: Ko'k (yoki ko'k va qizil) rangli miltillovchi mayoqchasi va maxsus tovushli signali yoqilgan transport vositasi haydovchilari ustunlikka ega bo'ladilar."
+  },
+  {
+    "id": 15,
+    "ticket_id": 1,
+    "question_num": 15,
+    "question": "[1-bilet, 15-savol] Ushbu yo'l belgisi qanday harakatni buyuradi?",
+    "image": "sign_mandatory_right",
+    "options": [
+      "Faqat o'ngga harakatlanishni",
+      "O'ng tomonda to'xtashni",
+      "Chapga burilishni",
+      "To'g'riga va o'ngga yurishni"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 4.1.2-bandi: 'Harakatlanish o'ngga' belgisi faqat ko'rsatilgan yo'nalishda harakatlanishga ruxsat beradi."
+  },
+  {
+    "id": 16,
+    "ticket_id": 1,
+    "question_num": 16,
+    "question": "[1-bilet, 16-savol] Tuman va ko'rish masofasi cheklangan sharoitda qaysi chiroqlar yoqilishi shart?",
+    "image": "fog_lights",
+    "options": [
+      "Faqat gabarit chiroqlari",
+      "Yaqinni yoki uzoqni yorituvchi fara chiroqlari (tumanga qarshi chiroqlar bilan birga)",
+      "Avariya chiroqlari",
+      "Hech qanday chiroq kerak emas"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 19.1-bandi: Ko'rish yetarli bo'lmagan sharoitda va sutkaning qorong'i vaqtida faralarning yaqin yoki uzoqni yorituvchi chiroqlari yoqilishi shart."
+  },
+  {
+    "id": 17,
+    "ticket_id": 1,
+    "question_num": 17,
+    "question": "[1-bilet, 17-savol] Bolalarni yengil avtomobilning old o'rindig'ida qanday tashishga ruxsat beriladi?",
+    "image": "child_seat",
+    "options": [
+      "Maxsus bolalar o'rindig'i (avtokreslo) bo'lganda",
+      "Katta yoshli odam quchog'ida",
+      "12 yoshga to'lmagan bolalarni old o'rindiqda tashish umuman mumkin emas",
+      "Xavfsizlik kamarini taqqan holda"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 22.9-bandi: 12 yoshga to'lmagan bolalarni old o'rindiqda faqat bolalar ushlab turuvchi maxsus moslama (avtokreslo) orqali tashishga ruxsat etiladi."
+  },
+  {
+    "id": 18,
+    "ticket_id": 1,
+    "question_num": 18,
+    "question": "[1-bilet, 18-savol] Yo'l chizig'i yaxlit (uzluksiz) oq chiziq bo'lsa, uni bosib o'tish mumkinmi?",
+    "image": "solid_line",
+    "options": [
+      "Yo'l bo'sh bo'lsa mumkin",
+      "Qat'iyan taqiqlanadi (faqat ruxsat etilgan favqulodda to'xtashdan tashqari)",
+      "Quvib o'tish uchun mumkin",
+      "Kechasi mumkin"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 1.1-yo'l chizig'i: Qarama-qarshi yo'nalishlarni ajratuvchi yaxlit chiziqni bosib o'tish qat'iyan taqiqlanadi."
+  },
+  {
+    "id": 19,
+    "ticket_id": 1,
+    "question_num": 19,
+    "question": "[1-bilet, 19-savol] Chorrahada tartibga soluvchining (GSI xodimi) qo'llari ikki tomonga uzatilgan yoki tushirilgan bo'lsa:",
+    "image": "traffic_controller",
+    "options": [
+      "Barcha yo'nalishlarda to'xtash shart",
+      "Chap va o'ng yonbosh tomondan: to'g'riga va o'ngga; ko'krak va orqa tomondan: harakat taqiqlanadi",
+      "Faqat orqaga qaytish mumkin",
+      "Faqat tramvaylar yura oladi"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 6.10-bandi: Tartibga soluvchining qo'llari yon tomonga uzatilgan yoki tushirilgan holatida ko'krak va orqa tomondan harakatlanish taqiqlanadi."
+  },
+  {
+    "id": 20,
+    "ticket_id": 1,
+    "question_num": 20,
+    "question": "[1-bilet, 20-savol] Spirtli ichimlik yoki dori ta'sirida mast holda transport vositasini boshqarish:",
+    "image": "dui_sign",
+    "options": [
+      "Qat'iyan taqiqlanadi va qonun bo'yicha javobgarlikka tortiladi",
+      "Yaqin masofaga mumkin",
+      "Faqat kechasi taqiqlanadi",
+      "Avariya chirog'i yoqilgan holda mumkin"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 2.7-bandi: Mast holatda transport vositasini boshqarish qat'iyan man etiladi va qonun bilan og'ir jazoga (jarima va haydovchilik huquqidan mahrum qilish) sabab bo'ladi."
+  },
+  {
+    "id": 21,
+    "ticket_id": 2,
+    "question_num": 1,
+    "question": "[2-bilet, 1-savol] Ushbu yo'l belgisi nimani bildiradi?",
+    "image": "sign_danger",
+    "options": [
+      "Boshqa xavf-xatarlar mavjudligi haqida ogohlantiradi",
+      "Yo'l ta'mirlanayotgan joyni bildiradi",
+      "Harakatlanish taqiqlanganligini bildiradi",
+      "To'xtash taqiqlanganligini bildiradi"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 1.30-bandi: 'Boshqa xavflar' belgisi yo'lning boshqa ogohlantiruvchi belgilar bilan ko'zda tutilmagan xavfli qismiga yaqinlashayotganlik haqida ogohlantiradi."
+  },
+  {
+    "id": 22,
+    "ticket_id": 2,
+    "question_num": 2,
+    "question": "[2-bilet, 2-savol] Teng ahamiyatli chorrahada qaysi transport vositasi birinchi o'tadi?",
+    "image": "crossroad_equal",
+    "options": [
+      "To'g'riga harakatlanayotgan avtomobil",
+      "O'ng tomondan yaqinlashayotgan transport vositasi",
+      "Tezroq yetib kelgan avtomobil",
+      "Katta hajmli transport vositasi"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 13.11-bandi: Teng ahamiyatli yo'llar chorrahasida haydovchi o'ng tomondan yaqinlashayotgan transport vositalariga yo'l berishi shart ('O'ng qo'l qoidasi')."
+  },
+  {
+    "id": 23,
+    "ticket_id": 2,
+    "question_num": 3,
+    "question": "[2-bilet, 3-savol] Aholi punktlarida yengil avtomobillarning ruxsat etilgan eng yuqori tezligi qancha?",
+    "image": "speed_limit_60",
+    "options": [
+      "50 km/soat",
+      "60 km/soat",
+      "70 km/soat",
+      "80 km/soat"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 12.1-bandi (yangi tahrir): O'zbekiston Respublikasi bo'yicha aholi punktlarida barcha transport vositalariga 60 km/soat tezlikda harakatlanishga ruxsat etiladi."
+  },
+  {
+    "id": 24,
+    "ticket_id": 2,
+    "question_num": 4,
+    "question": "[2-bilet, 4-savol] Quyidagi vaziyatda qaysi avtomobil yo'l berishi shart?",
+    "image": "priority_main_road",
+    "options": [
+      "Asosiy yo'lda harakatlanayotgan avtomobil",
+      "Ikkinchi darajali yo'ldan chiqayotgan avtomobil",
+      "Ikkala haydovchi o'zaro kelishib o'tadi",
+      "O'ngga burilayotgan avtomobil"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 13.9-bandi: Ikkinchi darajali yo'lda harakatlanayotgan haydovchi asosiy yo'ldan yaqinlashayotgan transport vositalariga harakat yo'nalishidan qat'i nazar yo'l berishi shart."
+  },
+  {
+    "id": 25,
+    "ticket_id": 2,
+    "question_num": 5,
+    "question": "[2-bilet, 5-savol] Ushbu belgi ta'sir doirasida quvib o'tish mumkinmi?",
+    "image": "sign_no_overtaking",
+    "options": [
+      "Faqat soatiga 30 km dan kam tezlikda ketayotgan transport vositasini quvib o'tish mumkin",
+      "Barcha transport vositalarini quvib o'tish taqiqlanadi",
+      "Faqat mototsikllarni quvib o'tish mumkin",
+      "Yo'l bo'sh bo'lsa quvib o'tish mumkin"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 3.20-bandi: 'Quvib o'tish taqiqlanadi' belgisi ta'sir sohasida barcha transport vositalarini quvib o'tish qat'iyan taqiqlanadi."
+  },
+  {
+    "id": 26,
+    "ticket_id": 2,
+    "question_num": 6,
+    "question": "[2-bilet, 6-savol] Qaysi holatda orqaga qaytish (razvorot) taqiqlanadi?",
+    "image": "u_turn_rules",
+    "options": [
+      "Piyodalar o'tish joylarida va ko'priklarda",
+      "Faqat svetoforli chorrahalarda",
+      "Aholi punktlaridan tashqarida",
+      "Istalgan joyda ruxsat berilgan"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 8.11-bandi: Piyodalar o'tish joylarida, tonnellarda, ko'priklar, estakadalar va ularning tagida, temir yo'l kesishmalarida orqaga qaytish taqiqlanadi."
+  },
+  {
+    "id": 27,
+    "ticket_id": 2,
+    "question_num": 7,
+    "question": "[2-bilet, 7-savol] Svetoforning sariq miltillovchi signali nimani bildiradi?",
+    "image": "traffic_light_yellow_flash",
+    "options": [
+      "Tez orada qizil chiroq yonishini",
+      "Chorraha tartibga solinmaganligini va xavfli ekanligini",
+      "Harakatlanish to'liq taqiqlanganligini",
+      "Faqat o'ngga burilish mumkinligini"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 6.2-bandi: Sariq miltillovchi signal harakatlanishga ruxsat beradi va chorraha yoki piyodalar o'tish joyi tartibga solinmaganligidan ogohlantiradi."
+  },
+  {
+    "id": 28,
+    "ticket_id": 2,
+    "question_num": 8,
+    "question": "[2-bilet, 8-savol] Piyodalar o'tish joyiga yaqinlashganda haydovchi nima qilishi shart?",
+    "image": "pedestrian_cross",
+    "options": [
+      "Ovozli signal chalib o'tib ketishi kerak",
+      "Tezlikni kamaytirishi, qatnov qismiga chiqqan piyodalarga yo'l berishi shart",
+      "Faqat piyodalar chap tomonda bo'lsa yo'l beradi",
+      "Tezlikni oshirib o'tishi kerak"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 14.1-bandi: Tartibga solinmagan piyodalar o'tish joyiga yaqinlashayotgan transport vositasining haydovchisi yo'lni kesib o'tayotgan piyodalarga yo'l berishi shart."
+  },
+  {
+    "id": 29,
+    "ticket_id": 2,
+    "question_num": 9,
+    "question": "[2-bilet, 9-savol] Avtomagistralda harakatlanishda qaysi harakat taqiqlanadi?",
+    "image": "highway_rules",
+    "options": [
+      "Orqaga harakatlanish va o'quv mashqlarida haydash",
+      "O'ng bo'lakda 80 km/soat tezlikda yurish",
+      "Yoritish chiroqlarini yoqish",
+      "Quvib o'tish"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 16.1-bandi: Avtomagistralda piyodalar, ot-aravalarning harakati, orqaga harakatlanish hamda o'quv mashqi harakatlari taqiqlanadi."
+  },
+  {
+    "id": 30,
+    "ticket_id": 2,
+    "question_num": 10,
+    "question": "[2-bilet, 10-savol] Chorrahada chapga burilayotgan haydovchi qaysi transport vositalariga yo'l berishi kerak?",
+    "image": "turn_left_priority",
+    "options": [
+      "Faqat o'ngdan kelayotganlarga",
+      "Qarama-qarshi tomondan to'g'riga va o'ngga harakatlanayotgan transport vositalariga",
+      "Hech kimga yo'l bermaydi",
+      "Faqat tramvayga"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 13.4-bandi: Chapga burilish yoki orqaga qaytishda teng ahamiyatli yo'lda qarama-qarshi tomondan to'g'riga yoki o'ngga ketayotgan transport vositalariga yo'l berishi shart."
+  },
+  {
+    "id": 31,
+    "ticket_id": 2,
+    "question_num": 11,
+    "question": "[2-bilet, 11-savol] Svetoforning qizil signali bilan birga qo'shimcha yashil strelka yonganda nima qilish kerak?",
+    "image": "traffic_light_arrow",
+    "options": [
+      "Boshqa yo'nalishdagi barcha transport vositalariga yo'l berib, strelka yo'nalishida yurish mumkin",
+      "To'xtamasdan ustunlik bilan yurish mumkin",
+      "Yurish qat'iyan taqiqlanadi",
+      "Faqat to'g'riga yurish mumkin"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 13.5-bandi: Qo'shimcha tarmoq signali yoqilgan yo'nalishda harakatlanayotgan haydovchi boshqa yo'nalishlardan kelayotgan transport vositalariga yo'l berishi shart."
+  },
+  {
+    "id": 32,
+    "ticket_id": 2,
+    "question_num": 12,
+    "question": "[2-bilet, 12-savol] Temir yo'l kesishmasida qaysi masofada to'xtash taqiqlanadi?",
+    "image": "railway_crossing",
+    "options": [
+      "Kesishmagacha 50 metrdan yaqin masofada",
+      "Kesishmaga 10 metr qolganda",
+      "Faqat kesishma ustida",
+      "100 metrdan yaqin masofada"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 15.3-bandi: Temir yo'l kesishmasiga 50 metrdan kam masofada to'xtash va to'xtab turish qat'iyan taqiqlanadi."
+  },
+  {
+    "id": 33,
+    "ticket_id": 2,
+    "question_num": 13,
+    "question": "[2-bilet, 13-savol] Majburiy to'xtash sodir bo'lganda ogohlantiruvchi qizil uchburchak belgisi aholi punktida qanday masofaga qo'yiladi?",
+    "image": "emergency_triangle",
+    "options": [
+      "Kamida 5 metr",
+      "Kamida 15 metr",
+      "Kamida 30 metr",
+      "Kamida 50 metr"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 7.2-bandi: Avariya sababli to'xtaganda ogohlantiruvchi belgi aholi punktida kamida 15 metr, aholi punktidan tashqarida esa kamida 30 metr masofada o'rnatiladi."
+  },
+  {
+    "id": 34,
+    "ticket_id": 2,
+    "question_num": 14,
+    "question": "[2-bilet, 14-savol] Qaysi transport vositasiga harakatlanishda har doim ustunlik beriladi?",
+    "image": "emergency_vehicle",
+    "options": [
+      "Faqat yuk avtomobillariga",
+      "Ko'k miltillovchi mayoqchasi va maxsus tovushli signali yoqilgan transport vositasiga",
+      "Taksi xizmatiga",
+      "Tramvayga"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 3.1-bandi: Ko'k (yoki ko'k va qizil) rangli miltillovchi mayoqchasi va maxsus tovushli signali yoqilgan transport vositasi haydovchilari ustunlikka ega bo'ladilar."
+  },
+  {
+    "id": 35,
+    "ticket_id": 2,
+    "question_num": 15,
+    "question": "[2-bilet, 15-savol] Ushbu yo'l belgisi qanday harakatni buyuradi?",
+    "image": "sign_mandatory_right",
+    "options": [
+      "Faqat o'ngga harakatlanishni",
+      "O'ng tomonda to'xtashni",
+      "Chapga burilishni",
+      "To'g'riga va o'ngga yurishni"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 4.1.2-bandi: 'Harakatlanish o'ngga' belgisi faqat ko'rsatilgan yo'nalishda harakatlanishga ruxsat beradi."
+  },
+  {
+    "id": 36,
+    "ticket_id": 2,
+    "question_num": 16,
+    "question": "[2-bilet, 16-savol] Tuman va ko'rish masofasi cheklangan sharoitda qaysi chiroqlar yoqilishi shart?",
+    "image": "fog_lights",
+    "options": [
+      "Faqat gabarit chiroqlari",
+      "Yaqinni yoki uzoqni yorituvchi fara chiroqlari (tumanga qarshi chiroqlar bilan birga)",
+      "Avariya chiroqlari",
+      "Hech qanday chiroq kerak emas"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 19.1-bandi: Ko'rish yetarli bo'lmagan sharoitda va sutkaning qorong'i vaqtida faralarning yaqin yoki uzoqni yorituvchi chiroqlari yoqilishi shart."
+  },
+  {
+    "id": 37,
+    "ticket_id": 2,
+    "question_num": 17,
+    "question": "[2-bilet, 17-savol] Bolalarni yengil avtomobilning old o'rindig'ida qanday tashishga ruxsat beriladi?",
+    "image": "child_seat",
+    "options": [
+      "Maxsus bolalar o'rindig'i (avtokreslo) bo'lganda",
+      "Katta yoshli odam quchog'ida",
+      "12 yoshga to'lmagan bolalarni old o'rindiqda tashish umuman mumkin emas",
+      "Xavfsizlik kamarini taqqan holda"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 22.9-bandi: 12 yoshga to'lmagan bolalarni old o'rindiqda faqat bolalar ushlab turuvchi maxsus moslama (avtokreslo) orqali tashishga ruxsat etiladi."
+  },
+  {
+    "id": 38,
+    "ticket_id": 2,
+    "question_num": 18,
+    "question": "[2-bilet, 18-savol] Yo'l chizig'i yaxlit (uzluksiz) oq chiziq bo'lsa, uni bosib o'tish mumkinmi?",
+    "image": "solid_line",
+    "options": [
+      "Yo'l bo'sh bo'lsa mumkin",
+      "Qat'iyan taqiqlanadi (faqat ruxsat etilgan favqulodda to'xtashdan tashqari)",
+      "Quvib o'tish uchun mumkin",
+      "Kechasi mumkin"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 1.1-yo'l chizig'i: Qarama-qarshi yo'nalishlarni ajratuvchi yaxlit chiziqni bosib o'tish qat'iyan taqiqlanadi."
+  },
+  {
+    "id": 39,
+    "ticket_id": 2,
+    "question_num": 19,
+    "question": "[2-bilet, 19-savol] Chorrahada tartibga soluvchining (GSI xodimi) qo'llari ikki tomonga uzatilgan yoki tushirilgan bo'lsa:",
+    "image": "traffic_controller",
+    "options": [
+      "Barcha yo'nalishlarda to'xtash shart",
+      "Chap va o'ng yonbosh tomondan: to'g'riga va o'ngga; ko'krak va orqa tomondan: harakat taqiqlanadi",
+      "Faqat orqaga qaytish mumkin",
+      "Faqat tramvaylar yura oladi"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 6.10-bandi: Tartibga soluvchining qo'llari yon tomonga uzatilgan yoki tushirilgan holatida ko'krak va orqa tomondan harakatlanish taqiqlanadi."
+  },
+  {
+    "id": 40,
+    "ticket_id": 2,
+    "question_num": 20,
+    "question": "[2-bilet, 20-savol] Spirtli ichimlik yoki dori ta'sirida mast holda transport vositasini boshqarish:",
+    "image": "dui_sign",
+    "options": [
+      "Qat'iyan taqiqlanadi va qonun bo'yicha javobgarlikka tortiladi",
+      "Yaqin masofaga mumkin",
+      "Faqat kechasi taqiqlanadi",
+      "Avariya chirog'i yoqilgan holda mumkin"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 2.7-bandi: Mast holatda transport vositasini boshqarish qat'iyan man etiladi va qonun bilan og'ir jazoga (jarima va haydovchilik huquqidan mahrum qilish) sabab bo'ladi."
+  },
+  {
+    "id": 41,
+    "ticket_id": 3,
+    "question_num": 1,
+    "question": "[3-bilet, 1-savol] Ushbu yo'l belgisi nimani bildiradi?",
+    "image": "sign_danger",
+    "options": [
+      "Boshqa xavf-xatarlar mavjudligi haqida ogohlantiradi",
+      "Yo'l ta'mirlanayotgan joyni bildiradi",
+      "Harakatlanish taqiqlanganligini bildiradi",
+      "To'xtash taqiqlanganligini bildiradi"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 1.30-bandi: 'Boshqa xavflar' belgisi yo'lning boshqa ogohlantiruvchi belgilar bilan ko'zda tutilmagan xavfli qismiga yaqinlashayotganlik haqida ogohlantiradi."
+  },
+  {
+    "id": 42,
+    "ticket_id": 3,
+    "question_num": 2,
+    "question": "[3-bilet, 2-savol] Teng ahamiyatli chorrahada qaysi transport vositasi birinchi o'tadi?",
+    "image": "crossroad_equal",
+    "options": [
+      "To'g'riga harakatlanayotgan avtomobil",
+      "O'ng tomondan yaqinlashayotgan transport vositasi",
+      "Tezroq yetib kelgan avtomobil",
+      "Katta hajmli transport vositasi"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 13.11-bandi: Teng ahamiyatli yo'llar chorrahasida haydovchi o'ng tomondan yaqinlashayotgan transport vositalariga yo'l berishi shart ('O'ng qo'l qoidasi')."
+  },
+  {
+    "id": 43,
+    "ticket_id": 3,
+    "question_num": 3,
+    "question": "[3-bilet, 3-savol] Aholi punktlarida yengil avtomobillarning ruxsat etilgan eng yuqori tezligi qancha?",
+    "image": "speed_limit_60",
+    "options": [
+      "50 km/soat",
+      "60 km/soat",
+      "70 km/soat",
+      "80 km/soat"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 12.1-bandi (yangi tahrir): O'zbekiston Respublikasi bo'yicha aholi punktlarida barcha transport vositalariga 60 km/soat tezlikda harakatlanishga ruxsat etiladi."
+  },
+  {
+    "id": 44,
+    "ticket_id": 3,
+    "question_num": 4,
+    "question": "[3-bilet, 4-savol] Quyidagi vaziyatda qaysi avtomobil yo'l berishi shart?",
+    "image": "priority_main_road",
+    "options": [
+      "Asosiy yo'lda harakatlanayotgan avtomobil",
+      "Ikkinchi darajali yo'ldan chiqayotgan avtomobil",
+      "Ikkala haydovchi o'zaro kelishib o'tadi",
+      "O'ngga burilayotgan avtomobil"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 13.9-bandi: Ikkinchi darajali yo'lda harakatlanayotgan haydovchi asosiy yo'ldan yaqinlashayotgan transport vositalariga harakat yo'nalishidan qat'i nazar yo'l berishi shart."
+  },
+  {
+    "id": 45,
+    "ticket_id": 3,
+    "question_num": 5,
+    "question": "[3-bilet, 5-savol] Ushbu belgi ta'sir doirasida quvib o'tish mumkinmi?",
+    "image": "sign_no_overtaking",
+    "options": [
+      "Faqat soatiga 30 km dan kam tezlikda ketayotgan transport vositasini quvib o'tish mumkin",
+      "Barcha transport vositalarini quvib o'tish taqiqlanadi",
+      "Faqat mototsikllarni quvib o'tish mumkin",
+      "Yo'l bo'sh bo'lsa quvib o'tish mumkin"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 3.20-bandi: 'Quvib o'tish taqiqlanadi' belgisi ta'sir sohasida barcha transport vositalarini quvib o'tish qat'iyan taqiqlanadi."
+  },
+  {
+    "id": 46,
+    "ticket_id": 3,
+    "question_num": 6,
+    "question": "[3-bilet, 6-savol] Qaysi holatda orqaga qaytish (razvorot) taqiqlanadi?",
+    "image": "u_turn_rules",
+    "options": [
+      "Piyodalar o'tish joylarida va ko'priklarda",
+      "Faqat svetoforli chorrahalarda",
+      "Aholi punktlaridan tashqarida",
+      "Istalgan joyda ruxsat berilgan"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 8.11-bandi: Piyodalar o'tish joylarida, tonnellarda, ko'priklar, estakadalar va ularning tagida, temir yo'l kesishmalarida orqaga qaytish taqiqlanadi."
+  },
+  {
+    "id": 47,
+    "ticket_id": 3,
+    "question_num": 7,
+    "question": "[3-bilet, 7-savol] Svetoforning sariq miltillovchi signali nimani bildiradi?",
+    "image": "traffic_light_yellow_flash",
+    "options": [
+      "Tez orada qizil chiroq yonishini",
+      "Chorraha tartibga solinmaganligini va xavfli ekanligini",
+      "Harakatlanish to'liq taqiqlanganligini",
+      "Faqat o'ngga burilish mumkinligini"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 6.2-bandi: Sariq miltillovchi signal harakatlanishga ruxsat beradi va chorraha yoki piyodalar o'tish joyi tartibga solinmaganligidan ogohlantiradi."
+  },
+  {
+    "id": 48,
+    "ticket_id": 3,
+    "question_num": 8,
+    "question": "[3-bilet, 8-savol] Piyodalar o'tish joyiga yaqinlashganda haydovchi nima qilishi shart?",
+    "image": "pedestrian_cross",
+    "options": [
+      "Ovozli signal chalib o'tib ketishi kerak",
+      "Tezlikni kamaytirishi, qatnov qismiga chiqqan piyodalarga yo'l berishi shart",
+      "Faqat piyodalar chap tomonda bo'lsa yo'l beradi",
+      "Tezlikni oshirib o'tishi kerak"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 14.1-bandi: Tartibga solinmagan piyodalar o'tish joyiga yaqinlashayotgan transport vositasining haydovchisi yo'lni kesib o'tayotgan piyodalarga yo'l berishi shart."
+  },
+  {
+    "id": 49,
+    "ticket_id": 3,
+    "question_num": 9,
+    "question": "[3-bilet, 9-savol] Avtomagistralda harakatlanishda qaysi harakat taqiqlanadi?",
+    "image": "highway_rules",
+    "options": [
+      "Orqaga harakatlanish va o'quv mashqlarida haydash",
+      "O'ng bo'lakda 80 km/soat tezlikda yurish",
+      "Yoritish chiroqlarini yoqish",
+      "Quvib o'tish"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 16.1-bandi: Avtomagistralda piyodalar, ot-aravalarning harakati, orqaga harakatlanish hamda o'quv mashqi harakatlari taqiqlanadi."
+  },
+  {
+    "id": 50,
+    "ticket_id": 3,
+    "question_num": 10,
+    "question": "[3-bilet, 10-savol] Chorrahada chapga burilayotgan haydovchi qaysi transport vositalariga yo'l berishi kerak?",
+    "image": "turn_left_priority",
+    "options": [
+      "Faqat o'ngdan kelayotganlarga",
+      "Qarama-qarshi tomondan to'g'riga va o'ngga harakatlanayotgan transport vositalariga",
+      "Hech kimga yo'l bermaydi",
+      "Faqat tramvayga"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 13.4-bandi: Chapga burilish yoki orqaga qaytishda teng ahamiyatli yo'lda qarama-qarshi tomondan to'g'riga yoki o'ngga ketayotgan transport vositalariga yo'l berishi shart."
+  },
+  {
+    "id": 51,
+    "ticket_id": 3,
+    "question_num": 11,
+    "question": "[3-bilet, 11-savol] Svetoforning qizil signali bilan birga qo'shimcha yashil strelka yonganda nima qilish kerak?",
+    "image": "traffic_light_arrow",
+    "options": [
+      "Boshqa yo'nalishdagi barcha transport vositalariga yo'l berib, strelka yo'nalishida yurish mumkin",
+      "To'xtamasdan ustunlik bilan yurish mumkin",
+      "Yurish qat'iyan taqiqlanadi",
+      "Faqat to'g'riga yurish mumkin"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 13.5-bandi: Qo'shimcha tarmoq signali yoqilgan yo'nalishda harakatlanayotgan haydovchi boshqa yo'nalishlardan kelayotgan transport vositalariga yo'l berishi shart."
+  },
+  {
+    "id": 52,
+    "ticket_id": 3,
+    "question_num": 12,
+    "question": "[3-bilet, 12-savol] Temir yo'l kesishmasida qaysi masofada to'xtash taqiqlanadi?",
+    "image": "railway_crossing",
+    "options": [
+      "Kesishmagacha 50 metrdan yaqin masofada",
+      "Kesishmaga 10 metr qolganda",
+      "Faqat kesishma ustida",
+      "100 metrdan yaqin masofada"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 15.3-bandi: Temir yo'l kesishmasiga 50 metrdan kam masofada to'xtash va to'xtab turish qat'iyan taqiqlanadi."
+  },
+  {
+    "id": 53,
+    "ticket_id": 3,
+    "question_num": 13,
+    "question": "[3-bilet, 13-savol] Majburiy to'xtash sodir bo'lganda ogohlantiruvchi qizil uchburchak belgisi aholi punktida qanday masofaga qo'yiladi?",
+    "image": "emergency_triangle",
+    "options": [
+      "Kamida 5 metr",
+      "Kamida 15 metr",
+      "Kamida 30 metr",
+      "Kamida 50 metr"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 7.2-bandi: Avariya sababli to'xtaganda ogohlantiruvchi belgi aholi punktida kamida 15 metr, aholi punktidan tashqarida esa kamida 30 metr masofada o'rnatiladi."
+  },
+  {
+    "id": 54,
+    "ticket_id": 3,
+    "question_num": 14,
+    "question": "[3-bilet, 14-savol] Qaysi transport vositasiga harakatlanishda har doim ustunlik beriladi?",
+    "image": "emergency_vehicle",
+    "options": [
+      "Faqat yuk avtomobillariga",
+      "Ko'k miltillovchi mayoqchasi va maxsus tovushli signali yoqilgan transport vositasiga",
+      "Taksi xizmatiga",
+      "Tramvayga"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 3.1-bandi: Ko'k (yoki ko'k va qizil) rangli miltillovchi mayoqchasi va maxsus tovushli signali yoqilgan transport vositasi haydovchilari ustunlikka ega bo'ladilar."
+  },
+  {
+    "id": 55,
+    "ticket_id": 3,
+    "question_num": 15,
+    "question": "[3-bilet, 15-savol] Ushbu yo'l belgisi qanday harakatni buyuradi?",
+    "image": "sign_mandatory_right",
+    "options": [
+      "Faqat o'ngga harakatlanishni",
+      "O'ng tomonda to'xtashni",
+      "Chapga burilishni",
+      "To'g'riga va o'ngga yurishni"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 4.1.2-bandi: 'Harakatlanish o'ngga' belgisi faqat ko'rsatilgan yo'nalishda harakatlanishga ruxsat beradi."
+  },
+  {
+    "id": 56,
+    "ticket_id": 3,
+    "question_num": 16,
+    "question": "[3-bilet, 16-savol] Tuman va ko'rish masofasi cheklangan sharoitda qaysi chiroqlar yoqilishi shart?",
+    "image": "fog_lights",
+    "options": [
+      "Faqat gabarit chiroqlari",
+      "Yaqinni yoki uzoqni yorituvchi fara chiroqlari (tumanga qarshi chiroqlar bilan birga)",
+      "Avariya chiroqlari",
+      "Hech qanday chiroq kerak emas"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 19.1-bandi: Ko'rish yetarli bo'lmagan sharoitda va sutkaning qorong'i vaqtida faralarning yaqin yoki uzoqni yorituvchi chiroqlari yoqilishi shart."
+  },
+  {
+    "id": 57,
+    "ticket_id": 3,
+    "question_num": 17,
+    "question": "[3-bilet, 17-savol] Bolalarni yengil avtomobilning old o'rindig'ida qanday tashishga ruxsat beriladi?",
+    "image": "child_seat",
+    "options": [
+      "Maxsus bolalar o'rindig'i (avtokreslo) bo'lganda",
+      "Katta yoshli odam quchog'ida",
+      "12 yoshga to'lmagan bolalarni old o'rindiqda tashish umuman mumkin emas",
+      "Xavfsizlik kamarini taqqan holda"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 22.9-bandi: 12 yoshga to'lmagan bolalarni old o'rindiqda faqat bolalar ushlab turuvchi maxsus moslama (avtokreslo) orqali tashishga ruxsat etiladi."
+  },
+  {
+    "id": 58,
+    "ticket_id": 3,
+    "question_num": 18,
+    "question": "[3-bilet, 18-savol] Yo'l chizig'i yaxlit (uzluksiz) oq chiziq bo'lsa, uni bosib o'tish mumkinmi?",
+    "image": "solid_line",
+    "options": [
+      "Yo'l bo'sh bo'lsa mumkin",
+      "Qat'iyan taqiqlanadi (faqat ruxsat etilgan favqulodda to'xtashdan tashqari)",
+      "Quvib o'tish uchun mumkin",
+      "Kechasi mumkin"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 1.1-yo'l chizig'i: Qarama-qarshi yo'nalishlarni ajratuvchi yaxlit chiziqni bosib o'tish qat'iyan taqiqlanadi."
+  },
+  {
+    "id": 59,
+    "ticket_id": 3,
+    "question_num": 19,
+    "question": "[3-bilet, 19-savol] Chorrahada tartibga soluvchining (GSI xodimi) qo'llari ikki tomonga uzatilgan yoki tushirilgan bo'lsa:",
+    "image": "traffic_controller",
+    "options": [
+      "Barcha yo'nalishlarda to'xtash shart",
+      "Chap va o'ng yonbosh tomondan: to'g'riga va o'ngga; ko'krak va orqa tomondan: harakat taqiqlanadi",
+      "Faqat orqaga qaytish mumkin",
+      "Faqat tramvaylar yura oladi"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 6.10-bandi: Tartibga soluvchining qo'llari yon tomonga uzatilgan yoki tushirilgan holatida ko'krak va orqa tomondan harakatlanish taqiqlanadi."
+  },
+  {
+    "id": 60,
+    "ticket_id": 3,
+    "question_num": 20,
+    "question": "[3-bilet, 20-savol] Spirtli ichimlik yoki dori ta'sirida mast holda transport vositasini boshqarish:",
+    "image": "dui_sign",
+    "options": [
+      "Qat'iyan taqiqlanadi va qonun bo'yicha javobgarlikka tortiladi",
+      "Yaqin masofaga mumkin",
+      "Faqat kechasi taqiqlanadi",
+      "Avariya chirog'i yoqilgan holda mumkin"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 2.7-bandi: Mast holatda transport vositasini boshqarish qat'iyan man etiladi va qonun bilan og'ir jazoga (jarima va haydovchilik huquqidan mahrum qilish) sabab bo'ladi."
+  },
+  {
+    "id": 61,
+    "ticket_id": 4,
+    "question_num": 1,
+    "question": "[4-bilet, 1-savol] Ushbu yo'l belgisi nimani bildiradi?",
+    "image": "sign_danger",
+    "options": [
+      "Boshqa xavf-xatarlar mavjudligi haqida ogohlantiradi",
+      "Yo'l ta'mirlanayotgan joyni bildiradi",
+      "Harakatlanish taqiqlanganligini bildiradi",
+      "To'xtash taqiqlanganligini bildiradi"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 1.30-bandi: 'Boshqa xavflar' belgisi yo'lning boshqa ogohlantiruvchi belgilar bilan ko'zda tutilmagan xavfli qismiga yaqinlashayotganlik haqida ogohlantiradi."
+  },
+  {
+    "id": 62,
+    "ticket_id": 4,
+    "question_num": 2,
+    "question": "[4-bilet, 2-savol] Teng ahamiyatli chorrahada qaysi transport vositasi birinchi o'tadi?",
+    "image": "crossroad_equal",
+    "options": [
+      "To'g'riga harakatlanayotgan avtomobil",
+      "O'ng tomondan yaqinlashayotgan transport vositasi",
+      "Tezroq yetib kelgan avtomobil",
+      "Katta hajmli transport vositasi"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 13.11-bandi: Teng ahamiyatli yo'llar chorrahasida haydovchi o'ng tomondan yaqinlashayotgan transport vositalariga yo'l berishi shart ('O'ng qo'l qoidasi')."
+  },
+  {
+    "id": 63,
+    "ticket_id": 4,
+    "question_num": 3,
+    "question": "[4-bilet, 3-savol] Aholi punktlarida yengil avtomobillarning ruxsat etilgan eng yuqori tezligi qancha?",
+    "image": "speed_limit_60",
+    "options": [
+      "50 km/soat",
+      "60 km/soat",
+      "70 km/soat",
+      "80 km/soat"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 12.1-bandi (yangi tahrir): O'zbekiston Respublikasi bo'yicha aholi punktlarida barcha transport vositalariga 60 km/soat tezlikda harakatlanishga ruxsat etiladi."
+  },
+  {
+    "id": 64,
+    "ticket_id": 4,
+    "question_num": 4,
+    "question": "[4-bilet, 4-savol] Quyidagi vaziyatda qaysi avtomobil yo'l berishi shart?",
+    "image": "priority_main_road",
+    "options": [
+      "Asosiy yo'lda harakatlanayotgan avtomobil",
+      "Ikkinchi darajali yo'ldan chiqayotgan avtomobil",
+      "Ikkala haydovchi o'zaro kelishib o'tadi",
+      "O'ngga burilayotgan avtomobil"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 13.9-bandi: Ikkinchi darajali yo'lda harakatlanayotgan haydovchi asosiy yo'ldan yaqinlashayotgan transport vositalariga harakat yo'nalishidan qat'i nazar yo'l berishi shart."
+  },
+  {
+    "id": 65,
+    "ticket_id": 4,
+    "question_num": 5,
+    "question": "[4-bilet, 5-savol] Ushbu belgi ta'sir doirasida quvib o'tish mumkinmi?",
+    "image": "sign_no_overtaking",
+    "options": [
+      "Faqat soatiga 30 km dan kam tezlikda ketayotgan transport vositasini quvib o'tish mumkin",
+      "Barcha transport vositalarini quvib o'tish taqiqlanadi",
+      "Faqat mototsikllarni quvib o'tish mumkin",
+      "Yo'l bo'sh bo'lsa quvib o'tish mumkin"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 3.20-bandi: 'Quvib o'tish taqiqlanadi' belgisi ta'sir sohasida barcha transport vositalarini quvib o'tish qat'iyan taqiqlanadi."
+  },
+  {
+    "id": 66,
+    "ticket_id": 4,
+    "question_num": 6,
+    "question": "[4-bilet, 6-savol] Qaysi holatda orqaga qaytish (razvorot) taqiqlanadi?",
+    "image": "u_turn_rules",
+    "options": [
+      "Piyodalar o'tish joylarida va ko'priklarda",
+      "Faqat svetoforli chorrahalarda",
+      "Aholi punktlaridan tashqarida",
+      "Istalgan joyda ruxsat berilgan"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 8.11-bandi: Piyodalar o'tish joylarida, tonnellarda, ko'priklar, estakadalar va ularning tagida, temir yo'l kesishmalarida orqaga qaytish taqiqlanadi."
+  },
+  {
+    "id": 67,
+    "ticket_id": 4,
+    "question_num": 7,
+    "question": "[4-bilet, 7-savol] Svetoforning sariq miltillovchi signali nimani bildiradi?",
+    "image": "traffic_light_yellow_flash",
+    "options": [
+      "Tez orada qizil chiroq yonishini",
+      "Chorraha tartibga solinmaganligini va xavfli ekanligini",
+      "Harakatlanish to'liq taqiqlanganligini",
+      "Faqat o'ngga burilish mumkinligini"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 6.2-bandi: Sariq miltillovchi signal harakatlanishga ruxsat beradi va chorraha yoki piyodalar o'tish joyi tartibga solinmaganligidan ogohlantiradi."
+  },
+  {
+    "id": 68,
+    "ticket_id": 4,
+    "question_num": 8,
+    "question": "[4-bilet, 8-savol] Piyodalar o'tish joyiga yaqinlashganda haydovchi nima qilishi shart?",
+    "image": "pedestrian_cross",
+    "options": [
+      "Ovozli signal chalib o'tib ketishi kerak",
+      "Tezlikni kamaytirishi, qatnov qismiga chiqqan piyodalarga yo'l berishi shart",
+      "Faqat piyodalar chap tomonda bo'lsa yo'l beradi",
+      "Tezlikni oshirib o'tishi kerak"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 14.1-bandi: Tartibga solinmagan piyodalar o'tish joyiga yaqinlashayotgan transport vositasining haydovchisi yo'lni kesib o'tayotgan piyodalarga yo'l berishi shart."
+  },
+  {
+    "id": 69,
+    "ticket_id": 4,
+    "question_num": 9,
+    "question": "[4-bilet, 9-savol] Avtomagistralda harakatlanishda qaysi harakat taqiqlanadi?",
+    "image": "highway_rules",
+    "options": [
+      "Orqaga harakatlanish va o'quv mashqlarida haydash",
+      "O'ng bo'lakda 80 km/soat tezlikda yurish",
+      "Yoritish chiroqlarini yoqish",
+      "Quvib o'tish"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 16.1-bandi: Avtomagistralda piyodalar, ot-aravalarning harakati, orqaga harakatlanish hamda o'quv mashqi harakatlari taqiqlanadi."
+  },
+  {
+    "id": 70,
+    "ticket_id": 4,
+    "question_num": 10,
+    "question": "[4-bilet, 10-savol] Chorrahada chapga burilayotgan haydovchi qaysi transport vositalariga yo'l berishi kerak?",
+    "image": "turn_left_priority",
+    "options": [
+      "Faqat o'ngdan kelayotganlarga",
+      "Qarama-qarshi tomondan to'g'riga va o'ngga harakatlanayotgan transport vositalariga",
+      "Hech kimga yo'l bermaydi",
+      "Faqat tramvayga"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 13.4-bandi: Chapga burilish yoki orqaga qaytishda teng ahamiyatli yo'lda qarama-qarshi tomondan to'g'riga yoki o'ngga ketayotgan transport vositalariga yo'l berishi shart."
+  },
+  {
+    "id": 71,
+    "ticket_id": 4,
+    "question_num": 11,
+    "question": "[4-bilet, 11-savol] Svetoforning qizil signali bilan birga qo'shimcha yashil strelka yonganda nima qilish kerak?",
+    "image": "traffic_light_arrow",
+    "options": [
+      "Boshqa yo'nalishdagi barcha transport vositalariga yo'l berib, strelka yo'nalishida yurish mumkin",
+      "To'xtamasdan ustunlik bilan yurish mumkin",
+      "Yurish qat'iyan taqiqlanadi",
+      "Faqat to'g'riga yurish mumkin"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 13.5-bandi: Qo'shimcha tarmoq signali yoqilgan yo'nalishda harakatlanayotgan haydovchi boshqa yo'nalishlardan kelayotgan transport vositalariga yo'l berishi shart."
+  },
+  {
+    "id": 72,
+    "ticket_id": 4,
+    "question_num": 12,
+    "question": "[4-bilet, 12-savol] Temir yo'l kesishmasida qaysi masofada to'xtash taqiqlanadi?",
+    "image": "railway_crossing",
+    "options": [
+      "Kesishmagacha 50 metrdan yaqin masofada",
+      "Kesishmaga 10 metr qolganda",
+      "Faqat kesishma ustida",
+      "100 metrdan yaqin masofada"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 15.3-bandi: Temir yo'l kesishmasiga 50 metrdan kam masofada to'xtash va to'xtab turish qat'iyan taqiqlanadi."
+  },
+  {
+    "id": 73,
+    "ticket_id": 4,
+    "question_num": 13,
+    "question": "[4-bilet, 13-savol] Majburiy to'xtash sodir bo'lganda ogohlantiruvchi qizil uchburchak belgisi aholi punktida qanday masofaga qo'yiladi?",
+    "image": "emergency_triangle",
+    "options": [
+      "Kamida 5 metr",
+      "Kamida 15 metr",
+      "Kamida 30 metr",
+      "Kamida 50 metr"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 7.2-bandi: Avariya sababli to'xtaganda ogohlantiruvchi belgi aholi punktida kamida 15 metr, aholi punktidan tashqarida esa kamida 30 metr masofada o'rnatiladi."
+  },
+  {
+    "id": 74,
+    "ticket_id": 4,
+    "question_num": 14,
+    "question": "[4-bilet, 14-savol] Qaysi transport vositasiga harakatlanishda har doim ustunlik beriladi?",
+    "image": "emergency_vehicle",
+    "options": [
+      "Faqat yuk avtomobillariga",
+      "Ko'k miltillovchi mayoqchasi va maxsus tovushli signali yoqilgan transport vositasiga",
+      "Taksi xizmatiga",
+      "Tramvayga"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 3.1-bandi: Ko'k (yoki ko'k va qizil) rangli miltillovchi mayoqchasi va maxsus tovushli signali yoqilgan transport vositasi haydovchilari ustunlikka ega bo'ladilar."
+  },
+  {
+    "id": 75,
+    "ticket_id": 4,
+    "question_num": 15,
+    "question": "[4-bilet, 15-savol] Ushbu yo'l belgisi qanday harakatni buyuradi?",
+    "image": "sign_mandatory_right",
+    "options": [
+      "Faqat o'ngga harakatlanishni",
+      "O'ng tomonda to'xtashni",
+      "Chapga burilishni",
+      "To'g'riga va o'ngga yurishni"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 4.1.2-bandi: 'Harakatlanish o'ngga' belgisi faqat ko'rsatilgan yo'nalishda harakatlanishga ruxsat beradi."
+  },
+  {
+    "id": 76,
+    "ticket_id": 4,
+    "question_num": 16,
+    "question": "[4-bilet, 16-savol] Tuman va ko'rish masofasi cheklangan sharoitda qaysi chiroqlar yoqilishi shart?",
+    "image": "fog_lights",
+    "options": [
+      "Faqat gabarit chiroqlari",
+      "Yaqinni yoki uzoqni yorituvchi fara chiroqlari (tumanga qarshi chiroqlar bilan birga)",
+      "Avariya chiroqlari",
+      "Hech qanday chiroq kerak emas"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 19.1-bandi: Ko'rish yetarli bo'lmagan sharoitda va sutkaning qorong'i vaqtida faralarning yaqin yoki uzoqni yorituvchi chiroqlari yoqilishi shart."
+  },
+  {
+    "id": 77,
+    "ticket_id": 4,
+    "question_num": 17,
+    "question": "[4-bilet, 17-savol] Bolalarni yengil avtomobilning old o'rindig'ida qanday tashishga ruxsat beriladi?",
+    "image": "child_seat",
+    "options": [
+      "Maxsus bolalar o'rindig'i (avtokreslo) bo'lganda",
+      "Katta yoshli odam quchog'ida",
+      "12 yoshga to'lmagan bolalarni old o'rindiqda tashish umuman mumkin emas",
+      "Xavfsizlik kamarini taqqan holda"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 22.9-bandi: 12 yoshga to'lmagan bolalarni old o'rindiqda faqat bolalar ushlab turuvchi maxsus moslama (avtokreslo) orqali tashishga ruxsat etiladi."
+  },
+  {
+    "id": 78,
+    "ticket_id": 4,
+    "question_num": 18,
+    "question": "[4-bilet, 18-savol] Yo'l chizig'i yaxlit (uzluksiz) oq chiziq bo'lsa, uni bosib o'tish mumkinmi?",
+    "image": "solid_line",
+    "options": [
+      "Yo'l bo'sh bo'lsa mumkin",
+      "Qat'iyan taqiqlanadi (faqat ruxsat etilgan favqulodda to'xtashdan tashqari)",
+      "Quvib o'tish uchun mumkin",
+      "Kechasi mumkin"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 1.1-yo'l chizig'i: Qarama-qarshi yo'nalishlarni ajratuvchi yaxlit chiziqni bosib o'tish qat'iyan taqiqlanadi."
+  },
+  {
+    "id": 79,
+    "ticket_id": 4,
+    "question_num": 19,
+    "question": "[4-bilet, 19-savol] Chorrahada tartibga soluvchining (GSI xodimi) qo'llari ikki tomonga uzatilgan yoki tushirilgan bo'lsa:",
+    "image": "traffic_controller",
+    "options": [
+      "Barcha yo'nalishlarda to'xtash shart",
+      "Chap va o'ng yonbosh tomondan: to'g'riga va o'ngga; ko'krak va orqa tomondan: harakat taqiqlanadi",
+      "Faqat orqaga qaytish mumkin",
+      "Faqat tramvaylar yura oladi"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 6.10-bandi: Tartibga soluvchining qo'llari yon tomonga uzatilgan yoki tushirilgan holatida ko'krak va orqa tomondan harakatlanish taqiqlanadi."
+  },
+  {
+    "id": 80,
+    "ticket_id": 4,
+    "question_num": 20,
+    "question": "[4-bilet, 20-savol] Spirtli ichimlik yoki dori ta'sirida mast holda transport vositasini boshqarish:",
+    "image": "dui_sign",
+    "options": [
+      "Qat'iyan taqiqlanadi va qonun bo'yicha javobgarlikka tortiladi",
+      "Yaqin masofaga mumkin",
+      "Faqat kechasi taqiqlanadi",
+      "Avariya chirog'i yoqilgan holda mumkin"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 2.7-bandi: Mast holatda transport vositasini boshqarish qat'iyan man etiladi va qonun bilan og'ir jazoga (jarima va haydovchilik huquqidan mahrum qilish) sabab bo'ladi."
+  },
+  {
+    "id": 81,
+    "ticket_id": 5,
+    "question_num": 1,
+    "question": "[5-bilet, 1-savol] Ushbu yo'l belgisi nimani bildiradi?",
+    "image": "sign_danger",
+    "options": [
+      "Boshqa xavf-xatarlar mavjudligi haqida ogohlantiradi",
+      "Yo'l ta'mirlanayotgan joyni bildiradi",
+      "Harakatlanish taqiqlanganligini bildiradi",
+      "To'xtash taqiqlanganligini bildiradi"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 1.30-bandi: 'Boshqa xavflar' belgisi yo'lning boshqa ogohlantiruvchi belgilar bilan ko'zda tutilmagan xavfli qismiga yaqinlashayotganlik haqida ogohlantiradi."
+  },
+  {
+    "id": 82,
+    "ticket_id": 5,
+    "question_num": 2,
+    "question": "[5-bilet, 2-savol] Teng ahamiyatli chorrahada qaysi transport vositasi birinchi o'tadi?",
+    "image": "crossroad_equal",
+    "options": [
+      "To'g'riga harakatlanayotgan avtomobil",
+      "O'ng tomondan yaqinlashayotgan transport vositasi",
+      "Tezroq yetib kelgan avtomobil",
+      "Katta hajmli transport vositasi"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 13.11-bandi: Teng ahamiyatli yo'llar chorrahasida haydovchi o'ng tomondan yaqinlashayotgan transport vositalariga yo'l berishi shart ('O'ng qo'l qoidasi')."
+  },
+  {
+    "id": 83,
+    "ticket_id": 5,
+    "question_num": 3,
+    "question": "[5-bilet, 3-savol] Aholi punktlarida yengil avtomobillarning ruxsat etilgan eng yuqori tezligi qancha?",
+    "image": "speed_limit_60",
+    "options": [
+      "50 km/soat",
+      "60 km/soat",
+      "70 km/soat",
+      "80 km/soat"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 12.1-bandi (yangi tahrir): O'zbekiston Respublikasi bo'yicha aholi punktlarida barcha transport vositalariga 60 km/soat tezlikda harakatlanishga ruxsat etiladi."
+  },
+  {
+    "id": 84,
+    "ticket_id": 5,
+    "question_num": 4,
+    "question": "[5-bilet, 4-savol] Quyidagi vaziyatda qaysi avtomobil yo'l berishi shart?",
+    "image": "priority_main_road",
+    "options": [
+      "Asosiy yo'lda harakatlanayotgan avtomobil",
+      "Ikkinchi darajali yo'ldan chiqayotgan avtomobil",
+      "Ikkala haydovchi o'zaro kelishib o'tadi",
+      "O'ngga burilayotgan avtomobil"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 13.9-bandi: Ikkinchi darajali yo'lda harakatlanayotgan haydovchi asosiy yo'ldan yaqinlashayotgan transport vositalariga harakat yo'nalishidan qat'i nazar yo'l berishi shart."
+  },
+  {
+    "id": 85,
+    "ticket_id": 5,
+    "question_num": 5,
+    "question": "[5-bilet, 5-savol] Ushbu belgi ta'sir doirasida quvib o'tish mumkinmi?",
+    "image": "sign_no_overtaking",
+    "options": [
+      "Faqat soatiga 30 km dan kam tezlikda ketayotgan transport vositasini quvib o'tish mumkin",
+      "Barcha transport vositalarini quvib o'tish taqiqlanadi",
+      "Faqat mototsikllarni quvib o'tish mumkin",
+      "Yo'l bo'sh bo'lsa quvib o'tish mumkin"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 3.20-bandi: 'Quvib o'tish taqiqlanadi' belgisi ta'sir sohasida barcha transport vositalarini quvib o'tish qat'iyan taqiqlanadi."
+  },
+  {
+    "id": 86,
+    "ticket_id": 5,
+    "question_num": 6,
+    "question": "[5-bilet, 6-savol] Qaysi holatda orqaga qaytish (razvorot) taqiqlanadi?",
+    "image": "u_turn_rules",
+    "options": [
+      "Piyodalar o'tish joylarida va ko'priklarda",
+      "Faqat svetoforli chorrahalarda",
+      "Aholi punktlaridan tashqarida",
+      "Istalgan joyda ruxsat berilgan"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 8.11-bandi: Piyodalar o'tish joylarida, tonnellarda, ko'priklar, estakadalar va ularning tagida, temir yo'l kesishmalarida orqaga qaytish taqiqlanadi."
+  },
+  {
+    "id": 87,
+    "ticket_id": 5,
+    "question_num": 7,
+    "question": "[5-bilet, 7-savol] Svetoforning sariq miltillovchi signali nimani bildiradi?",
+    "image": "traffic_light_yellow_flash",
+    "options": [
+      "Tez orada qizil chiroq yonishini",
+      "Chorraha tartibga solinmaganligini va xavfli ekanligini",
+      "Harakatlanish to'liq taqiqlanganligini",
+      "Faqat o'ngga burilish mumkinligini"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 6.2-bandi: Sariq miltillovchi signal harakatlanishga ruxsat beradi va chorraha yoki piyodalar o'tish joyi tartibga solinmaganligidan ogohlantiradi."
+  },
+  {
+    "id": 88,
+    "ticket_id": 5,
+    "question_num": 8,
+    "question": "[5-bilet, 8-savol] Piyodalar o'tish joyiga yaqinlashganda haydovchi nima qilishi shart?",
+    "image": "pedestrian_cross",
+    "options": [
+      "Ovozli signal chalib o'tib ketishi kerak",
+      "Tezlikni kamaytirishi, qatnov qismiga chiqqan piyodalarga yo'l berishi shart",
+      "Faqat piyodalar chap tomonda bo'lsa yo'l beradi",
+      "Tezlikni oshirib o'tishi kerak"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 14.1-bandi: Tartibga solinmagan piyodalar o'tish joyiga yaqinlashayotgan transport vositasining haydovchisi yo'lni kesib o'tayotgan piyodalarga yo'l berishi shart."
+  },
+  {
+    "id": 89,
+    "ticket_id": 5,
+    "question_num": 9,
+    "question": "[5-bilet, 9-savol] Avtomagistralda harakatlanishda qaysi harakat taqiqlanadi?",
+    "image": "highway_rules",
+    "options": [
+      "Orqaga harakatlanish va o'quv mashqlarida haydash",
+      "O'ng bo'lakda 80 km/soat tezlikda yurish",
+      "Yoritish chiroqlarini yoqish",
+      "Quvib o'tish"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 16.1-bandi: Avtomagistralda piyodalar, ot-aravalarning harakati, orqaga harakatlanish hamda o'quv mashqi harakatlari taqiqlanadi."
+  },
+  {
+    "id": 90,
+    "ticket_id": 5,
+    "question_num": 10,
+    "question": "[5-bilet, 10-savol] Chorrahada chapga burilayotgan haydovchi qaysi transport vositalariga yo'l berishi kerak?",
+    "image": "turn_left_priority",
+    "options": [
+      "Faqat o'ngdan kelayotganlarga",
+      "Qarama-qarshi tomondan to'g'riga va o'ngga harakatlanayotgan transport vositalariga",
+      "Hech kimga yo'l bermaydi",
+      "Faqat tramvayga"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 13.4-bandi: Chapga burilish yoki orqaga qaytishda teng ahamiyatli yo'lda qarama-qarshi tomondan to'g'riga yoki o'ngga ketayotgan transport vositalariga yo'l berishi shart."
+  },
+  {
+    "id": 91,
+    "ticket_id": 5,
+    "question_num": 11,
+    "question": "[5-bilet, 11-savol] Svetoforning qizil signali bilan birga qo'shimcha yashil strelka yonganda nima qilish kerak?",
+    "image": "traffic_light_arrow",
+    "options": [
+      "Boshqa yo'nalishdagi barcha transport vositalariga yo'l berib, strelka yo'nalishida yurish mumkin",
+      "To'xtamasdan ustunlik bilan yurish mumkin",
+      "Yurish qat'iyan taqiqlanadi",
+      "Faqat to'g'riga yurish mumkin"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 13.5-bandi: Qo'shimcha tarmoq signali yoqilgan yo'nalishda harakatlanayotgan haydovchi boshqa yo'nalishlardan kelayotgan transport vositalariga yo'l berishi shart."
+  },
+  {
+    "id": 92,
+    "ticket_id": 5,
+    "question_num": 12,
+    "question": "[5-bilet, 12-savol] Temir yo'l kesishmasida qaysi masofada to'xtash taqiqlanadi?",
+    "image": "railway_crossing",
+    "options": [
+      "Kesishmagacha 50 metrdan yaqin masofada",
+      "Kesishmaga 10 metr qolganda",
+      "Faqat kesishma ustida",
+      "100 metrdan yaqin masofada"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 15.3-bandi: Temir yo'l kesishmasiga 50 metrdan kam masofada to'xtash va to'xtab turish qat'iyan taqiqlanadi."
+  },
+  {
+    "id": 93,
+    "ticket_id": 5,
+    "question_num": 13,
+    "question": "[5-bilet, 13-savol] Majburiy to'xtash sodir bo'lganda ogohlantiruvchi qizil uchburchak belgisi aholi punktida qanday masofaga qo'yiladi?",
+    "image": "emergency_triangle",
+    "options": [
+      "Kamida 5 metr",
+      "Kamida 15 metr",
+      "Kamida 30 metr",
+      "Kamida 50 metr"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 7.2-bandi: Avariya sababli to'xtaganda ogohlantiruvchi belgi aholi punktida kamida 15 metr, aholi punktidan tashqarida esa kamida 30 metr masofada o'rnatiladi."
+  },
+  {
+    "id": 94,
+    "ticket_id": 5,
+    "question_num": 14,
+    "question": "[5-bilet, 14-savol] Qaysi transport vositasiga harakatlanishda har doim ustunlik beriladi?",
+    "image": "emergency_vehicle",
+    "options": [
+      "Faqat yuk avtomobillariga",
+      "Ko'k miltillovchi mayoqchasi va maxsus tovushli signali yoqilgan transport vositasiga",
+      "Taksi xizmatiga",
+      "Tramvayga"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 3.1-bandi: Ko'k (yoki ko'k va qizil) rangli miltillovchi mayoqchasi va maxsus tovushli signali yoqilgan transport vositasi haydovchilari ustunlikka ega bo'ladilar."
+  },
+  {
+    "id": 95,
+    "ticket_id": 5,
+    "question_num": 15,
+    "question": "[5-bilet, 15-savol] Ushbu yo'l belgisi qanday harakatni buyuradi?",
+    "image": "sign_mandatory_right",
+    "options": [
+      "Faqat o'ngga harakatlanishni",
+      "O'ng tomonda to'xtashni",
+      "Chapga burilishni",
+      "To'g'riga va o'ngga yurishni"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 4.1.2-bandi: 'Harakatlanish o'ngga' belgisi faqat ko'rsatilgan yo'nalishda harakatlanishga ruxsat beradi."
+  },
+  {
+    "id": 96,
+    "ticket_id": 5,
+    "question_num": 16,
+    "question": "[5-bilet, 16-savol] Tuman va ko'rish masofasi cheklangan sharoitda qaysi chiroqlar yoqilishi shart?",
+    "image": "fog_lights",
+    "options": [
+      "Faqat gabarit chiroqlari",
+      "Yaqinni yoki uzoqni yorituvchi fara chiroqlari (tumanga qarshi chiroqlar bilan birga)",
+      "Avariya chiroqlari",
+      "Hech qanday chiroq kerak emas"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 19.1-bandi: Ko'rish yetarli bo'lmagan sharoitda va sutkaning qorong'i vaqtida faralarning yaqin yoki uzoqni yorituvchi chiroqlari yoqilishi shart."
+  },
+  {
+    "id": 97,
+    "ticket_id": 5,
+    "question_num": 17,
+    "question": "[5-bilet, 17-savol] Bolalarni yengil avtomobilning old o'rindig'ida qanday tashishga ruxsat beriladi?",
+    "image": "child_seat",
+    "options": [
+      "Maxsus bolalar o'rindig'i (avtokreslo) bo'lganda",
+      "Katta yoshli odam quchog'ida",
+      "12 yoshga to'lmagan bolalarni old o'rindiqda tashish umuman mumkin emas",
+      "Xavfsizlik kamarini taqqan holda"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 22.9-bandi: 12 yoshga to'lmagan bolalarni old o'rindiqda faqat bolalar ushlab turuvchi maxsus moslama (avtokreslo) orqali tashishga ruxsat etiladi."
+  },
+  {
+    "id": 98,
+    "ticket_id": 5,
+    "question_num": 18,
+    "question": "[5-bilet, 18-savol] Yo'l chizig'i yaxlit (uzluksiz) oq chiziq bo'lsa, uni bosib o'tish mumkinmi?",
+    "image": "solid_line",
+    "options": [
+      "Yo'l bo'sh bo'lsa mumkin",
+      "Qat'iyan taqiqlanadi (faqat ruxsat etilgan favqulodda to'xtashdan tashqari)",
+      "Quvib o'tish uchun mumkin",
+      "Kechasi mumkin"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 1.1-yo'l chizig'i: Qarama-qarshi yo'nalishlarni ajratuvchi yaxlit chiziqni bosib o'tish qat'iyan taqiqlanadi."
+  },
+  {
+    "id": 99,
+    "ticket_id": 5,
+    "question_num": 19,
+    "question": "[5-bilet, 19-savol] Chorrahada tartibga soluvchining (GSI xodimi) qo'llari ikki tomonga uzatilgan yoki tushirilgan bo'lsa:",
+    "image": "traffic_controller",
+    "options": [
+      "Barcha yo'nalishlarda to'xtash shart",
+      "Chap va o'ng yonbosh tomondan: to'g'riga va o'ngga; ko'krak va orqa tomondan: harakat taqiqlanadi",
+      "Faqat orqaga qaytish mumkin",
+      "Faqat tramvaylar yura oladi"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 6.10-bandi: Tartibga soluvchining qo'llari yon tomonga uzatilgan yoki tushirilgan holatida ko'krak va orqa tomondan harakatlanish taqiqlanadi."
+  },
+  {
+    "id": 100,
+    "ticket_id": 5,
+    "question_num": 20,
+    "question": "[5-bilet, 20-savol] Spirtli ichimlik yoki dori ta'sirida mast holda transport vositasini boshqarish:",
+    "image": "dui_sign",
+    "options": [
+      "Qat'iyan taqiqlanadi va qonun bo'yicha javobgarlikka tortiladi",
+      "Yaqin masofaga mumkin",
+      "Faqat kechasi taqiqlanadi",
+      "Avariya chirog'i yoqilgan holda mumkin"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 2.7-bandi: Mast holatda transport vositasini boshqarish qat'iyan man etiladi va qonun bilan og'ir jazoga (jarima va haydovchilik huquqidan mahrum qilish) sabab bo'ladi."
+  },
+  {
+    "id": 101,
+    "ticket_id": 6,
+    "question_num": 1,
+    "question": "[6-bilet, 1-savol] Ushbu yo'l belgisi nimani bildiradi?",
+    "image": "sign_danger",
+    "options": [
+      "Boshqa xavf-xatarlar mavjudligi haqida ogohlantiradi",
+      "Yo'l ta'mirlanayotgan joyni bildiradi",
+      "Harakatlanish taqiqlanganligini bildiradi",
+      "To'xtash taqiqlanganligini bildiradi"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 1.30-bandi: 'Boshqa xavflar' belgisi yo'lning boshqa ogohlantiruvchi belgilar bilan ko'zda tutilmagan xavfli qismiga yaqinlashayotganlik haqida ogohlantiradi."
+  },
+  {
+    "id": 102,
+    "ticket_id": 6,
+    "question_num": 2,
+    "question": "[6-bilet, 2-savol] Teng ahamiyatli chorrahada qaysi transport vositasi birinchi o'tadi?",
+    "image": "crossroad_equal",
+    "options": [
+      "To'g'riga harakatlanayotgan avtomobil",
+      "O'ng tomondan yaqinlashayotgan transport vositasi",
+      "Tezroq yetib kelgan avtomobil",
+      "Katta hajmli transport vositasi"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 13.11-bandi: Teng ahamiyatli yo'llar chorrahasida haydovchi o'ng tomondan yaqinlashayotgan transport vositalariga yo'l berishi shart ('O'ng qo'l qoidasi')."
+  },
+  {
+    "id": 103,
+    "ticket_id": 6,
+    "question_num": 3,
+    "question": "[6-bilet, 3-savol] Aholi punktlarida yengil avtomobillarning ruxsat etilgan eng yuqori tezligi qancha?",
+    "image": "speed_limit_60",
+    "options": [
+      "50 km/soat",
+      "60 km/soat",
+      "70 km/soat",
+      "80 km/soat"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 12.1-bandi (yangi tahrir): O'zbekiston Respublikasi bo'yicha aholi punktlarida barcha transport vositalariga 60 km/soat tezlikda harakatlanishga ruxsat etiladi."
+  },
+  {
+    "id": 104,
+    "ticket_id": 6,
+    "question_num": 4,
+    "question": "[6-bilet, 4-savol] Quyidagi vaziyatda qaysi avtomobil yo'l berishi shart?",
+    "image": "priority_main_road",
+    "options": [
+      "Asosiy yo'lda harakatlanayotgan avtomobil",
+      "Ikkinchi darajali yo'ldan chiqayotgan avtomobil",
+      "Ikkala haydovchi o'zaro kelishib o'tadi",
+      "O'ngga burilayotgan avtomobil"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 13.9-bandi: Ikkinchi darajali yo'lda harakatlanayotgan haydovchi asosiy yo'ldan yaqinlashayotgan transport vositalariga harakat yo'nalishidan qat'i nazar yo'l berishi shart."
+  },
+  {
+    "id": 105,
+    "ticket_id": 6,
+    "question_num": 5,
+    "question": "[6-bilet, 5-savol] Ushbu belgi ta'sir doirasida quvib o'tish mumkinmi?",
+    "image": "sign_no_overtaking",
+    "options": [
+      "Faqat soatiga 30 km dan kam tezlikda ketayotgan transport vositasini quvib o'tish mumkin",
+      "Barcha transport vositalarini quvib o'tish taqiqlanadi",
+      "Faqat mototsikllarni quvib o'tish mumkin",
+      "Yo'l bo'sh bo'lsa quvib o'tish mumkin"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 3.20-bandi: 'Quvib o'tish taqiqlanadi' belgisi ta'sir sohasida barcha transport vositalarini quvib o'tish qat'iyan taqiqlanadi."
+  },
+  {
+    "id": 106,
+    "ticket_id": 6,
+    "question_num": 6,
+    "question": "[6-bilet, 6-savol] Qaysi holatda orqaga qaytish (razvorot) taqiqlanadi?",
+    "image": "u_turn_rules",
+    "options": [
+      "Piyodalar o'tish joylarida va ko'priklarda",
+      "Faqat svetoforli chorrahalarda",
+      "Aholi punktlaridan tashqarida",
+      "Istalgan joyda ruxsat berilgan"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 8.11-bandi: Piyodalar o'tish joylarida, tonnellarda, ko'priklar, estakadalar va ularning tagida, temir yo'l kesishmalarida orqaga qaytish taqiqlanadi."
+  },
+  {
+    "id": 107,
+    "ticket_id": 6,
+    "question_num": 7,
+    "question": "[6-bilet, 7-savol] Svetoforning sariq miltillovchi signali nimani bildiradi?",
+    "image": "traffic_light_yellow_flash",
+    "options": [
+      "Tez orada qizil chiroq yonishini",
+      "Chorraha tartibga solinmaganligini va xavfli ekanligini",
+      "Harakatlanish to'liq taqiqlanganligini",
+      "Faqat o'ngga burilish mumkinligini"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 6.2-bandi: Sariq miltillovchi signal harakatlanishga ruxsat beradi va chorraha yoki piyodalar o'tish joyi tartibga solinmaganligidan ogohlantiradi."
+  },
+  {
+    "id": 108,
+    "ticket_id": 6,
+    "question_num": 8,
+    "question": "[6-bilet, 8-savol] Piyodalar o'tish joyiga yaqinlashganda haydovchi nima qilishi shart?",
+    "image": "pedestrian_cross",
+    "options": [
+      "Ovozli signal chalib o'tib ketishi kerak",
+      "Tezlikni kamaytirishi, qatnov qismiga chiqqan piyodalarga yo'l berishi shart",
+      "Faqat piyodalar chap tomonda bo'lsa yo'l beradi",
+      "Tezlikni oshirib o'tishi kerak"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 14.1-bandi: Tartibga solinmagan piyodalar o'tish joyiga yaqinlashayotgan transport vositasining haydovchisi yo'lni kesib o'tayotgan piyodalarga yo'l berishi shart."
+  },
+  {
+    "id": 109,
+    "ticket_id": 6,
+    "question_num": 9,
+    "question": "[6-bilet, 9-savol] Avtomagistralda harakatlanishda qaysi harakat taqiqlanadi?",
+    "image": "highway_rules",
+    "options": [
+      "Orqaga harakatlanish va o'quv mashqlarida haydash",
+      "O'ng bo'lakda 80 km/soat tezlikda yurish",
+      "Yoritish chiroqlarini yoqish",
+      "Quvib o'tish"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 16.1-bandi: Avtomagistralda piyodalar, ot-aravalarning harakati, orqaga harakatlanish hamda o'quv mashqi harakatlari taqiqlanadi."
+  },
+  {
+    "id": 110,
+    "ticket_id": 6,
+    "question_num": 10,
+    "question": "[6-bilet, 10-savol] Chorrahada chapga burilayotgan haydovchi qaysi transport vositalariga yo'l berishi kerak?",
+    "image": "turn_left_priority",
+    "options": [
+      "Faqat o'ngdan kelayotganlarga",
+      "Qarama-qarshi tomondan to'g'riga va o'ngga harakatlanayotgan transport vositalariga",
+      "Hech kimga yo'l bermaydi",
+      "Faqat tramvayga"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 13.4-bandi: Chapga burilish yoki orqaga qaytishda teng ahamiyatli yo'lda qarama-qarshi tomondan to'g'riga yoki o'ngga ketayotgan transport vositalariga yo'l berishi shart."
+  },
+  {
+    "id": 111,
+    "ticket_id": 6,
+    "question_num": 11,
+    "question": "[6-bilet, 11-savol] Svetoforning qizil signali bilan birga qo'shimcha yashil strelka yonganda nima qilish kerak?",
+    "image": "traffic_light_arrow",
+    "options": [
+      "Boshqa yo'nalishdagi barcha transport vositalariga yo'l berib, strelka yo'nalishida yurish mumkin",
+      "To'xtamasdan ustunlik bilan yurish mumkin",
+      "Yurish qat'iyan taqiqlanadi",
+      "Faqat to'g'riga yurish mumkin"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 13.5-bandi: Qo'shimcha tarmoq signali yoqilgan yo'nalishda harakatlanayotgan haydovchi boshqa yo'nalishlardan kelayotgan transport vositalariga yo'l berishi shart."
+  },
+  {
+    "id": 112,
+    "ticket_id": 6,
+    "question_num": 12,
+    "question": "[6-bilet, 12-savol] Temir yo'l kesishmasida qaysi masofada to'xtash taqiqlanadi?",
+    "image": "railway_crossing",
+    "options": [
+      "Kesishmagacha 50 metrdan yaqin masofada",
+      "Kesishmaga 10 metr qolganda",
+      "Faqat kesishma ustida",
+      "100 metrdan yaqin masofada"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 15.3-bandi: Temir yo'l kesishmasiga 50 metrdan kam masofada to'xtash va to'xtab turish qat'iyan taqiqlanadi."
+  },
+  {
+    "id": 113,
+    "ticket_id": 6,
+    "question_num": 13,
+    "question": "[6-bilet, 13-savol] Majburiy to'xtash sodir bo'lganda ogohlantiruvchi qizil uchburchak belgisi aholi punktida qanday masofaga qo'yiladi?",
+    "image": "emergency_triangle",
+    "options": [
+      "Kamida 5 metr",
+      "Kamida 15 metr",
+      "Kamida 30 metr",
+      "Kamida 50 metr"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 7.2-bandi: Avariya sababli to'xtaganda ogohlantiruvchi belgi aholi punktida kamida 15 metr, aholi punktidan tashqarida esa kamida 30 metr masofada o'rnatiladi."
+  },
+  {
+    "id": 114,
+    "ticket_id": 6,
+    "question_num": 14,
+    "question": "[6-bilet, 14-savol] Qaysi transport vositasiga harakatlanishda har doim ustunlik beriladi?",
+    "image": "emergency_vehicle",
+    "options": [
+      "Faqat yuk avtomobillariga",
+      "Ko'k miltillovchi mayoqchasi va maxsus tovushli signali yoqilgan transport vositasiga",
+      "Taksi xizmatiga",
+      "Tramvayga"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 3.1-bandi: Ko'k (yoki ko'k va qizil) rangli miltillovchi mayoqchasi va maxsus tovushli signali yoqilgan transport vositasi haydovchilari ustunlikka ega bo'ladilar."
+  },
+  {
+    "id": 115,
+    "ticket_id": 6,
+    "question_num": 15,
+    "question": "[6-bilet, 15-savol] Ushbu yo'l belgisi qanday harakatni buyuradi?",
+    "image": "sign_mandatory_right",
+    "options": [
+      "Faqat o'ngga harakatlanishni",
+      "O'ng tomonda to'xtashni",
+      "Chapga burilishni",
+      "To'g'riga va o'ngga yurishni"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 4.1.2-bandi: 'Harakatlanish o'ngga' belgisi faqat ko'rsatilgan yo'nalishda harakatlanishga ruxsat beradi."
+  },
+  {
+    "id": 116,
+    "ticket_id": 6,
+    "question_num": 16,
+    "question": "[6-bilet, 16-savol] Tuman va ko'rish masofasi cheklangan sharoitda qaysi chiroqlar yoqilishi shart?",
+    "image": "fog_lights",
+    "options": [
+      "Faqat gabarit chiroqlari",
+      "Yaqinni yoki uzoqni yorituvchi fara chiroqlari (tumanga qarshi chiroqlar bilan birga)",
+      "Avariya chiroqlari",
+      "Hech qanday chiroq kerak emas"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 19.1-bandi: Ko'rish yetarli bo'lmagan sharoitda va sutkaning qorong'i vaqtida faralarning yaqin yoki uzoqni yorituvchi chiroqlari yoqilishi shart."
+  },
+  {
+    "id": 117,
+    "ticket_id": 6,
+    "question_num": 17,
+    "question": "[6-bilet, 17-savol] Bolalarni yengil avtomobilning old o'rindig'ida qanday tashishga ruxsat beriladi?",
+    "image": "child_seat",
+    "options": [
+      "Maxsus bolalar o'rindig'i (avtokreslo) bo'lganda",
+      "Katta yoshli odam quchog'ida",
+      "12 yoshga to'lmagan bolalarni old o'rindiqda tashish umuman mumkin emas",
+      "Xavfsizlik kamarini taqqan holda"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 22.9-bandi: 12 yoshga to'lmagan bolalarni old o'rindiqda faqat bolalar ushlab turuvchi maxsus moslama (avtokreslo) orqali tashishga ruxsat etiladi."
+  },
+  {
+    "id": 118,
+    "ticket_id": 6,
+    "question_num": 18,
+    "question": "[6-bilet, 18-savol] Yo'l chizig'i yaxlit (uzluksiz) oq chiziq bo'lsa, uni bosib o'tish mumkinmi?",
+    "image": "solid_line",
+    "options": [
+      "Yo'l bo'sh bo'lsa mumkin",
+      "Qat'iyan taqiqlanadi (faqat ruxsat etilgan favqulodda to'xtashdan tashqari)",
+      "Quvib o'tish uchun mumkin",
+      "Kechasi mumkin"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 1.1-yo'l chizig'i: Qarama-qarshi yo'nalishlarni ajratuvchi yaxlit chiziqni bosib o'tish qat'iyan taqiqlanadi."
+  },
+  {
+    "id": 119,
+    "ticket_id": 6,
+    "question_num": 19,
+    "question": "[6-bilet, 19-savol] Chorrahada tartibga soluvchining (GSI xodimi) qo'llari ikki tomonga uzatilgan yoki tushirilgan bo'lsa:",
+    "image": "traffic_controller",
+    "options": [
+      "Barcha yo'nalishlarda to'xtash shart",
+      "Chap va o'ng yonbosh tomondan: to'g'riga va o'ngga; ko'krak va orqa tomondan: harakat taqiqlanadi",
+      "Faqat orqaga qaytish mumkin",
+      "Faqat tramvaylar yura oladi"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 6.10-bandi: Tartibga soluvchining qo'llari yon tomonga uzatilgan yoki tushirilgan holatida ko'krak va orqa tomondan harakatlanish taqiqlanadi."
+  },
+  {
+    "id": 120,
+    "ticket_id": 6,
+    "question_num": 20,
+    "question": "[6-bilet, 20-savol] Spirtli ichimlik yoki dori ta'sirida mast holda transport vositasini boshqarish:",
+    "image": "dui_sign",
+    "options": [
+      "Qat'iyan taqiqlanadi va qonun bo'yicha javobgarlikka tortiladi",
+      "Yaqin masofaga mumkin",
+      "Faqat kechasi taqiqlanadi",
+      "Avariya chirog'i yoqilgan holda mumkin"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 2.7-bandi: Mast holatda transport vositasini boshqarish qat'iyan man etiladi va qonun bilan og'ir jazoga (jarima va haydovchilik huquqidan mahrum qilish) sabab bo'ladi."
+  },
+  {
+    "id": 121,
+    "ticket_id": 7,
+    "question_num": 1,
+    "question": "[7-bilet, 1-savol] Ushbu yo'l belgisi nimani bildiradi?",
+    "image": "sign_danger",
+    "options": [
+      "Boshqa xavf-xatarlar mavjudligi haqida ogohlantiradi",
+      "Yo'l ta'mirlanayotgan joyni bildiradi",
+      "Harakatlanish taqiqlanganligini bildiradi",
+      "To'xtash taqiqlanganligini bildiradi"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 1.30-bandi: 'Boshqa xavflar' belgisi yo'lning boshqa ogohlantiruvchi belgilar bilan ko'zda tutilmagan xavfli qismiga yaqinlashayotganlik haqida ogohlantiradi."
+  },
+  {
+    "id": 122,
+    "ticket_id": 7,
+    "question_num": 2,
+    "question": "[7-bilet, 2-savol] Teng ahamiyatli chorrahada qaysi transport vositasi birinchi o'tadi?",
+    "image": "crossroad_equal",
+    "options": [
+      "To'g'riga harakatlanayotgan avtomobil",
+      "O'ng tomondan yaqinlashayotgan transport vositasi",
+      "Tezroq yetib kelgan avtomobil",
+      "Katta hajmli transport vositasi"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 13.11-bandi: Teng ahamiyatli yo'llar chorrahasida haydovchi o'ng tomondan yaqinlashayotgan transport vositalariga yo'l berishi shart ('O'ng qo'l qoidasi')."
+  },
+  {
+    "id": 123,
+    "ticket_id": 7,
+    "question_num": 3,
+    "question": "[7-bilet, 3-savol] Aholi punktlarida yengil avtomobillarning ruxsat etilgan eng yuqori tezligi qancha?",
+    "image": "speed_limit_60",
+    "options": [
+      "50 km/soat",
+      "60 km/soat",
+      "70 km/soat",
+      "80 km/soat"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 12.1-bandi (yangi tahrir): O'zbekiston Respublikasi bo'yicha aholi punktlarida barcha transport vositalariga 60 km/soat tezlikda harakatlanishga ruxsat etiladi."
+  },
+  {
+    "id": 124,
+    "ticket_id": 7,
+    "question_num": 4,
+    "question": "[7-bilet, 4-savol] Quyidagi vaziyatda qaysi avtomobil yo'l berishi shart?",
+    "image": "priority_main_road",
+    "options": [
+      "Asosiy yo'lda harakatlanayotgan avtomobil",
+      "Ikkinchi darajali yo'ldan chiqayotgan avtomobil",
+      "Ikkala haydovchi o'zaro kelishib o'tadi",
+      "O'ngga burilayotgan avtomobil"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 13.9-bandi: Ikkinchi darajali yo'lda harakatlanayotgan haydovchi asosiy yo'ldan yaqinlashayotgan transport vositalariga harakat yo'nalishidan qat'i nazar yo'l berishi shart."
+  },
+  {
+    "id": 125,
+    "ticket_id": 7,
+    "question_num": 5,
+    "question": "[7-bilet, 5-savol] Ushbu belgi ta'sir doirasida quvib o'tish mumkinmi?",
+    "image": "sign_no_overtaking",
+    "options": [
+      "Faqat soatiga 30 km dan kam tezlikda ketayotgan transport vositasini quvib o'tish mumkin",
+      "Barcha transport vositalarini quvib o'tish taqiqlanadi",
+      "Faqat mototsikllarni quvib o'tish mumkin",
+      "Yo'l bo'sh bo'lsa quvib o'tish mumkin"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 3.20-bandi: 'Quvib o'tish taqiqlanadi' belgisi ta'sir sohasida barcha transport vositalarini quvib o'tish qat'iyan taqiqlanadi."
+  },
+  {
+    "id": 126,
+    "ticket_id": 7,
+    "question_num": 6,
+    "question": "[7-bilet, 6-savol] Qaysi holatda orqaga qaytish (razvorot) taqiqlanadi?",
+    "image": "u_turn_rules",
+    "options": [
+      "Piyodalar o'tish joylarida va ko'priklarda",
+      "Faqat svetoforli chorrahalarda",
+      "Aholi punktlaridan tashqarida",
+      "Istalgan joyda ruxsat berilgan"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 8.11-bandi: Piyodalar o'tish joylarida, tonnellarda, ko'priklar, estakadalar va ularning tagida, temir yo'l kesishmalarida orqaga qaytish taqiqlanadi."
+  },
+  {
+    "id": 127,
+    "ticket_id": 7,
+    "question_num": 7,
+    "question": "[7-bilet, 7-savol] Svetoforning sariq miltillovchi signali nimani bildiradi?",
+    "image": "traffic_light_yellow_flash",
+    "options": [
+      "Tez orada qizil chiroq yonishini",
+      "Chorraha tartibga solinmaganligini va xavfli ekanligini",
+      "Harakatlanish to'liq taqiqlanganligini",
+      "Faqat o'ngga burilish mumkinligini"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 6.2-bandi: Sariq miltillovchi signal harakatlanishga ruxsat beradi va chorraha yoki piyodalar o'tish joyi tartibga solinmaganligidan ogohlantiradi."
+  },
+  {
+    "id": 128,
+    "ticket_id": 7,
+    "question_num": 8,
+    "question": "[7-bilet, 8-savol] Piyodalar o'tish joyiga yaqinlashganda haydovchi nima qilishi shart?",
+    "image": "pedestrian_cross",
+    "options": [
+      "Ovozli signal chalib o'tib ketishi kerak",
+      "Tezlikni kamaytirishi, qatnov qismiga chiqqan piyodalarga yo'l berishi shart",
+      "Faqat piyodalar chap tomonda bo'lsa yo'l beradi",
+      "Tezlikni oshirib o'tishi kerak"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 14.1-bandi: Tartibga solinmagan piyodalar o'tish joyiga yaqinlashayotgan transport vositasining haydovchisi yo'lni kesib o'tayotgan piyodalarga yo'l berishi shart."
+  },
+  {
+    "id": 129,
+    "ticket_id": 7,
+    "question_num": 9,
+    "question": "[7-bilet, 9-savol] Avtomagistralda harakatlanishda qaysi harakat taqiqlanadi?",
+    "image": "highway_rules",
+    "options": [
+      "Orqaga harakatlanish va o'quv mashqlarida haydash",
+      "O'ng bo'lakda 80 km/soat tezlikda yurish",
+      "Yoritish chiroqlarini yoqish",
+      "Quvib o'tish"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 16.1-bandi: Avtomagistralda piyodalar, ot-aravalarning harakati, orqaga harakatlanish hamda o'quv mashqi harakatlari taqiqlanadi."
+  },
+  {
+    "id": 130,
+    "ticket_id": 7,
+    "question_num": 10,
+    "question": "[7-bilet, 10-savol] Chorrahada chapga burilayotgan haydovchi qaysi transport vositalariga yo'l berishi kerak?",
+    "image": "turn_left_priority",
+    "options": [
+      "Faqat o'ngdan kelayotganlarga",
+      "Qarama-qarshi tomondan to'g'riga va o'ngga harakatlanayotgan transport vositalariga",
+      "Hech kimga yo'l bermaydi",
+      "Faqat tramvayga"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 13.4-bandi: Chapga burilish yoki orqaga qaytishda teng ahamiyatli yo'lda qarama-qarshi tomondan to'g'riga yoki o'ngga ketayotgan transport vositalariga yo'l berishi shart."
+  },
+  {
+    "id": 131,
+    "ticket_id": 7,
+    "question_num": 11,
+    "question": "[7-bilet, 11-savol] Svetoforning qizil signali bilan birga qo'shimcha yashil strelka yonganda nima qilish kerak?",
+    "image": "traffic_light_arrow",
+    "options": [
+      "Boshqa yo'nalishdagi barcha transport vositalariga yo'l berib, strelka yo'nalishida yurish mumkin",
+      "To'xtamasdan ustunlik bilan yurish mumkin",
+      "Yurish qat'iyan taqiqlanadi",
+      "Faqat to'g'riga yurish mumkin"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 13.5-bandi: Qo'shimcha tarmoq signali yoqilgan yo'nalishda harakatlanayotgan haydovchi boshqa yo'nalishlardan kelayotgan transport vositalariga yo'l berishi shart."
+  },
+  {
+    "id": 132,
+    "ticket_id": 7,
+    "question_num": 12,
+    "question": "[7-bilet, 12-savol] Temir yo'l kesishmasida qaysi masofada to'xtash taqiqlanadi?",
+    "image": "railway_crossing",
+    "options": [
+      "Kesishmagacha 50 metrdan yaqin masofada",
+      "Kesishmaga 10 metr qolganda",
+      "Faqat kesishma ustida",
+      "100 metrdan yaqin masofada"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 15.3-bandi: Temir yo'l kesishmasiga 50 metrdan kam masofada to'xtash va to'xtab turish qat'iyan taqiqlanadi."
+  },
+  {
+    "id": 133,
+    "ticket_id": 7,
+    "question_num": 13,
+    "question": "[7-bilet, 13-savol] Majburiy to'xtash sodir bo'lganda ogohlantiruvchi qizil uchburchak belgisi aholi punktida qanday masofaga qo'yiladi?",
+    "image": "emergency_triangle",
+    "options": [
+      "Kamida 5 metr",
+      "Kamida 15 metr",
+      "Kamida 30 metr",
+      "Kamida 50 metr"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 7.2-bandi: Avariya sababli to'xtaganda ogohlantiruvchi belgi aholi punktida kamida 15 metr, aholi punktidan tashqarida esa kamida 30 metr masofada o'rnatiladi."
+  },
+  {
+    "id": 134,
+    "ticket_id": 7,
+    "question_num": 14,
+    "question": "[7-bilet, 14-savol] Qaysi transport vositasiga harakatlanishda har doim ustunlik beriladi?",
+    "image": "emergency_vehicle",
+    "options": [
+      "Faqat yuk avtomobillariga",
+      "Ko'k miltillovchi mayoqchasi va maxsus tovushli signali yoqilgan transport vositasiga",
+      "Taksi xizmatiga",
+      "Tramvayga"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 3.1-bandi: Ko'k (yoki ko'k va qizil) rangli miltillovchi mayoqchasi va maxsus tovushli signali yoqilgan transport vositasi haydovchilari ustunlikka ega bo'ladilar."
+  },
+  {
+    "id": 135,
+    "ticket_id": 7,
+    "question_num": 15,
+    "question": "[7-bilet, 15-savol] Ushbu yo'l belgisi qanday harakatni buyuradi?",
+    "image": "sign_mandatory_right",
+    "options": [
+      "Faqat o'ngga harakatlanishni",
+      "O'ng tomonda to'xtashni",
+      "Chapga burilishni",
+      "To'g'riga va o'ngga yurishni"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 4.1.2-bandi: 'Harakatlanish o'ngga' belgisi faqat ko'rsatilgan yo'nalishda harakatlanishga ruxsat beradi."
+  },
+  {
+    "id": 136,
+    "ticket_id": 7,
+    "question_num": 16,
+    "question": "[7-bilet, 16-savol] Tuman va ko'rish masofasi cheklangan sharoitda qaysi chiroqlar yoqilishi shart?",
+    "image": "fog_lights",
+    "options": [
+      "Faqat gabarit chiroqlari",
+      "Yaqinni yoki uzoqni yorituvchi fara chiroqlari (tumanga qarshi chiroqlar bilan birga)",
+      "Avariya chiroqlari",
+      "Hech qanday chiroq kerak emas"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 19.1-bandi: Ko'rish yetarli bo'lmagan sharoitda va sutkaning qorong'i vaqtida faralarning yaqin yoki uzoqni yorituvchi chiroqlari yoqilishi shart."
+  },
+  {
+    "id": 137,
+    "ticket_id": 7,
+    "question_num": 17,
+    "question": "[7-bilet, 17-savol] Bolalarni yengil avtomobilning old o'rindig'ida qanday tashishga ruxsat beriladi?",
+    "image": "child_seat",
+    "options": [
+      "Maxsus bolalar o'rindig'i (avtokreslo) bo'lganda",
+      "Katta yoshli odam quchog'ida",
+      "12 yoshga to'lmagan bolalarni old o'rindiqda tashish umuman mumkin emas",
+      "Xavfsizlik kamarini taqqan holda"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 22.9-bandi: 12 yoshga to'lmagan bolalarni old o'rindiqda faqat bolalar ushlab turuvchi maxsus moslama (avtokreslo) orqali tashishga ruxsat etiladi."
+  },
+  {
+    "id": 138,
+    "ticket_id": 7,
+    "question_num": 18,
+    "question": "[7-bilet, 18-savol] Yo'l chizig'i yaxlit (uzluksiz) oq chiziq bo'lsa, uni bosib o'tish mumkinmi?",
+    "image": "solid_line",
+    "options": [
+      "Yo'l bo'sh bo'lsa mumkin",
+      "Qat'iyan taqiqlanadi (faqat ruxsat etilgan favqulodda to'xtashdan tashqari)",
+      "Quvib o'tish uchun mumkin",
+      "Kechasi mumkin"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 1.1-yo'l chizig'i: Qarama-qarshi yo'nalishlarni ajratuvchi yaxlit chiziqni bosib o'tish qat'iyan taqiqlanadi."
+  },
+  {
+    "id": 139,
+    "ticket_id": 7,
+    "question_num": 19,
+    "question": "[7-bilet, 19-savol] Chorrahada tartibga soluvchining (GSI xodimi) qo'llari ikki tomonga uzatilgan yoki tushirilgan bo'lsa:",
+    "image": "traffic_controller",
+    "options": [
+      "Barcha yo'nalishlarda to'xtash shart",
+      "Chap va o'ng yonbosh tomondan: to'g'riga va o'ngga; ko'krak va orqa tomondan: harakat taqiqlanadi",
+      "Faqat orqaga qaytish mumkin",
+      "Faqat tramvaylar yura oladi"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 6.10-bandi: Tartibga soluvchining qo'llari yon tomonga uzatilgan yoki tushirilgan holatida ko'krak va orqa tomondan harakatlanish taqiqlanadi."
+  },
+  {
+    "id": 140,
+    "ticket_id": 7,
+    "question_num": 20,
+    "question": "[7-bilet, 20-savol] Spirtli ichimlik yoki dori ta'sirida mast holda transport vositasini boshqarish:",
+    "image": "dui_sign",
+    "options": [
+      "Qat'iyan taqiqlanadi va qonun bo'yicha javobgarlikka tortiladi",
+      "Yaqin masofaga mumkin",
+      "Faqat kechasi taqiqlanadi",
+      "Avariya chirog'i yoqilgan holda mumkin"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 2.7-bandi: Mast holatda transport vositasini boshqarish qat'iyan man etiladi va qonun bilan og'ir jazoga (jarima va haydovchilik huquqidan mahrum qilish) sabab bo'ladi."
+  },
+  {
+    "id": 141,
+    "ticket_id": 8,
+    "question_num": 1,
+    "question": "[8-bilet, 1-savol] Ushbu yo'l belgisi nimani bildiradi?",
+    "image": "sign_danger",
+    "options": [
+      "Boshqa xavf-xatarlar mavjudligi haqida ogohlantiradi",
+      "Yo'l ta'mirlanayotgan joyni bildiradi",
+      "Harakatlanish taqiqlanganligini bildiradi",
+      "To'xtash taqiqlanganligini bildiradi"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 1.30-bandi: 'Boshqa xavflar' belgisi yo'lning boshqa ogohlantiruvchi belgilar bilan ko'zda tutilmagan xavfli qismiga yaqinlashayotganlik haqida ogohlantiradi."
+  },
+  {
+    "id": 142,
+    "ticket_id": 8,
+    "question_num": 2,
+    "question": "[8-bilet, 2-savol] Teng ahamiyatli chorrahada qaysi transport vositasi birinchi o'tadi?",
+    "image": "crossroad_equal",
+    "options": [
+      "To'g'riga harakatlanayotgan avtomobil",
+      "O'ng tomondan yaqinlashayotgan transport vositasi",
+      "Tezroq yetib kelgan avtomobil",
+      "Katta hajmli transport vositasi"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 13.11-bandi: Teng ahamiyatli yo'llar chorrahasida haydovchi o'ng tomondan yaqinlashayotgan transport vositalariga yo'l berishi shart ('O'ng qo'l qoidasi')."
+  },
+  {
+    "id": 143,
+    "ticket_id": 8,
+    "question_num": 3,
+    "question": "[8-bilet, 3-savol] Aholi punktlarida yengil avtomobillarning ruxsat etilgan eng yuqori tezligi qancha?",
+    "image": "speed_limit_60",
+    "options": [
+      "50 km/soat",
+      "60 km/soat",
+      "70 km/soat",
+      "80 km/soat"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 12.1-bandi (yangi tahrir): O'zbekiston Respublikasi bo'yicha aholi punktlarida barcha transport vositalariga 60 km/soat tezlikda harakatlanishga ruxsat etiladi."
+  },
+  {
+    "id": 144,
+    "ticket_id": 8,
+    "question_num": 4,
+    "question": "[8-bilet, 4-savol] Quyidagi vaziyatda qaysi avtomobil yo'l berishi shart?",
+    "image": "priority_main_road",
+    "options": [
+      "Asosiy yo'lda harakatlanayotgan avtomobil",
+      "Ikkinchi darajali yo'ldan chiqayotgan avtomobil",
+      "Ikkala haydovchi o'zaro kelishib o'tadi",
+      "O'ngga burilayotgan avtomobil"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 13.9-bandi: Ikkinchi darajali yo'lda harakatlanayotgan haydovchi asosiy yo'ldan yaqinlashayotgan transport vositalariga harakat yo'nalishidan qat'i nazar yo'l berishi shart."
+  },
+  {
+    "id": 145,
+    "ticket_id": 8,
+    "question_num": 5,
+    "question": "[8-bilet, 5-savol] Ushbu belgi ta'sir doirasida quvib o'tish mumkinmi?",
+    "image": "sign_no_overtaking",
+    "options": [
+      "Faqat soatiga 30 km dan kam tezlikda ketayotgan transport vositasini quvib o'tish mumkin",
+      "Barcha transport vositalarini quvib o'tish taqiqlanadi",
+      "Faqat mototsikllarni quvib o'tish mumkin",
+      "Yo'l bo'sh bo'lsa quvib o'tish mumkin"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 3.20-bandi: 'Quvib o'tish taqiqlanadi' belgisi ta'sir sohasida barcha transport vositalarini quvib o'tish qat'iyan taqiqlanadi."
+  },
+  {
+    "id": 146,
+    "ticket_id": 8,
+    "question_num": 6,
+    "question": "[8-bilet, 6-savol] Qaysi holatda orqaga qaytish (razvorot) taqiqlanadi?",
+    "image": "u_turn_rules",
+    "options": [
+      "Piyodalar o'tish joylarida va ko'priklarda",
+      "Faqat svetoforli chorrahalarda",
+      "Aholi punktlaridan tashqarida",
+      "Istalgan joyda ruxsat berilgan"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 8.11-bandi: Piyodalar o'tish joylarida, tonnellarda, ko'priklar, estakadalar va ularning tagida, temir yo'l kesishmalarida orqaga qaytish taqiqlanadi."
+  },
+  {
+    "id": 147,
+    "ticket_id": 8,
+    "question_num": 7,
+    "question": "[8-bilet, 7-savol] Svetoforning sariq miltillovchi signali nimani bildiradi?",
+    "image": "traffic_light_yellow_flash",
+    "options": [
+      "Tez orada qizil chiroq yonishini",
+      "Chorraha tartibga solinmaganligini va xavfli ekanligini",
+      "Harakatlanish to'liq taqiqlanganligini",
+      "Faqat o'ngga burilish mumkinligini"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 6.2-bandi: Sariq miltillovchi signal harakatlanishga ruxsat beradi va chorraha yoki piyodalar o'tish joyi tartibga solinmaganligidan ogohlantiradi."
+  },
+  {
+    "id": 148,
+    "ticket_id": 8,
+    "question_num": 8,
+    "question": "[8-bilet, 8-savol] Piyodalar o'tish joyiga yaqinlashganda haydovchi nima qilishi shart?",
+    "image": "pedestrian_cross",
+    "options": [
+      "Ovozli signal chalib o'tib ketishi kerak",
+      "Tezlikni kamaytirishi, qatnov qismiga chiqqan piyodalarga yo'l berishi shart",
+      "Faqat piyodalar chap tomonda bo'lsa yo'l beradi",
+      "Tezlikni oshirib o'tishi kerak"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 14.1-bandi: Tartibga solinmagan piyodalar o'tish joyiga yaqinlashayotgan transport vositasining haydovchisi yo'lni kesib o'tayotgan piyodalarga yo'l berishi shart."
+  },
+  {
+    "id": 149,
+    "ticket_id": 8,
+    "question_num": 9,
+    "question": "[8-bilet, 9-savol] Avtomagistralda harakatlanishda qaysi harakat taqiqlanadi?",
+    "image": "highway_rules",
+    "options": [
+      "Orqaga harakatlanish va o'quv mashqlarida haydash",
+      "O'ng bo'lakda 80 km/soat tezlikda yurish",
+      "Yoritish chiroqlarini yoqish",
+      "Quvib o'tish"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 16.1-bandi: Avtomagistralda piyodalar, ot-aravalarning harakati, orqaga harakatlanish hamda o'quv mashqi harakatlari taqiqlanadi."
+  },
+  {
+    "id": 150,
+    "ticket_id": 8,
+    "question_num": 10,
+    "question": "[8-bilet, 10-savol] Chorrahada chapga burilayotgan haydovchi qaysi transport vositalariga yo'l berishi kerak?",
+    "image": "turn_left_priority",
+    "options": [
+      "Faqat o'ngdan kelayotganlarga",
+      "Qarama-qarshi tomondan to'g'riga va o'ngga harakatlanayotgan transport vositalariga",
+      "Hech kimga yo'l bermaydi",
+      "Faqat tramvayga"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 13.4-bandi: Chapga burilish yoki orqaga qaytishda teng ahamiyatli yo'lda qarama-qarshi tomondan to'g'riga yoki o'ngga ketayotgan transport vositalariga yo'l berishi shart."
+  },
+  {
+    "id": 151,
+    "ticket_id": 8,
+    "question_num": 11,
+    "question": "[8-bilet, 11-savol] Svetoforning qizil signali bilan birga qo'shimcha yashil strelka yonganda nima qilish kerak?",
+    "image": "traffic_light_arrow",
+    "options": [
+      "Boshqa yo'nalishdagi barcha transport vositalariga yo'l berib, strelka yo'nalishida yurish mumkin",
+      "To'xtamasdan ustunlik bilan yurish mumkin",
+      "Yurish qat'iyan taqiqlanadi",
+      "Faqat to'g'riga yurish mumkin"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 13.5-bandi: Qo'shimcha tarmoq signali yoqilgan yo'nalishda harakatlanayotgan haydovchi boshqa yo'nalishlardan kelayotgan transport vositalariga yo'l berishi shart."
+  },
+  {
+    "id": 152,
+    "ticket_id": 8,
+    "question_num": 12,
+    "question": "[8-bilet, 12-savol] Temir yo'l kesishmasida qaysi masofada to'xtash taqiqlanadi?",
+    "image": "railway_crossing",
+    "options": [
+      "Kesishmagacha 50 metrdan yaqin masofada",
+      "Kesishmaga 10 metr qolganda",
+      "Faqat kesishma ustida",
+      "100 metrdan yaqin masofada"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 15.3-bandi: Temir yo'l kesishmasiga 50 metrdan kam masofada to'xtash va to'xtab turish qat'iyan taqiqlanadi."
+  },
+  {
+    "id": 153,
+    "ticket_id": 8,
+    "question_num": 13,
+    "question": "[8-bilet, 13-savol] Majburiy to'xtash sodir bo'lganda ogohlantiruvchi qizil uchburchak belgisi aholi punktida qanday masofaga qo'yiladi?",
+    "image": "emergency_triangle",
+    "options": [
+      "Kamida 5 metr",
+      "Kamida 15 metr",
+      "Kamida 30 metr",
+      "Kamida 50 metr"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 7.2-bandi: Avariya sababli to'xtaganda ogohlantiruvchi belgi aholi punktida kamida 15 metr, aholi punktidan tashqarida esa kamida 30 metr masofada o'rnatiladi."
+  },
+  {
+    "id": 154,
+    "ticket_id": 8,
+    "question_num": 14,
+    "question": "[8-bilet, 14-savol] Qaysi transport vositasiga harakatlanishda har doim ustunlik beriladi?",
+    "image": "emergency_vehicle",
+    "options": [
+      "Faqat yuk avtomobillariga",
+      "Ko'k miltillovchi mayoqchasi va maxsus tovushli signali yoqilgan transport vositasiga",
+      "Taksi xizmatiga",
+      "Tramvayga"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 3.1-bandi: Ko'k (yoki ko'k va qizil) rangli miltillovchi mayoqchasi va maxsus tovushli signali yoqilgan transport vositasi haydovchilari ustunlikka ega bo'ladilar."
+  },
+  {
+    "id": 155,
+    "ticket_id": 8,
+    "question_num": 15,
+    "question": "[8-bilet, 15-savol] Ushbu yo'l belgisi qanday harakatni buyuradi?",
+    "image": "sign_mandatory_right",
+    "options": [
+      "Faqat o'ngga harakatlanishni",
+      "O'ng tomonda to'xtashni",
+      "Chapga burilishni",
+      "To'g'riga va o'ngga yurishni"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 4.1.2-bandi: 'Harakatlanish o'ngga' belgisi faqat ko'rsatilgan yo'nalishda harakatlanishga ruxsat beradi."
+  },
+  {
+    "id": 156,
+    "ticket_id": 8,
+    "question_num": 16,
+    "question": "[8-bilet, 16-savol] Tuman va ko'rish masofasi cheklangan sharoitda qaysi chiroqlar yoqilishi shart?",
+    "image": "fog_lights",
+    "options": [
+      "Faqat gabarit chiroqlari",
+      "Yaqinni yoki uzoqni yorituvchi fara chiroqlari (tumanga qarshi chiroqlar bilan birga)",
+      "Avariya chiroqlari",
+      "Hech qanday chiroq kerak emas"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 19.1-bandi: Ko'rish yetarli bo'lmagan sharoitda va sutkaning qorong'i vaqtida faralarning yaqin yoki uzoqni yorituvchi chiroqlari yoqilishi shart."
+  },
+  {
+    "id": 157,
+    "ticket_id": 8,
+    "question_num": 17,
+    "question": "[8-bilet, 17-savol] Bolalarni yengil avtomobilning old o'rindig'ida qanday tashishga ruxsat beriladi?",
+    "image": "child_seat",
+    "options": [
+      "Maxsus bolalar o'rindig'i (avtokreslo) bo'lganda",
+      "Katta yoshli odam quchog'ida",
+      "12 yoshga to'lmagan bolalarni old o'rindiqda tashish umuman mumkin emas",
+      "Xavfsizlik kamarini taqqan holda"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 22.9-bandi: 12 yoshga to'lmagan bolalarni old o'rindiqda faqat bolalar ushlab turuvchi maxsus moslama (avtokreslo) orqali tashishga ruxsat etiladi."
+  },
+  {
+    "id": 158,
+    "ticket_id": 8,
+    "question_num": 18,
+    "question": "[8-bilet, 18-savol] Yo'l chizig'i yaxlit (uzluksiz) oq chiziq bo'lsa, uni bosib o'tish mumkinmi?",
+    "image": "solid_line",
+    "options": [
+      "Yo'l bo'sh bo'lsa mumkin",
+      "Qat'iyan taqiqlanadi (faqat ruxsat etilgan favqulodda to'xtashdan tashqari)",
+      "Quvib o'tish uchun mumkin",
+      "Kechasi mumkin"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 1.1-yo'l chizig'i: Qarama-qarshi yo'nalishlarni ajratuvchi yaxlit chiziqni bosib o'tish qat'iyan taqiqlanadi."
+  },
+  {
+    "id": 159,
+    "ticket_id": 8,
+    "question_num": 19,
+    "question": "[8-bilet, 19-savol] Chorrahada tartibga soluvchining (GSI xodimi) qo'llari ikki tomonga uzatilgan yoki tushirilgan bo'lsa:",
+    "image": "traffic_controller",
+    "options": [
+      "Barcha yo'nalishlarda to'xtash shart",
+      "Chap va o'ng yonbosh tomondan: to'g'riga va o'ngga; ko'krak va orqa tomondan: harakat taqiqlanadi",
+      "Faqat orqaga qaytish mumkin",
+      "Faqat tramvaylar yura oladi"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 6.10-bandi: Tartibga soluvchining qo'llari yon tomonga uzatilgan yoki tushirilgan holatida ko'krak va orqa tomondan harakatlanish taqiqlanadi."
+  },
+  {
+    "id": 160,
+    "ticket_id": 8,
+    "question_num": 20,
+    "question": "[8-bilet, 20-savol] Spirtli ichimlik yoki dori ta'sirida mast holda transport vositasini boshqarish:",
+    "image": "dui_sign",
+    "options": [
+      "Qat'iyan taqiqlanadi va qonun bo'yicha javobgarlikka tortiladi",
+      "Yaqin masofaga mumkin",
+      "Faqat kechasi taqiqlanadi",
+      "Avariya chirog'i yoqilgan holda mumkin"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 2.7-bandi: Mast holatda transport vositasini boshqarish qat'iyan man etiladi va qonun bilan og'ir jazoga (jarima va haydovchilik huquqidan mahrum qilish) sabab bo'ladi."
+  },
+  {
+    "id": 161,
+    "ticket_id": 9,
+    "question_num": 1,
+    "question": "[9-bilet, 1-savol] Ushbu yo'l belgisi nimani bildiradi?",
+    "image": "sign_danger",
+    "options": [
+      "Boshqa xavf-xatarlar mavjudligi haqida ogohlantiradi",
+      "Yo'l ta'mirlanayotgan joyni bildiradi",
+      "Harakatlanish taqiqlanganligini bildiradi",
+      "To'xtash taqiqlanganligini bildiradi"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 1.30-bandi: 'Boshqa xavflar' belgisi yo'lning boshqa ogohlantiruvchi belgilar bilan ko'zda tutilmagan xavfli qismiga yaqinlashayotganlik haqida ogohlantiradi."
+  },
+  {
+    "id": 162,
+    "ticket_id": 9,
+    "question_num": 2,
+    "question": "[9-bilet, 2-savol] Teng ahamiyatli chorrahada qaysi transport vositasi birinchi o'tadi?",
+    "image": "crossroad_equal",
+    "options": [
+      "To'g'riga harakatlanayotgan avtomobil",
+      "O'ng tomondan yaqinlashayotgan transport vositasi",
+      "Tezroq yetib kelgan avtomobil",
+      "Katta hajmli transport vositasi"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 13.11-bandi: Teng ahamiyatli yo'llar chorrahasida haydovchi o'ng tomondan yaqinlashayotgan transport vositalariga yo'l berishi shart ('O'ng qo'l qoidasi')."
+  },
+  {
+    "id": 163,
+    "ticket_id": 9,
+    "question_num": 3,
+    "question": "[9-bilet, 3-savol] Aholi punktlarida yengil avtomobillarning ruxsat etilgan eng yuqori tezligi qancha?",
+    "image": "speed_limit_60",
+    "options": [
+      "50 km/soat",
+      "60 km/soat",
+      "70 km/soat",
+      "80 km/soat"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 12.1-bandi (yangi tahrir): O'zbekiston Respublikasi bo'yicha aholi punktlarida barcha transport vositalariga 60 km/soat tezlikda harakatlanishga ruxsat etiladi."
+  },
+  {
+    "id": 164,
+    "ticket_id": 9,
+    "question_num": 4,
+    "question": "[9-bilet, 4-savol] Quyidagi vaziyatda qaysi avtomobil yo'l berishi shart?",
+    "image": "priority_main_road",
+    "options": [
+      "Asosiy yo'lda harakatlanayotgan avtomobil",
+      "Ikkinchi darajali yo'ldan chiqayotgan avtomobil",
+      "Ikkala haydovchi o'zaro kelishib o'tadi",
+      "O'ngga burilayotgan avtomobil"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 13.9-bandi: Ikkinchi darajali yo'lda harakatlanayotgan haydovchi asosiy yo'ldan yaqinlashayotgan transport vositalariga harakat yo'nalishidan qat'i nazar yo'l berishi shart."
+  },
+  {
+    "id": 165,
+    "ticket_id": 9,
+    "question_num": 5,
+    "question": "[9-bilet, 5-savol] Ushbu belgi ta'sir doirasida quvib o'tish mumkinmi?",
+    "image": "sign_no_overtaking",
+    "options": [
+      "Faqat soatiga 30 km dan kam tezlikda ketayotgan transport vositasini quvib o'tish mumkin",
+      "Barcha transport vositalarini quvib o'tish taqiqlanadi",
+      "Faqat mototsikllarni quvib o'tish mumkin",
+      "Yo'l bo'sh bo'lsa quvib o'tish mumkin"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 3.20-bandi: 'Quvib o'tish taqiqlanadi' belgisi ta'sir sohasida barcha transport vositalarini quvib o'tish qat'iyan taqiqlanadi."
+  },
+  {
+    "id": 166,
+    "ticket_id": 9,
+    "question_num": 6,
+    "question": "[9-bilet, 6-savol] Qaysi holatda orqaga qaytish (razvorot) taqiqlanadi?",
+    "image": "u_turn_rules",
+    "options": [
+      "Piyodalar o'tish joylarida va ko'priklarda",
+      "Faqat svetoforli chorrahalarda",
+      "Aholi punktlaridan tashqarida",
+      "Istalgan joyda ruxsat berilgan"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 8.11-bandi: Piyodalar o'tish joylarida, tonnellarda, ko'priklar, estakadalar va ularning tagida, temir yo'l kesishmalarida orqaga qaytish taqiqlanadi."
+  },
+  {
+    "id": 167,
+    "ticket_id": 9,
+    "question_num": 7,
+    "question": "[9-bilet, 7-savol] Svetoforning sariq miltillovchi signali nimani bildiradi?",
+    "image": "traffic_light_yellow_flash",
+    "options": [
+      "Tez orada qizil chiroq yonishini",
+      "Chorraha tartibga solinmaganligini va xavfli ekanligini",
+      "Harakatlanish to'liq taqiqlanganligini",
+      "Faqat o'ngga burilish mumkinligini"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 6.2-bandi: Sariq miltillovchi signal harakatlanishga ruxsat beradi va chorraha yoki piyodalar o'tish joyi tartibga solinmaganligidan ogohlantiradi."
+  },
+  {
+    "id": 168,
+    "ticket_id": 9,
+    "question_num": 8,
+    "question": "[9-bilet, 8-savol] Piyodalar o'tish joyiga yaqinlashganda haydovchi nima qilishi shart?",
+    "image": "pedestrian_cross",
+    "options": [
+      "Ovozli signal chalib o'tib ketishi kerak",
+      "Tezlikni kamaytirishi, qatnov qismiga chiqqan piyodalarga yo'l berishi shart",
+      "Faqat piyodalar chap tomonda bo'lsa yo'l beradi",
+      "Tezlikni oshirib o'tishi kerak"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 14.1-bandi: Tartibga solinmagan piyodalar o'tish joyiga yaqinlashayotgan transport vositasining haydovchisi yo'lni kesib o'tayotgan piyodalarga yo'l berishi shart."
+  },
+  {
+    "id": 169,
+    "ticket_id": 9,
+    "question_num": 9,
+    "question": "[9-bilet, 9-savol] Avtomagistralda harakatlanishda qaysi harakat taqiqlanadi?",
+    "image": "highway_rules",
+    "options": [
+      "Orqaga harakatlanish va o'quv mashqlarida haydash",
+      "O'ng bo'lakda 80 km/soat tezlikda yurish",
+      "Yoritish chiroqlarini yoqish",
+      "Quvib o'tish"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 16.1-bandi: Avtomagistralda piyodalar, ot-aravalarning harakati, orqaga harakatlanish hamda o'quv mashqi harakatlari taqiqlanadi."
+  },
+  {
+    "id": 170,
+    "ticket_id": 9,
+    "question_num": 10,
+    "question": "[9-bilet, 10-savol] Chorrahada chapga burilayotgan haydovchi qaysi transport vositalariga yo'l berishi kerak?",
+    "image": "turn_left_priority",
+    "options": [
+      "Faqat o'ngdan kelayotganlarga",
+      "Qarama-qarshi tomondan to'g'riga va o'ngga harakatlanayotgan transport vositalariga",
+      "Hech kimga yo'l bermaydi",
+      "Faqat tramvayga"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 13.4-bandi: Chapga burilish yoki orqaga qaytishda teng ahamiyatli yo'lda qarama-qarshi tomondan to'g'riga yoki o'ngga ketayotgan transport vositalariga yo'l berishi shart."
+  },
+  {
+    "id": 171,
+    "ticket_id": 9,
+    "question_num": 11,
+    "question": "[9-bilet, 11-savol] Svetoforning qizil signali bilan birga qo'shimcha yashil strelka yonganda nima qilish kerak?",
+    "image": "traffic_light_arrow",
+    "options": [
+      "Boshqa yo'nalishdagi barcha transport vositalariga yo'l berib, strelka yo'nalishida yurish mumkin",
+      "To'xtamasdan ustunlik bilan yurish mumkin",
+      "Yurish qat'iyan taqiqlanadi",
+      "Faqat to'g'riga yurish mumkin"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 13.5-bandi: Qo'shimcha tarmoq signali yoqilgan yo'nalishda harakatlanayotgan haydovchi boshqa yo'nalishlardan kelayotgan transport vositalariga yo'l berishi shart."
+  },
+  {
+    "id": 172,
+    "ticket_id": 9,
+    "question_num": 12,
+    "question": "[9-bilet, 12-savol] Temir yo'l kesishmasida qaysi masofada to'xtash taqiqlanadi?",
+    "image": "railway_crossing",
+    "options": [
+      "Kesishmagacha 50 metrdan yaqin masofada",
+      "Kesishmaga 10 metr qolganda",
+      "Faqat kesishma ustida",
+      "100 metrdan yaqin masofada"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 15.3-bandi: Temir yo'l kesishmasiga 50 metrdan kam masofada to'xtash va to'xtab turish qat'iyan taqiqlanadi."
+  },
+  {
+    "id": 173,
+    "ticket_id": 9,
+    "question_num": 13,
+    "question": "[9-bilet, 13-savol] Majburiy to'xtash sodir bo'lganda ogohlantiruvchi qizil uchburchak belgisi aholi punktida qanday masofaga qo'yiladi?",
+    "image": "emergency_triangle",
+    "options": [
+      "Kamida 5 metr",
+      "Kamida 15 metr",
+      "Kamida 30 metr",
+      "Kamida 50 metr"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 7.2-bandi: Avariya sababli to'xtaganda ogohlantiruvchi belgi aholi punktida kamida 15 metr, aholi punktidan tashqarida esa kamida 30 metr masofada o'rnatiladi."
+  },
+  {
+    "id": 174,
+    "ticket_id": 9,
+    "question_num": 14,
+    "question": "[9-bilet, 14-savol] Qaysi transport vositasiga harakatlanishda har doim ustunlik beriladi?",
+    "image": "emergency_vehicle",
+    "options": [
+      "Faqat yuk avtomobillariga",
+      "Ko'k miltillovchi mayoqchasi va maxsus tovushli signali yoqilgan transport vositasiga",
+      "Taksi xizmatiga",
+      "Tramvayga"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 3.1-bandi: Ko'k (yoki ko'k va qizil) rangli miltillovchi mayoqchasi va maxsus tovushli signali yoqilgan transport vositasi haydovchilari ustunlikka ega bo'ladilar."
+  },
+  {
+    "id": 175,
+    "ticket_id": 9,
+    "question_num": 15,
+    "question": "[9-bilet, 15-savol] Ushbu yo'l belgisi qanday harakatni buyuradi?",
+    "image": "sign_mandatory_right",
+    "options": [
+      "Faqat o'ngga harakatlanishni",
+      "O'ng tomonda to'xtashni",
+      "Chapga burilishni",
+      "To'g'riga va o'ngga yurishni"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 4.1.2-bandi: 'Harakatlanish o'ngga' belgisi faqat ko'rsatilgan yo'nalishda harakatlanishga ruxsat beradi."
+  },
+  {
+    "id": 176,
+    "ticket_id": 9,
+    "question_num": 16,
+    "question": "[9-bilet, 16-savol] Tuman va ko'rish masofasi cheklangan sharoitda qaysi chiroqlar yoqilishi shart?",
+    "image": "fog_lights",
+    "options": [
+      "Faqat gabarit chiroqlari",
+      "Yaqinni yoki uzoqni yorituvchi fara chiroqlari (tumanga qarshi chiroqlar bilan birga)",
+      "Avariya chiroqlari",
+      "Hech qanday chiroq kerak emas"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 19.1-bandi: Ko'rish yetarli bo'lmagan sharoitda va sutkaning qorong'i vaqtida faralarning yaqin yoki uzoqni yorituvchi chiroqlari yoqilishi shart."
+  },
+  {
+    "id": 177,
+    "ticket_id": 9,
+    "question_num": 17,
+    "question": "[9-bilet, 17-savol] Bolalarni yengil avtomobilning old o'rindig'ida qanday tashishga ruxsat beriladi?",
+    "image": "child_seat",
+    "options": [
+      "Maxsus bolalar o'rindig'i (avtokreslo) bo'lganda",
+      "Katta yoshli odam quchog'ida",
+      "12 yoshga to'lmagan bolalarni old o'rindiqda tashish umuman mumkin emas",
+      "Xavfsizlik kamarini taqqan holda"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 22.9-bandi: 12 yoshga to'lmagan bolalarni old o'rindiqda faqat bolalar ushlab turuvchi maxsus moslama (avtokreslo) orqali tashishga ruxsat etiladi."
+  },
+  {
+    "id": 178,
+    "ticket_id": 9,
+    "question_num": 18,
+    "question": "[9-bilet, 18-savol] Yo'l chizig'i yaxlit (uzluksiz) oq chiziq bo'lsa, uni bosib o'tish mumkinmi?",
+    "image": "solid_line",
+    "options": [
+      "Yo'l bo'sh bo'lsa mumkin",
+      "Qat'iyan taqiqlanadi (faqat ruxsat etilgan favqulodda to'xtashdan tashqari)",
+      "Quvib o'tish uchun mumkin",
+      "Kechasi mumkin"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 1.1-yo'l chizig'i: Qarama-qarshi yo'nalishlarni ajratuvchi yaxlit chiziqni bosib o'tish qat'iyan taqiqlanadi."
+  },
+  {
+    "id": 179,
+    "ticket_id": 9,
+    "question_num": 19,
+    "question": "[9-bilet, 19-savol] Chorrahada tartibga soluvchining (GSI xodimi) qo'llari ikki tomonga uzatilgan yoki tushirilgan bo'lsa:",
+    "image": "traffic_controller",
+    "options": [
+      "Barcha yo'nalishlarda to'xtash shart",
+      "Chap va o'ng yonbosh tomondan: to'g'riga va o'ngga; ko'krak va orqa tomondan: harakat taqiqlanadi",
+      "Faqat orqaga qaytish mumkin",
+      "Faqat tramvaylar yura oladi"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 6.10-bandi: Tartibga soluvchining qo'llari yon tomonga uzatilgan yoki tushirilgan holatida ko'krak va orqa tomondan harakatlanish taqiqlanadi."
+  },
+  {
+    "id": 180,
+    "ticket_id": 9,
+    "question_num": 20,
+    "question": "[9-bilet, 20-savol] Spirtli ichimlik yoki dori ta'sirida mast holda transport vositasini boshqarish:",
+    "image": "dui_sign",
+    "options": [
+      "Qat'iyan taqiqlanadi va qonun bo'yicha javobgarlikka tortiladi",
+      "Yaqin masofaga mumkin",
+      "Faqat kechasi taqiqlanadi",
+      "Avariya chirog'i yoqilgan holda mumkin"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 2.7-bandi: Mast holatda transport vositasini boshqarish qat'iyan man etiladi va qonun bilan og'ir jazoga (jarima va haydovchilik huquqidan mahrum qilish) sabab bo'ladi."
+  },
+  {
+    "id": 181,
+    "ticket_id": 10,
+    "question_num": 1,
+    "question": "[10-bilet, 1-savol] Ushbu yo'l belgisi nimani bildiradi?",
+    "image": "sign_danger",
+    "options": [
+      "Boshqa xavf-xatarlar mavjudligi haqida ogohlantiradi",
+      "Yo'l ta'mirlanayotgan joyni bildiradi",
+      "Harakatlanish taqiqlanganligini bildiradi",
+      "To'xtash taqiqlanganligini bildiradi"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 1.30-bandi: 'Boshqa xavflar' belgisi yo'lning boshqa ogohlantiruvchi belgilar bilan ko'zda tutilmagan xavfli qismiga yaqinlashayotganlik haqida ogohlantiradi."
+  },
+  {
+    "id": 182,
+    "ticket_id": 10,
+    "question_num": 2,
+    "question": "[10-bilet, 2-savol] Teng ahamiyatli chorrahada qaysi transport vositasi birinchi o'tadi?",
+    "image": "crossroad_equal",
+    "options": [
+      "To'g'riga harakatlanayotgan avtomobil",
+      "O'ng tomondan yaqinlashayotgan transport vositasi",
+      "Tezroq yetib kelgan avtomobil",
+      "Katta hajmli transport vositasi"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 13.11-bandi: Teng ahamiyatli yo'llar chorrahasida haydovchi o'ng tomondan yaqinlashayotgan transport vositalariga yo'l berishi shart ('O'ng qo'l qoidasi')."
+  },
+  {
+    "id": 183,
+    "ticket_id": 10,
+    "question_num": 3,
+    "question": "[10-bilet, 3-savol] Aholi punktlarida yengil avtomobillarning ruxsat etilgan eng yuqori tezligi qancha?",
+    "image": "speed_limit_60",
+    "options": [
+      "50 km/soat",
+      "60 km/soat",
+      "70 km/soat",
+      "80 km/soat"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 12.1-bandi (yangi tahrir): O'zbekiston Respublikasi bo'yicha aholi punktlarida barcha transport vositalariga 60 km/soat tezlikda harakatlanishga ruxsat etiladi."
+  },
+  {
+    "id": 184,
+    "ticket_id": 10,
+    "question_num": 4,
+    "question": "[10-bilet, 4-savol] Quyidagi vaziyatda qaysi avtomobil yo'l berishi shart?",
+    "image": "priority_main_road",
+    "options": [
+      "Asosiy yo'lda harakatlanayotgan avtomobil",
+      "Ikkinchi darajali yo'ldan chiqayotgan avtomobil",
+      "Ikkala haydovchi o'zaro kelishib o'tadi",
+      "O'ngga burilayotgan avtomobil"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 13.9-bandi: Ikkinchi darajali yo'lda harakatlanayotgan haydovchi asosiy yo'ldan yaqinlashayotgan transport vositalariga harakat yo'nalishidan qat'i nazar yo'l berishi shart."
+  },
+  {
+    "id": 185,
+    "ticket_id": 10,
+    "question_num": 5,
+    "question": "[10-bilet, 5-savol] Ushbu belgi ta'sir doirasida quvib o'tish mumkinmi?",
+    "image": "sign_no_overtaking",
+    "options": [
+      "Faqat soatiga 30 km dan kam tezlikda ketayotgan transport vositasini quvib o'tish mumkin",
+      "Barcha transport vositalarini quvib o'tish taqiqlanadi",
+      "Faqat mototsikllarni quvib o'tish mumkin",
+      "Yo'l bo'sh bo'lsa quvib o'tish mumkin"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 3.20-bandi: 'Quvib o'tish taqiqlanadi' belgisi ta'sir sohasida barcha transport vositalarini quvib o'tish qat'iyan taqiqlanadi."
+  },
+  {
+    "id": 186,
+    "ticket_id": 10,
+    "question_num": 6,
+    "question": "[10-bilet, 6-savol] Qaysi holatda orqaga qaytish (razvorot) taqiqlanadi?",
+    "image": "u_turn_rules",
+    "options": [
+      "Piyodalar o'tish joylarida va ko'priklarda",
+      "Faqat svetoforli chorrahalarda",
+      "Aholi punktlaridan tashqarida",
+      "Istalgan joyda ruxsat berilgan"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 8.11-bandi: Piyodalar o'tish joylarida, tonnellarda, ko'priklar, estakadalar va ularning tagida, temir yo'l kesishmalarida orqaga qaytish taqiqlanadi."
+  },
+  {
+    "id": 187,
+    "ticket_id": 10,
+    "question_num": 7,
+    "question": "[10-bilet, 7-savol] Svetoforning sariq miltillovchi signali nimani bildiradi?",
+    "image": "traffic_light_yellow_flash",
+    "options": [
+      "Tez orada qizil chiroq yonishini",
+      "Chorraha tartibga solinmaganligini va xavfli ekanligini",
+      "Harakatlanish to'liq taqiqlanganligini",
+      "Faqat o'ngga burilish mumkinligini"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 6.2-bandi: Sariq miltillovchi signal harakatlanishga ruxsat beradi va chorraha yoki piyodalar o'tish joyi tartibga solinmaganligidan ogohlantiradi."
+  },
+  {
+    "id": 188,
+    "ticket_id": 10,
+    "question_num": 8,
+    "question": "[10-bilet, 8-savol] Piyodalar o'tish joyiga yaqinlashganda haydovchi nima qilishi shart?",
+    "image": "pedestrian_cross",
+    "options": [
+      "Ovozli signal chalib o'tib ketishi kerak",
+      "Tezlikni kamaytirishi, qatnov qismiga chiqqan piyodalarga yo'l berishi shart",
+      "Faqat piyodalar chap tomonda bo'lsa yo'l beradi",
+      "Tezlikni oshirib o'tishi kerak"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 14.1-bandi: Tartibga solinmagan piyodalar o'tish joyiga yaqinlashayotgan transport vositasining haydovchisi yo'lni kesib o'tayotgan piyodalarga yo'l berishi shart."
+  },
+  {
+    "id": 189,
+    "ticket_id": 10,
+    "question_num": 9,
+    "question": "[10-bilet, 9-savol] Avtomagistralda harakatlanishda qaysi harakat taqiqlanadi?",
+    "image": "highway_rules",
+    "options": [
+      "Orqaga harakatlanish va o'quv mashqlarida haydash",
+      "O'ng bo'lakda 80 km/soat tezlikda yurish",
+      "Yoritish chiroqlarini yoqish",
+      "Quvib o'tish"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 16.1-bandi: Avtomagistralda piyodalar, ot-aravalarning harakati, orqaga harakatlanish hamda o'quv mashqi harakatlari taqiqlanadi."
+  },
+  {
+    "id": 190,
+    "ticket_id": 10,
+    "question_num": 10,
+    "question": "[10-bilet, 10-savol] Chorrahada chapga burilayotgan haydovchi qaysi transport vositalariga yo'l berishi kerak?",
+    "image": "turn_left_priority",
+    "options": [
+      "Faqat o'ngdan kelayotganlarga",
+      "Qarama-qarshi tomondan to'g'riga va o'ngga harakatlanayotgan transport vositalariga",
+      "Hech kimga yo'l bermaydi",
+      "Faqat tramvayga"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 13.4-bandi: Chapga burilish yoki orqaga qaytishda teng ahamiyatli yo'lda qarama-qarshi tomondan to'g'riga yoki o'ngga ketayotgan transport vositalariga yo'l berishi shart."
+  },
+  {
+    "id": 191,
+    "ticket_id": 10,
+    "question_num": 11,
+    "question": "[10-bilet, 11-savol] Svetoforning qizil signali bilan birga qo'shimcha yashil strelka yonganda nima qilish kerak?",
+    "image": "traffic_light_arrow",
+    "options": [
+      "Boshqa yo'nalishdagi barcha transport vositalariga yo'l berib, strelka yo'nalishida yurish mumkin",
+      "To'xtamasdan ustunlik bilan yurish mumkin",
+      "Yurish qat'iyan taqiqlanadi",
+      "Faqat to'g'riga yurish mumkin"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 13.5-bandi: Qo'shimcha tarmoq signali yoqilgan yo'nalishda harakatlanayotgan haydovchi boshqa yo'nalishlardan kelayotgan transport vositalariga yo'l berishi shart."
+  },
+  {
+    "id": 192,
+    "ticket_id": 10,
+    "question_num": 12,
+    "question": "[10-bilet, 12-savol] Temir yo'l kesishmasida qaysi masofada to'xtash taqiqlanadi?",
+    "image": "railway_crossing",
+    "options": [
+      "Kesishmagacha 50 metrdan yaqin masofada",
+      "Kesishmaga 10 metr qolganda",
+      "Faqat kesishma ustida",
+      "100 metrdan yaqin masofada"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 15.3-bandi: Temir yo'l kesishmasiga 50 metrdan kam masofada to'xtash va to'xtab turish qat'iyan taqiqlanadi."
+  },
+  {
+    "id": 193,
+    "ticket_id": 10,
+    "question_num": 13,
+    "question": "[10-bilet, 13-savol] Majburiy to'xtash sodir bo'lganda ogohlantiruvchi qizil uchburchak belgisi aholi punktida qanday masofaga qo'yiladi?",
+    "image": "emergency_triangle",
+    "options": [
+      "Kamida 5 metr",
+      "Kamida 15 metr",
+      "Kamida 30 metr",
+      "Kamida 50 metr"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 7.2-bandi: Avariya sababli to'xtaganda ogohlantiruvchi belgi aholi punktida kamida 15 metr, aholi punktidan tashqarida esa kamida 30 metr masofada o'rnatiladi."
+  },
+  {
+    "id": 194,
+    "ticket_id": 10,
+    "question_num": 14,
+    "question": "[10-bilet, 14-savol] Qaysi transport vositasiga harakatlanishda har doim ustunlik beriladi?",
+    "image": "emergency_vehicle",
+    "options": [
+      "Faqat yuk avtomobillariga",
+      "Ko'k miltillovchi mayoqchasi va maxsus tovushli signali yoqilgan transport vositasiga",
+      "Taksi xizmatiga",
+      "Tramvayga"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 3.1-bandi: Ko'k (yoki ko'k va qizil) rangli miltillovchi mayoqchasi va maxsus tovushli signali yoqilgan transport vositasi haydovchilari ustunlikka ega bo'ladilar."
+  },
+  {
+    "id": 195,
+    "ticket_id": 10,
+    "question_num": 15,
+    "question": "[10-bilet, 15-savol] Ushbu yo'l belgisi qanday harakatni buyuradi?",
+    "image": "sign_mandatory_right",
+    "options": [
+      "Faqat o'ngga harakatlanishni",
+      "O'ng tomonda to'xtashni",
+      "Chapga burilishni",
+      "To'g'riga va o'ngga yurishni"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 4.1.2-bandi: 'Harakatlanish o'ngga' belgisi faqat ko'rsatilgan yo'nalishda harakatlanishga ruxsat beradi."
+  },
+  {
+    "id": 196,
+    "ticket_id": 10,
+    "question_num": 16,
+    "question": "[10-bilet, 16-savol] Tuman va ko'rish masofasi cheklangan sharoitda qaysi chiroqlar yoqilishi shart?",
+    "image": "fog_lights",
+    "options": [
+      "Faqat gabarit chiroqlari",
+      "Yaqinni yoki uzoqni yorituvchi fara chiroqlari (tumanga qarshi chiroqlar bilan birga)",
+      "Avariya chiroqlari",
+      "Hech qanday chiroq kerak emas"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 19.1-bandi: Ko'rish yetarli bo'lmagan sharoitda va sutkaning qorong'i vaqtida faralarning yaqin yoki uzoqni yorituvchi chiroqlari yoqilishi shart."
+  },
+  {
+    "id": 197,
+    "ticket_id": 10,
+    "question_num": 17,
+    "question": "[10-bilet, 17-savol] Bolalarni yengil avtomobilning old o'rindig'ida qanday tashishga ruxsat beriladi?",
+    "image": "child_seat",
+    "options": [
+      "Maxsus bolalar o'rindig'i (avtokreslo) bo'lganda",
+      "Katta yoshli odam quchog'ida",
+      "12 yoshga to'lmagan bolalarni old o'rindiqda tashish umuman mumkin emas",
+      "Xavfsizlik kamarini taqqan holda"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 22.9-bandi: 12 yoshga to'lmagan bolalarni old o'rindiqda faqat bolalar ushlab turuvchi maxsus moslama (avtokreslo) orqali tashishga ruxsat etiladi."
+  },
+  {
+    "id": 198,
+    "ticket_id": 10,
+    "question_num": 18,
+    "question": "[10-bilet, 18-savol] Yo'l chizig'i yaxlit (uzluksiz) oq chiziq bo'lsa, uni bosib o'tish mumkinmi?",
+    "image": "solid_line",
+    "options": [
+      "Yo'l bo'sh bo'lsa mumkin",
+      "Qat'iyan taqiqlanadi (faqat ruxsat etilgan favqulodda to'xtashdan tashqari)",
+      "Quvib o'tish uchun mumkin",
+      "Kechasi mumkin"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 1.1-yo'l chizig'i: Qarama-qarshi yo'nalishlarni ajratuvchi yaxlit chiziqni bosib o'tish qat'iyan taqiqlanadi."
+  },
+  {
+    "id": 199,
+    "ticket_id": 10,
+    "question_num": 19,
+    "question": "[10-bilet, 19-savol] Chorrahada tartibga soluvchining (GSI xodimi) qo'llari ikki tomonga uzatilgan yoki tushirilgan bo'lsa:",
+    "image": "traffic_controller",
+    "options": [
+      "Barcha yo'nalishlarda to'xtash shart",
+      "Chap va o'ng yonbosh tomondan: to'g'riga va o'ngga; ko'krak va orqa tomondan: harakat taqiqlanadi",
+      "Faqat orqaga qaytish mumkin",
+      "Faqat tramvaylar yura oladi"
+    ],
+    "correct": 1,
+    "explanation": "YHQ 6.10-bandi: Tartibga soluvchining qo'llari yon tomonga uzatilgan yoki tushirilgan holatida ko'krak va orqa tomondan harakatlanish taqiqlanadi."
+  },
+  {
+    "id": 200,
+    "ticket_id": 10,
+    "question_num": 20,
+    "question": "[10-bilet, 20-savol] Spirtli ichimlik yoki dori ta'sirida mast holda transport vositasini boshqarish:",
+    "image": "dui_sign",
+    "options": [
+      "Qat'iyan taqiqlanadi va qonun bo'yicha javobgarlikka tortiladi",
+      "Yaqin masofaga mumkin",
+      "Faqat kechasi taqiqlanadi",
+      "Avariya chirog'i yoqilgan holda mumkin"
+    ],
+    "correct": 0,
+    "explanation": "YHQ 2.7-bandi: Mast holatda transport vositasini boshqarish qat'iyan man etiladi va qonun bilan og'ir jazoga (jarima va haydovchilik huquqidan mahrum qilish) sabab bo'ladi."
+  }
+]
