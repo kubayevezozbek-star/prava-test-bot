@@ -30,4 +30,4 @@ PRICE_VIP_90 = 30000         # VIP To'liq obuna (90 kun barcha biletlar + cheksi
 PRICE_VIP_90_STR = "30 000 so'm"
 
 FREE_TICKETS = [1, 2, 3]
-TOTAL_TICKETS = 70
+TOTAL_TICKETS = 34

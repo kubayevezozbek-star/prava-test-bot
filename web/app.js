@@ -23,20 +23,20 @@ let currentUser = {
   exam_attempts: 0,
   can_take_exam: false,
   unlocked_tickets: [1, 2, 3],
-  total_tickets: 70
+  total_tickets: 34
 };
 
+let globalQuizTimer = null;
 let allBilets = [];
 let allQuestions = [];
 let selectedPickerTickets = new Set();
 
 let currentQuiz = {
-  mode: 'ticket', // 'ticket' | 'exam' | 'mistakes'
+  mode: 'ticket', // 'ticket' | 'exam' | 'mistakes' | 'smart'
   ticketId: 1,
   questions: [],
   currentIndex: 0,
   answers: {},
-  timerInterval: null,
   timeLeft: 20 * 60
 };
 
@@ -137,7 +137,7 @@ function applyLanguageTexts() {
     if (el) el.innerText = text;
   };
 
-  setText('tickets-title', `${t.tickets_title} (1 – ${allBilets.length || 70})`);
+  setText('tickets-title', `${t.tickets_title} (1 – ${allBilets.length || 34})`);
   setText('tickets-info-tag', t.tickets_free_tag);
   
   const heroH2 = document.querySelector('.hero-text h2');
@@ -177,7 +177,7 @@ async function loadUserData() {
         exam_attempts: data.exam_attempts || 0,
         can_take_exam: data.can_take_exam || false,
         unlocked_tickets: Array.isArray(data.unlocked_tickets) ? data.unlocked_tickets : [1, 2, 3],
-        total_tickets: data.total_tickets || 70,
+        total_tickets: data.total_tickets || 34,
         progress: data.progress || null
       };
       updateHeaderUI();
@@ -253,7 +253,7 @@ function renderTickets() {
   container.innerHTML = '';
 
   const t = T[currentLang];
-  const totalCount = allBilets.length > 0 ? allBilets.length : (currentUser.total_tickets || 70);
+  const totalCount = allBilets.length > 0 ? allBilets.length : (currentUser.total_tickets || 34);
   
   const titleEl = document.getElementById('tickets-title');
   if (titleEl) titleEl.innerText = `${t.tickets_title} (1 – ${totalCount})`;
@@ -306,13 +306,13 @@ function startQuizForTicket(ticketNumber) {
     return;
   }
 
+  stopQuizTimer();
   currentQuiz = {
     mode: 'ticket',
     ticketId: ticketNumber,
     questions: ticketQuestions,
     currentIndex: 0,
     answers: {},
-    timerInterval: null,
     timeLeft: 20 * 60
   };
 
@@ -345,13 +345,13 @@ function startExamMode() {
   }
   const shuffled = [...allQuestions].sort(() => 0.5 - Math.random()).slice(0, 20);
 
+  stopQuizTimer();
   currentQuiz = {
     mode: 'exam',
     ticketId: 0,
     questions: shuffled,
     currentIndex: 0,
     answers: {},
-    timerInterval: null,
     timeLeft: 20 * 60
   };
 
@@ -476,7 +476,7 @@ function prevQuestion() {
 
 // 9. Testni yakunlash
 function finishQuiz() {
-  clearInterval(currentQuiz.timerInterval);
+  stopQuizTimer();
   const t = T[currentLang];
 
   let correctCount = 0;
@@ -512,6 +512,7 @@ function finishQuiz() {
 }
 
 function restartCurrentQuiz() {
+  stopQuizTimer();
   currentQuiz.currentIndex = 0;
   currentQuiz.answers = {};
   showView('quiz');
@@ -520,25 +521,40 @@ function restartCurrentQuiz() {
 }
 
 function exitQuiz() {
-  clearInterval(currentQuiz.timerInterval);
+  stopQuizTimer();
   showView('tickets');
 }
 
+function stopQuizTimer() {
+  if (globalQuizTimer) {
+    clearInterval(globalQuizTimer);
+    globalQuizTimer = null;
+  }
+}
+
 function startTimer() {
-  clearInterval(currentQuiz.timerInterval);
+  stopQuizTimer();
   currentQuiz.timeLeft = 20 * 60;
 
-  currentQuiz.timerInterval = setInterval(() => {
+  const updateDisplay = () => {
+    const mins = Math.floor(currentQuiz.timeLeft / 60);
+    const secs = currentQuiz.timeLeft % 60;
+    const el = document.getElementById('quiz-timer');
+    if (el) {
+      el.innerText = `⏱ ${mins < 10 ? '0' : ''}${mins}:${secs < 10 ? '0' : ''}${secs}`;
+    }
+  };
+
+  updateDisplay();
+
+  globalQuizTimer = setInterval(() => {
     currentQuiz.timeLeft--;
     if (currentQuiz.timeLeft <= 0) {
-      clearInterval(currentQuiz.timerInterval);
+      stopQuizTimer();
       finishQuiz();
       return;
     }
-
-    const mins = Math.floor(currentQuiz.timeLeft / 60);
-    const secs = currentQuiz.timeLeft % 60;
-    document.getElementById('quiz-timer').innerText = `⏱ ${mins < 10 ? '0' : ''}${mins}:${secs < 10 ? '0' : ''}${secs}`;
+    updateDisplay();
   }, 1000);
 }
 
@@ -591,13 +607,13 @@ function renderMistakesUI() {
 
 function startMistakesPractice() {
   if (!userMistakes.length) return;
+  stopQuizTimer();
   currentQuiz = {
     mode: 'mistakes',
     ticketId: 0,
     questions: userMistakes,
     currentIndex: 0,
     answers: {},
-    timerInterval: null,
     timeLeft: 20 * 60
   };
 
@@ -612,6 +628,7 @@ function openMistakesView() {
 
 // 11. Sahifalar almashinuvi
 function switchTab(tab) {
+  stopQuizTimer();
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
 
@@ -647,7 +664,7 @@ function openTicketPickerModal(preselectNum = null) {
   const grid = document.getElementById('picker-grid');
   grid.innerHTML = '';
 
-  const totalCount = allBilets.length > 0 ? allBilets.length : (currentUser.total_tickets || 70);
+  const totalCount = allBilets.length > 0 ? allBilets.length : (currentUser.total_tickets || 34);
 
   for (let i = 4; i <= totalCount; i++) {
     const isAlreadyUnlocked = currentUser.unlocked_tickets && currentUser.unlocked_tickets.includes(i);
@@ -860,13 +877,13 @@ async function startAiSmartQuiz() {
     if (res.ok) {
       const questions = await res.json();
       if (questions && questions.length > 0) {
+        stopQuizTimer();
         currentQuiz = {
           mode: 'smart',
           ticketId: 'ai_smart',
           questions: questions,
           currentIndex: 0,
           answers: {},
-          timerInterval: null,
           timeLeft: 20 * 60
         };
         showView('quiz');
