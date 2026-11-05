@@ -410,25 +410,35 @@ async function loadUserData() {
 }
 
 // 2. Savollarni yuklash
-async function loadQuestions() {
-  try {
-    const res = await fetch('/api/questions');
-    if (res.ok) {
-      const data = await res.json();
-      if (Array.isArray(data)) {
-        allQuestions = data;
-        const bNums = [...new Set(allQuestions.map(q => q.biletNumber || q.ticket_id || 1))].sort((a,b) => a - b);
-        allBilets = bNums.map(n => ({ number: n, title: `${n}-Bilet` }));
-      } else if (data && data.questions) {
-        allQuestions = data.questions;
-        allBilets = data.bilets || [];
-      }
-      applyLanguageTexts();
-      renderTickets();
-    }
-  } catch (e) {
-    console.error("Questions load error:", e);
+let questionsLoadingPromise = null;
+
+function loadQuestions() {
+  if (!questionsLoadingPromise) {
+    questionsLoadingPromise = fetch('/api/questions')
+      .then(res => {
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        return res.json();
+      })
+      .then(data => {
+        if (Array.isArray(data)) {
+          allQuestions = data;
+          const bNums = [...new Set(allQuestions.map(q => q.biletNumber || q.ticket_id || 1))].sort((a,b) => a - b);
+          allBilets = bNums.map(n => ({ number: n, title: (currentLang === 'ru') ? `Билет ${n}` : `${n}-Bilet` }));
+        } else if (data && data.questions) {
+          allQuestions = data.questions;
+          allBilets = data.bilets || [];
+        }
+        applyLanguageTexts();
+        renderTickets();
+        return allQuestions;
+      })
+      .catch(e => {
+        console.error("Questions load error:", e);
+        questionsLoadingPromise = null;
+        return [];
+      });
   }
+  return questionsLoadingPromise;
 }
 
 // 3. Header panelini yangilash
@@ -517,7 +527,15 @@ function renderTickets() {
 }
 
 // 5. Muayyan bilet bo'yicha testni boshlash
-function startQuizForTicket(ticketNumber) {
+async function startQuizForTicket(ticketNumber) {
+  if (!allQuestions || allQuestions.length === 0) {
+    if (questionsLoadingPromise) {
+      await questionsLoadingPromise;
+    } else {
+      await loadQuestions();
+    }
+  }
+
   const ticketQuestions = allQuestions.filter(q => (q.biletNumber === ticketNumber || q.ticket_id === ticketNumber));
   if (!ticketQuestions.length) {
     alert(T[currentLang].loading);
@@ -556,7 +574,14 @@ function handleStartExamClick() {
   }
 }
 
-function startExamMode() {
+async function startExamMode() {
+  if (!allQuestions || allQuestions.length === 0) {
+    if (questionsLoadingPromise) {
+      await questionsLoadingPromise;
+    } else {
+      await loadQuestions();
+    }
+  }
   if (!allQuestions.length) {
     alert(T[currentLang].loading);
     return;
@@ -1120,10 +1145,22 @@ async function startAiSmartQuiz() {
   handleStartExamClick();
 }
 
-// 17. Yuklanish
-window.onload = async () => {
+// 17. Yuklanish va Ishga tushirish
+function initApp() {
   setLanguage(currentLang);
-  await loadUserData();
-  await loadQuestions();
+  loadUserData();
+  loadQuestions();
   renderAiProgressCard();
-};
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initApp);
+} else {
+  initApp();
+}
+
+window.addEventListener('load', () => {
+  if (!allQuestions || allQuestions.length === 0) {
+    loadQuestions();
+  }
+});

@@ -137,11 +137,15 @@ async def api_select_payment(request):
 
 @routes.get("/api/questions")
 async def api_questions(request):
-    return web.json_response(QUESTIONS_DATA, headers=NO_CACHE_HEADERS)
+    resp = web.json_response(QUESTIONS_DATA, headers=NO_CACHE_HEADERS)
+    resp.enable_compression()
+    return resp
 
 @routes.get("/api/bilets")
 async def api_bilets(request):
-    return web.json_response(BILETS_DATA, headers=NO_CACHE_HEADERS)
+    resp = web.json_response(BILETS_DATA, headers=NO_CACHE_HEADERS)
+    resp.enable_compression()
+    return resp
 
 @routes.post("/api/answer")
 async def api_answer(request):
@@ -195,7 +199,9 @@ async def api_ai_smart_test(request):
                 selected_ids.append(qid)
 
     selected_questions = [QUESTIONS_BY_ID[qid] for qid in selected_ids if qid in QUESTIONS_BY_ID]
-    return web.json_response(selected_questions, headers=NO_CACHE_HEADERS)
+    resp = web.json_response(selected_questions, headers=NO_CACHE_HEADERS)
+    resp.enable_compression()
+    return resp
 
 @routes.get("/api/mistakes")
 async def api_mistakes(request):
@@ -205,7 +211,9 @@ async def api_mistakes(request):
 
     mistake_ids = await db.get_user_errors(user_id)
     mistake_questions = [QUESTIONS_BY_ID[qid] for qid in mistake_ids if qid in QUESTIONS_BY_ID]
-    return web.json_response(mistake_questions, headers=NO_CACHE_HEADERS)
+    resp = web.json_response(mistake_questions, headers=NO_CACHE_HEADERS)
+    resp.enable_compression()
+    return resp
 
 @routes.post("/api/test_result")
 async def api_test_result(request):
