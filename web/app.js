@@ -23,7 +23,7 @@ let currentUser = {
   exam_attempts: 0,
   can_take_exam: false,
   unlocked_tickets: [1, 2, 3],
-  total_tickets: 34
+  total_tickets: 60
 };
 
 let globalQuizTimer = null;
@@ -137,7 +137,7 @@ function applyLanguageTexts() {
     if (el) el.innerText = text;
   };
 
-  setText('tickets-title', `${t.tickets_title} (1 – ${allBilets.length || 34})`);
+  setText('tickets-title', `${t.tickets_title} (1 – ${allBilets.length || 60})`);
   setText('tickets-info-tag', t.tickets_free_tag);
   
   const heroH2 = document.querySelector('.hero-text h2');
@@ -177,7 +177,7 @@ async function loadUserData() {
         exam_attempts: data.exam_attempts || 0,
         can_take_exam: data.can_take_exam || false,
         unlocked_tickets: Array.isArray(data.unlocked_tickets) ? data.unlocked_tickets : [1, 2, 3],
-        total_tickets: data.total_tickets || 34,
+        total_tickets: data.total_tickets || 60,
         progress: data.progress || null
       };
       updateHeaderUI();
@@ -253,7 +253,7 @@ function renderTickets() {
   container.innerHTML = '';
 
   const t = T[currentLang];
-  const totalCount = allBilets.length > 0 ? allBilets.length : (currentUser.total_tickets || 34);
+  const totalCount = allBilets.length > 0 ? allBilets.length : (currentUser.total_tickets || 60);
   
   const titleEl = document.getElementById('tickets-title');
   if (titleEl) titleEl.innerText = `${t.tickets_title} (1 – ${totalCount})`;
@@ -664,7 +664,7 @@ function openTicketPickerModal(preselectNum = null) {
   const grid = document.getElementById('picker-grid');
   grid.innerHTML = '';
 
-  const totalCount = allBilets.length > 0 ? allBilets.length : (currentUser.total_tickets || 34);
+  const totalCount = allBilets.length > 0 ? allBilets.length : (currentUser.total_tickets || 60);
 
   for (let i = 4; i <= totalCount; i++) {
     const isAlreadyUnlocked = currentUser.unlocked_tickets && currentUser.unlocked_tickets.includes(i);

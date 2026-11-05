@@ -71,7 +71,7 @@ async def process_tickets_chosen(message: Message, state: FSMContext):
     raw_text = message.text
     # Ajratish
     import re
-    numbers = [int(n) for n in re.findall(r'\b\d+\b', raw_text) if 1 <= int(n) <= 34]
+    numbers = [int(n) for n in re.findall(r'\b\d+\b', raw_text) if 1 <= int(n) <= 60]
     
     if len(numbers) < 1:
         await message.answer("⚠️ Iltimos, kamida 1 tadan 3 tagacha bilet raqamini yozing (masalan: 4, 5, 6):")
@@ -158,7 +158,7 @@ async def process_buy_vip_90(callback: CallbackQuery, state: FSMContext):
     text = (
         f"👑 <b>VIP To'liq Kirish (90 kun) uchun to'lov</b>\n\n"
         f"💰 Narxi: <b>{PRICE_VIP_90_STR}</b>\n"
-        "Imkoniyat: Barcha 34 ta bilet (680 ta savol) + cheksiz 20 talik imtihonlar 3 oyga to'liq ochiladi!\n\n"
+        "Imkoniyat: Barcha 60 ta bilet (1200 ta savol) + cheksiz 20 talik imtihonlar 3 oyga to'liq ochiladi!\n\n"
         f"💳 Karta raqami: <code>{CARD_NUMBER}</code>\n"
         f"👤 Karta egasi: <b>{CARD_HOLDER}</b>\n\n"
         "📌 <i>To'lov cheki skrinshotini shu yerga yuboring:</i>"

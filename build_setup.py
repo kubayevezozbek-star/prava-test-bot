@@ -49,17 +49,25 @@ def download_image(fname):
     target = MEDIA_DIR / fname
     if target.exists() and target.stat().st_size > 0:
         return True
-    url = BASE_CDN + fname
-    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
-    try:
-        with urllib.request.urlopen(req, timeout=20) as resp:
-            content = resp.read()
-        with open(target, "wb") as f:
-            f.write(content)
-        return True
-    except Exception as e:
-        print(f"  Failed {fname}: {e}")
-        return False
+    
+    # Avval yhq-test.uz dan, so'ngra GitHub CDN dan sinab ko'rish
+    urls = [
+        f"https://yhq-test.uz/images/{fname}",
+        BASE_CDN + fname
+    ]
+    for url in urls:
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+            with urllib.request.urlopen(req, timeout=15) as resp:
+                content = resp.read()
+            if content:
+                with open(target, "wb") as f:
+                    f.write(content)
+                return True
+        except Exception:
+            continue
+    print(f"  Failed {fname}")
+    return False
 
 def download_images():
     MEDIA_DIR.mkdir(parents=True, exist_ok=True)
