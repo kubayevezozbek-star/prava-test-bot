@@ -86,6 +86,9 @@ async def api_user_status(request):
     if access_info["is_vip"]:
         max_ticket = total_tickets
 
+    total_q = len(QUESTIONS_DATA) or 679
+    progress = await db.get_user_learning_stats(user_id, total_q)
+
     return web.json_response({
         "telegram_id": user_id,
         "user_id": user_id,
@@ -100,7 +103,8 @@ async def api_user_status(request):
         "can_take_exam": access_info["can_take_exam"],
         "unlocked_tickets": unlocked_list,
         "unlocked_max_ticket": max_ticket,
-        "total_tickets": total_tickets
+        "total_tickets": total_tickets,
+        "progress": progress
     }, headers=NO_CACHE_HEADERS)
 
 @routes.post("/api/consume_exam")
@@ -147,14 +151,51 @@ async def api_answer(request):
         question_id = int(data.get("question_id"))
         is_correct = bool(data.get("is_correct"))
 
-        if is_correct:
-            await db.resolve_user_error(user_id, question_id)
-        else:
-            await db.save_user_error(user_id, question_id)
+        await db.record_question_answer(user_id, question_id, is_correct)
+        total_q = len(QUESTIONS_DATA) or 679
+        progress = await db.get_user_learning_stats(user_id, total_q)
 
-        return web.json_response({"status": "ok"}, headers=NO_CACHE_HEADERS)
+        return web.json_response({"status": "ok", "progress": progress}, headers=NO_CACHE_HEADERS)
     except Exception as e:
         return web.json_response({"error": str(e)}, status=400, headers=NO_CACHE_HEADERS)
+
+@routes.get("/api/ai_smart_test")
+async def api_ai_smart_test(request):
+    user_id = int(request.query.get("user_id", "0"))
+    if not user_id:
+        return web.json_response([], headers=NO_CACHE_HEADERS)
+
+    mistake_ids = await db.get_user_errors(user_id)
+    all_ids = [q["id"] for q in QUESTIONS_DATA]
+    unlearned_ids = await db.get_unlearned_question_ids(user_id, all_ids)
+
+    import random
+    selected_ids = []
+
+    # 1. Eng ko'p xato qilingan savollar (maksimal 10 ta)
+    shuffled_mistakes = list(mistake_ids)
+    random.shuffle(shuffled_mistakes)
+    for qid in shuffled_mistakes:
+        if len(selected_ids) < 10 and qid not in selected_ids:
+            selected_ids.append(qid)
+
+    # 2. Hali o'rganilmagan yangi savollar (jami 20 taga yetkazish)
+    shuffled_unlearned = list(unlearned_ids)
+    random.shuffle(shuffled_unlearned)
+    for qid in shuffled_unlearned:
+        if len(selected_ids) < 20 and qid not in selected_ids:
+            selected_ids.append(qid)
+
+    # 3. Agar savollar kam bo'lsa, tasodifiy takrorlash
+    if len(selected_ids) < 20:
+        shuffled_all = list(all_ids)
+        random.shuffle(shuffled_all)
+        for qid in shuffled_all:
+            if len(selected_ids) < 20 and qid not in selected_ids:
+                selected_ids.append(qid)
+
+    selected_questions = [QUESTIONS_BY_ID[qid] for qid in selected_ids if qid in QUESTIONS_BY_ID]
+    return web.json_response(selected_questions, headers=NO_CACHE_HEADERS)
 
 @routes.get("/api/mistakes")
 async def api_mistakes(request):

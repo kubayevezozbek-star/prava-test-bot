@@ -109,6 +109,17 @@ def _sync_init_db():
                 updated_at TEXT
             )
         """)
+
+        # 7. user_learned_questions (O'zlashtirilgan savollar)
+        db.execute("""
+            CREATE TABLE IF NOT EXISTS user_learned_questions (
+                telegram_id INTEGER,
+                question_id INTEGER,
+                correct_count INTEGER DEFAULT 1,
+                last_correct_at TEXT,
+                PRIMARY KEY (telegram_id, question_id)
+            )
+        """)
         db.commit()
 
 def _sync_save_pending_selection(telegram_id: int, payment_type: str, details: str, ticket_numbers: str, amount: int):
@@ -508,3 +519,107 @@ def _sync_get_all_user_ids() -> List[int]:
 
 async def get_all_user_ids() -> List[int]:
     return await asyncio.to_thread(_sync_get_all_user_ids)
+
+# 8. O'zlashtirish va AI Tayyorgarlik Tizimi
+def _sync_record_question_answer(telegram_id: int, question_id: int, is_correct: bool):
+    now = datetime.now().isoformat()
+    with sqlite3.connect(DB_PATH) as db:
+        if is_correct:
+            # O'zlashtirilgan savollar saqlanadi
+            db.execute("""
+                INSERT INTO user_learned_questions (telegram_id, question_id, correct_count, last_correct_at)
+                VALUES (?, ?, 1, ?)
+                ON CONFLICT(telegram_id, question_id) DO UPDATE SET
+                    correct_count = correct_count + 1,
+                    last_correct_at = excluded.last_correct_at
+            """, (telegram_id, question_id, now))
+            # Xatolar ro'yxatidan o'chirish
+            db.execute("DELETE FROM user_errors WHERE telegram_id = ? AND question_id = ?", (telegram_id, question_id))
+        else:
+            # Xatoliklar ro'yxatiga qo'shish
+            db.execute("""
+                INSERT INTO user_errors (telegram_id, question_id, wrong_count, created_at)
+                VALUES (?, ?, 1, ?)
+                ON CONFLICT(telegram_id, question_id) DO UPDATE SET
+                    wrong_count = wrong_count + 1,
+                    created_at = excluded.created_at
+            """, (telegram_id, question_id, now))
+            # Agar oldin o'zlashtirilgan bo'lsa, xato qilgach qayta o'rganish uchun o'chirish
+            db.execute("DELETE FROM user_learned_questions WHERE telegram_id = ? AND question_id = ?", (telegram_id, question_id))
+        db.commit()
+
+async def record_question_answer(telegram_id: int, question_id: int, is_correct: bool):
+    await asyncio.to_thread(_sync_record_question_answer, telegram_id, question_id, is_correct)
+
+def _sync_get_user_learning_stats(telegram_id: int, total_questions: int) -> Dict[str, Any]:
+    with sqlite3.connect(DB_PATH) as db:
+        cur = db.execute("SELECT COUNT(DISTINCT question_id) FROM user_learned_questions WHERE telegram_id = ?", (telegram_id,))
+        learned_count = cur.fetchone()[0] or 0
+
+        cur = db.execute("SELECT COUNT(DISTINCT question_id) FROM user_errors WHERE telegram_id = ?", (telegram_id,))
+        mistakes_count = cur.fetchone()[0] or 0
+
+        cur = db.execute("SELECT score, total FROM test_results WHERE telegram_id = ? ORDER BY id DESC LIMIT 5", (telegram_id,))
+        recent_tests = cur.fetchall()
+
+    if total_questions <= 0:
+        total_questions = 679
+
+    percent = round((learned_count / total_questions) * 100, 1) if total_questions else 0.0
+    if percent > 100.0:
+        percent = 100.0
+
+    # AI Bashorat (Imtihondan o'tish ehtimoli)
+    if recent_tests:
+        avg_score = sum(r[0] for r in recent_tests) / len(recent_tests)
+        score_factor = (avg_score / 20.0) * 100
+        pass_prob = round((percent * 0.4) + (score_factor * 0.6))
+    else:
+        pass_prob = round(percent * 0.85)
+
+    if percent > 0 and pass_prob < 15:
+        pass_prob = 15
+    if pass_prob > 99:
+        pass_prob = 99
+    if percent >= 90 and pass_prob < 92:
+        pass_prob = 94
+
+    if percent < 30:
+        level_uz = "Boshlang'ich"
+        level_ru = "Начинающий"
+        level_badge = "🔴"
+    elif percent < 65:
+        level_uz = "O'rganuvchi"
+        level_ru = "Ученик"
+        level_badge = "🟡"
+    elif percent < 85:
+        level_uz = "Tajribali"
+        level_ru = "Опытный"
+        level_badge = "🟢"
+    else:
+        level_uz = "Imtihonga 100% Tayyor!"
+        level_ru = "Готов к экзамену на 100%!"
+        level_badge = "🏆"
+
+    return {
+        "learned_count": learned_count,
+        "mistakes_count": mistakes_count,
+        "total_questions": total_questions,
+        "percent": percent,
+        "pass_prob": pass_prob,
+        "level_uz": level_uz,
+        "level_ru": level_ru,
+        "level_badge": level_badge
+    }
+
+async def get_user_learning_stats(telegram_id: int, total_questions: int) -> Dict[str, Any]:
+    return await asyncio.to_thread(_sync_get_user_learning_stats, telegram_id, total_questions)
+
+def _sync_get_unlearned_question_ids(telegram_id: int, all_question_ids: List[int]) -> List[int]:
+    with sqlite3.connect(DB_PATH) as db:
+        cur = db.execute("SELECT question_id FROM user_learned_questions WHERE telegram_id = ?", (telegram_id,))
+        learned = {r[0] for r in cur.fetchall()}
+    return [qid for qid in all_question_ids if qid not in learned]
+
+async def get_unlearned_question_ids(telegram_id: int, all_question_ids: List[int]) -> List[int]:
+    return await asyncio.to_thread(_sync_get_unlearned_question_ids, telegram_id, all_question_ids)

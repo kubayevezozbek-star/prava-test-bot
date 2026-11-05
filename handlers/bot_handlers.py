@@ -21,10 +21,13 @@ def get_main_keyboard(webapp_url: str) -> ReplyKeyboardMarkup:
         buttons.append([KeyboardButton(text="🚗 Imtihonni boshlash")])
 
     buttons.append([
-        KeyboardButton(text="💎 Tariflar va Xarid"),
-        KeyboardButton(text="👥 Do'stlarni taklif qilish")
+        KeyboardButton(text="📊 Tayyorgarlik darajam"),
+        KeyboardButton(text="💎 Tariflar va Xarid")
     ])
-    buttons.append([KeyboardButton(text="📞 Adminga murojaat")])
+    buttons.append([
+        KeyboardButton(text="👥 Do'stlarni taklif qilish"),
+        KeyboardButton(text="📞 Adminga murojaat")
+    ])
 
     return ReplyKeyboardMarkup(keyboard=buttons, resize_keyboard=True)
 
@@ -129,3 +132,40 @@ async def invite_friends_handler(message: Message, bot: Bot):
     ])
 
     await message.answer(text, parse_mode="HTML", reply_markup=ikb)
+
+@router.message(F.text.in_(["📊 Tayyorgarlik darajam", "/stats", "/progress", "/my"]))
+async def user_progress_handler(message: Message, bot: Bot):
+    user_id = message.from_user.id
+    first_name = message.from_user.first_name or "Foydalanuvchi"
+
+    stats = await db.get_user_learning_stats(user_id, 679)
+    access = await db.get_user_access(user_id)
+
+    # Progress bar yasash (masalan: [■■■■□□□□□□] 40%)
+    total_blocks = 10
+    filled = int(stats["percent"] // 10)
+    bar = "🟩" * filled + "⬜" * (total_blocks - filled)
+
+    status_str = "Oddiy"
+    if access["is_vip"]:
+        status_str = "👑 VIP obunachi"
+    elif access["has_exam_pass"]:
+        status_str = "⚡ Cheksiz imtihon obunachisi"
+
+    text = (
+        f"📊 <b>{first_name}, sizning tayyorgarlik darajangiz:</b>\n\n"
+        f"🎯 <b>O'zlashtirish:</b> <b>{stats['percent']}%</b>\n"
+        f"{bar}\n\n"
+        f"📚 <b>O'rganilgan savollar:</b> {stats['learned_count']} / {stats['total_questions']} ta\n"
+        f"❌ <b>Xatoliklar (qayta ishlash kerak):</b> {stats['mistakes_count']} ta\n"
+        f"🔮 <b>AI Imtihondan o'tish ehtimoli:</b> <b>{stats['pass_prob']}%</b>\n"
+        f"🎖 <b>Darajangiz:</b> {stats['level_badge']} <b>{stats['level_uz']}</b>\n"
+        f"💎 <b>Obuna holati:</b> {status_str}\n\n"
+        "💡 <i>Har kuni 1-2 ta bilet ishlab borsangiz, o'tish ehtimolingiz 95%+ ga yetadi!</i>"
+    )
+
+    ikb = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="🚗 Testlarni boshlash", web_app=WebAppInfo(url=WEBAPP_URL))] if WEBAPP_URL else []
+    ])
+
+    await message.answer(text, parse_mode="HTML", reply_markup=ikb if WEBAPP_URL else None)

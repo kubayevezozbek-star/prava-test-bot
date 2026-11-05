@@ -120,6 +120,7 @@ function setLanguage(lang) {
   applyLanguageTexts();
   updateHeaderUI();
   renderTickets();
+  renderAiProgressCard();
 
   if (currentQuiz.questions && currentQuiz.questions.length > 0) {
     renderCurrentQuestion();
@@ -176,10 +177,12 @@ async function loadUserData() {
         exam_attempts: data.exam_attempts || 0,
         can_take_exam: data.can_take_exam || false,
         unlocked_tickets: Array.isArray(data.unlocked_tickets) ? data.unlocked_tickets : [1, 2, 3],
-        total_tickets: data.total_tickets || 70
+        total_tickets: data.total_tickets || 70,
+        progress: data.progress || null
       };
       updateHeaderUI();
       renderTickets();
+      renderAiProgressCard();
       loadMistakes();
     }
   } catch (e) {
@@ -442,7 +445,15 @@ function selectOption(selectedIdx) {
       question_id: q.id,
       is_correct: isCorrect
     })
-  }).catch(e => console.warn(e));
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data && data.progress) {
+      currentUser.progress = data.progress;
+      renderAiProgressCard();
+    }
+  })
+  .catch(e => console.warn(e));
 
   renderCurrentQuestion();
 }
@@ -794,9 +805,86 @@ function shareRefLink() {
   }
 }
 
-// 16. Yuklanish
+// 16. AI Tayyorgarlik va Natijalarni ko'rsatish
+function renderAiProgressCard() {
+  const p = currentUser.progress || {
+    percent: 0,
+    learned_count: 0,
+    total_questions: allQuestions.length || 679,
+    mistakes_count: 0,
+    pass_prob: 15,
+    level_uz: "Boshlang'ich",
+    level_ru: "Начинающий",
+    level_badge: "🔴"
+  };
+
+  const isRu = currentLang === 'ru';
+  const levelText = isRu ? (p.level_ru || "Начинающий") : (p.level_uz || "Boshlang'ich");
+  
+  const badgeEl = document.getElementById('ai-level-badge');
+  if (badgeEl) badgeEl.innerText = `${p.level_badge || '🟡'} ${levelText}`;
+
+  const predEl = document.getElementById('ai-prediction-tag');
+  if (predEl) predEl.innerText = isRu ? `🔮 Шанс сдачи: ${p.pass_prob || 15}%` : `🔮 O'tish ehtimoli: ${p.pass_prob || 15}%`;
+
+  const pctValEl = document.getElementById('ai-percent-val');
+  if (pctValEl) pctValEl.innerText = `${p.percent || 0}%`;
+
+  const fillEl = document.getElementById('ai-bar-fill');
+  if (fillEl) fillEl.style.width = `${Math.min(100, Math.max(0, p.percent || 0))}%`;
+
+  const total = p.total_questions || (allQuestions.length || 679);
+  const learnedEl = document.getElementById('ai-learned-text');
+  if (learnedEl) {
+    learnedEl.innerText = isRu ? `📚 ${p.learned_count || 0} / ${total} усвоено` : `📚 ${p.learned_count || 0} / ${total} o'rganildi`;
+  }
+
+  const mistakesEl = document.getElementById('ai-mistakes-text');
+  if (mistakesEl) {
+    mistakesEl.innerText = isRu ? `❌ ${p.mistakes_count || 0} ошибок` : `❌ ${p.mistakes_count || 0} ta xato`;
+  }
+
+  const btnTitle = document.getElementById('ai-btn-title');
+  if (btnTitle) btnTitle.innerText = isRu ? "🧠 AI Умная тренировка" : "🧠 AI Aqlli Mashg'ulot";
+
+  const btnSub = document.getElementById('ai-btn-sub');
+  if (btnSub) btnSub.innerText = isRu ? "Слабые темы и новые вопросы (20 шт)" : "Zaif mavzular va yangi savollar (20 ta)";
+
+  const pctTitle = document.getElementById('ai-percent-title');
+  if (pctTitle) pctTitle.innerText = isRu ? "Готовность" : "Tayyorgarlik";
+}
+
+async function startAiSmartQuiz() {
+  try {
+    const res = await fetch(`/api/ai_smart_test?user_id=${currentUser.id}`);
+    if (res.ok) {
+      const questions = await res.json();
+      if (questions && questions.length > 0) {
+        currentQuiz = {
+          mode: 'smart',
+          ticketId: 'ai_smart',
+          questions: questions,
+          currentIndex: 0,
+          answers: {},
+          timerInterval: null,
+          timeLeft: 20 * 60
+        };
+        showView('quiz');
+        renderCurrentQuestion();
+        startTimer();
+        return;
+      }
+    }
+  } catch (e) {
+    console.warn("AI Smart test fetch error:", e);
+  }
+  handleStartExamClick();
+}
+
+// 17. Yuklanish
 window.onload = async () => {
   setLanguage(currentLang);
   await loadUserData();
   await loadQuestions();
+  renderAiProgressCard();
 };

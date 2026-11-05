@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Prava Test AI — Rasmiy YHQ Imtihoni</title>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
-  <link rel="stylesheet" href="/style.css?v=3.5">
+  <link rel="stylesheet" href="/style.css?v=4.0">
 </head>
 <body>
   <div id="app">
@@ -37,6 +37,35 @@
             <p>1200 ta rasmiy imtihon savollari va haqiqiy rasmlar</p>
           </div>
           <button class="hero-btn" onclick="handleStartExamClick()">⚡ 20 talik Tasodifiy Imtihon</button>
+        </div>
+
+        <!-- AI Tayyorgarlik va Natija Paneli -->
+        <div class="ai-progress-card" id="ai-progress-card">
+          <div class="ai-progress-header">
+            <div class="ai-level-badge" id="ai-level-badge">🟡 O'rganuvchi</div>
+            <div class="ai-prediction-tag" id="ai-prediction-tag">🔮 O'tish ehtimoli: 15%</div>
+          </div>
+          
+          <div class="ai-progress-middle">
+            <div class="ai-percent-box">
+              <span class="ai-percent-val" id="ai-percent-val">0%</span>
+              <span class="ai-percent-title" id="ai-percent-title">Tayyorgarlik</span>
+            </div>
+            <div class="ai-bar-col">
+              <div class="ai-bar-bg">
+                <div class="ai-bar-fill" id="ai-bar-fill" style="width: 0%;"></div>
+              </div>
+              <div class="ai-stats-row">
+                <span id="ai-learned-text">📚 0 / 679 o'rganildi</span>
+                <span id="ai-mistakes-text" class="ai-mistakes-pill">❌ 0 ta xato</span>
+              </div>
+            </div>
+          </div>
+
+          <button class="ai-smart-btn" onclick="startAiSmartQuiz()">
+            <span id="ai-btn-title">🧠 AI Aqlli Mashg'ulot</span>
+            <small id="ai-btn-sub">Zaif mavzular va yangi savollar (20 ta)</small>
+          </button>
         </div>
 
         <div class="section-title">
@@ -311,6 +340,6 @@
     </nav>
   </div>
 
-  <script src="/app.js?v=3.5"></script>
+  <script src="/app.js?v=4.0"></script>
 </body>
 </html>
