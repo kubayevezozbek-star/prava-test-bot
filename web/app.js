@@ -716,19 +716,42 @@ function closeExamAccessModal() {
 }
 
 // 14. To'lov modali
+async function syncSelectedPayment(pkgKey, title, price, extraDetails) {
+  const numericPrice = parseInt(String(price).replace(/\s+/g, '')) || 5000;
+  if (currentUser && currentUser.id) {
+    try {
+      await fetch('/api/select_payment', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          user_id: currentUser.id,
+          payment_type: pkgKey,
+          details: title,
+          ticket_numbers: extraDetails || '',
+          amount: numericPrice
+        })
+      });
+    } catch (e) {
+      console.warn("syncSelectedPayment error:", e);
+    }
+  }
+}
+
 function openPaymentModal(pkgKey, title, price, extraDetails = '') {
   document.getElementById('modal-title').innerText = title;
   document.getElementById('modal-price').innerText = `${price} so'm`;
   document.getElementById('modal-instruct-amount').innerText = `${price} so'm`;
   document.getElementById('payment-modal').classList.add('active');
 
-  // Tanlangan biletlar yoki tarifni saqlab qo'yish
+  // Tanlangan biletlar yoki tarifni saqlab qo'yish va serverga yuborish
   window.currentSelectedPayment = {
     pkgKey: pkgKey,
     title: title,
     price: price,
     extra: extraDetails
   };
+
+  syncSelectedPayment(pkgKey, title, price, extraDetails);
 }
 
 function closePaymentModal() {
@@ -741,7 +764,11 @@ function copyCardNumber() {
   alert("Karta raqami nusxalandi!");
 }
 
-function closeModalAndGoToBot() {
+async function closeModalAndGoToBot() {
+  if (window.currentSelectedPayment) {
+    const p = window.currentSelectedPayment;
+    await syncSelectedPayment(p.pkgKey, p.title, p.price, p.extra);
+  }
   closePaymentModal();
   if (tg) {
     tg.close();

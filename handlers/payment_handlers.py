@@ -169,17 +169,31 @@ async def process_buy_vip_90(callback: CallbackQuery, state: FSMContext):
 @router.message(PaymentStates.waiting_for_receipt, F.photo)
 @router.message(F.photo)
 async def handle_payment_receipt(message: Message, state: FSMContext, bot: Bot):
-    data = await state.get_data()
-    
-    ptype = data.get("payment_type", "vip_90")
-    details = data.get("details", "VIP To'liq Kirish (90 kun)")
-    ticket_numbers = data.get("ticket_numbers", "")
-    amount = data.get("amount", PRICE_VIP_90)
-
-    file_id = message.photo[-1].file_id
     user_id = message.from_user.id
     first_name = message.from_user.first_name or "Foydalanuvchi"
     username = message.from_user.username or ""
+
+    data = await state.get_data()
+    pending = await db.get_pending_selection(user_id)
+
+    if pending:
+        ptype = pending.get("payment_type", "vip_90")
+        details = pending.get("details", "VIP To'liq Kirish (90 kun)")
+        ticket_numbers = pending.get("ticket_numbers", "")
+        amount = pending.get("amount", PRICE_VIP_90)
+        await db.clear_pending_selection(user_id)
+    elif data.get("payment_type"):
+        ptype = data.get("payment_type", "vip_90")
+        details = data.get("details", "VIP To'liq Kirish (90 kun)")
+        ticket_numbers = data.get("ticket_numbers", "")
+        amount = data.get("amount", PRICE_VIP_90)
+    else:
+        ptype = "vip_90"
+        details = "VIP To'liq Kirish (90 kun)"
+        ticket_numbers = ""
+        amount = PRICE_VIP_90
+
+    file_id = message.photo[-1].file_id
 
     payment_id = await db.create_payment(
         telegram_id=user_id,

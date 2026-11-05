@@ -116,6 +116,21 @@ async def api_consume_exam(request):
     except Exception as e:
         return web.json_response({"ok": False, "error": str(e)}, status=400, headers=NO_CACHE_HEADERS)
 
+@routes.post("/api/select_payment")
+async def api_select_payment(request):
+    try:
+        data = await request.json()
+        user_id = int(data.get("user_id", 0))
+        payment_type = data.get("payment_type", "vip_90")
+        details = data.get("details", "")
+        ticket_numbers = str(data.get("ticket_numbers", ""))
+        amount = int(data.get("amount", 30000))
+        if user_id:
+            await db.save_pending_selection(user_id, payment_type, details, ticket_numbers, amount)
+        return web.json_response({"ok": True}, headers=NO_CACHE_HEADERS)
+    except Exception as e:
+        return web.json_response({"ok": False, "error": str(e)}, status=400, headers=NO_CACHE_HEADERS)
+
 @routes.get("/api/questions")
 async def api_questions(request):
     return web.json_response(QUESTIONS_DATA, headers=NO_CACHE_HEADERS)

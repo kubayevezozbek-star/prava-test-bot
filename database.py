@@ -97,7 +97,49 @@ def _sync_init_db():
                 created_at TEXT
             )
         """)
+
+        # 6. pending_payment_selections (Mini Appdan tanlangan xaridni bot bilan sinxronlash)
+        db.execute("""
+            CREATE TABLE IF NOT EXISTS pending_payment_selections (
+                telegram_id INTEGER PRIMARY KEY,
+                payment_type TEXT,
+                details TEXT,
+                ticket_numbers TEXT,
+                amount INTEGER,
+                updated_at TEXT
+            )
+        """)
         db.commit()
+
+def _sync_save_pending_selection(telegram_id: int, payment_type: str, details: str, ticket_numbers: str, amount: int):
+    now = datetime.now().isoformat()
+    with sqlite3.connect(DB_PATH) as db:
+        db.execute("""
+            INSERT OR REPLACE INTO pending_payment_selections (telegram_id, payment_type, details, ticket_numbers, amount, updated_at)
+            VALUES (?, ?, ?, ?, ?, ?)
+        """, (telegram_id, payment_type, details, ticket_numbers, amount, now))
+        db.commit()
+
+async def save_pending_selection(telegram_id: int, payment_type: str, details: str, ticket_numbers: str, amount: int):
+    await asyncio.to_thread(_sync_save_pending_selection, telegram_id, payment_type, details, ticket_numbers, amount)
+
+def _sync_get_pending_selection(telegram_id: int) -> Optional[Dict[str, Any]]:
+    with sqlite3.connect(DB_PATH) as db:
+        db.row_factory = sqlite3.Row
+        cur = db.execute("SELECT * FROM pending_payment_selections WHERE telegram_id = ?", (telegram_id,))
+        row = cur.fetchone()
+        return dict(row) if row else None
+
+async def get_pending_selection(telegram_id: int) -> Optional[Dict[str, Any]]:
+    return await asyncio.to_thread(_sync_get_pending_selection, telegram_id)
+
+def _sync_clear_pending_selection(telegram_id: int):
+    with sqlite3.connect(DB_PATH) as db:
+        db.execute("DELETE FROM pending_payment_selections WHERE telegram_id = ?", (telegram_id,))
+        db.commit()
+
+async def clear_pending_selection(telegram_id: int):
+    await asyncio.to_thread(_sync_clear_pending_selection, telegram_id)
 
 async def init_db():
     await asyncio.to_thread(_sync_init_db)
