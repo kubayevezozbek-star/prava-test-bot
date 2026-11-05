@@ -64,11 +64,13 @@ async function loadQuestions() {
     const res = await fetch('/api/questions');
     if (res.ok) {
       const data = await res.json();
-      if (data.bilets && data.questions) {
-        allBilets = data.bilets;
-        allQuestions = data.questions;
-      } else if (Array.isArray(data)) {
+      if (Array.isArray(data)) {
         allQuestions = data;
+        const bNums = [...new Set(allQuestions.map(q => q.biletNumber || q.ticket_id || 1))].sort((a,b) => a - b);
+        allBilets = bNums.map(n => ({ number: n, title: `${n}-Bilet` }));
+      } else if (data && data.questions) {
+        allQuestions = data.questions;
+        allBilets = data.bilets || [];
       }
       renderTickets();
     }

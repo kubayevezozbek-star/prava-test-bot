@@ -10,29 +10,48 @@ routes = web.RouteTableDef()
 with open(QUESTIONS_FILE, "r", encoding="utf-8") as f:
     RAW_DATA = json.load(f)
 
-# Agar format dict (bilets va questions) bo'lsa
 if isinstance(RAW_DATA, dict):
     BILETS_DATA = RAW_DATA.get("bilets", [])
     QUESTIONS_DATA = RAW_DATA.get("questions", [])
 else:
     QUESTIONS_DATA = RAW_DATA
-    # Avtomatik biletlar ro'yxatini shakllantirish
     b_nums = sorted(list({q.get("biletNumber", q.get("ticket_id", 1)) for q in QUESTIONS_DATA}))
     BILETS_DATA = [{"number": n, "title": f"{n}-Bilet"} for n in b_nums]
 
+# Eski va yangi versiyalar bilan 100% moslik uchun savollarni boyitish
+for q in QUESTIONS_DATA:
+    tid = q.get("biletNumber", q.get("ticket_id", 1))
+    q["ticket_id"] = tid
+    q["biletNumber"] = tid
+    txt = q.get("text", q.get("question", ""))
+    q["text"] = txt
+    q["question"] = txt
+    c_idx = q.get("correctOptionIndex", q.get("correct", 0))
+    q["correctOptionIndex"] = c_idx
+    q["correct"] = c_idx
+    img = q.get("imageUrl", q.get("image", ""))
+    q["imageUrl"] = img
+    q["image"] = img
+
 QUESTIONS_BY_ID = {q["id"]: q for q in QUESTIONS_DATA}
+
+NO_CACHE_HEADERS = {
+    "Cache-Control": "no-cache, no-store, must-revalidate",
+    "Pragma": "no-cache",
+    "Expires": "0"
+}
 
 @routes.get("/")
 async def serve_index(request):
-    return web.FileResponse(BASE_DIR / "web" / "index.html")
+    return web.FileResponse(BASE_DIR / "web" / "index.html", headers=NO_CACHE_HEADERS)
 
 @routes.get("/style.css")
 async def serve_css(request):
-    return web.FileResponse(BASE_DIR / "web" / "style.css")
+    return web.FileResponse(BASE_DIR / "web" / "style.css", headers=NO_CACHE_HEADERS)
 
 @routes.get("/app.js")
 async def serve_js(request):
-    return web.FileResponse(BASE_DIR / "web" / "app.js")
+    return web.FileResponse(BASE_DIR / "web" / "app.js", headers=NO_CACHE_HEADERS)
 
 @routes.get("/health")
 @routes.get("/ping")
@@ -47,31 +66,39 @@ async def api_user_status(request):
     username = params.get("username", "")
 
     if not user_id:
-        return web.json_response({"error": "user_id required"}, status=400)
+        return web.json_response({"error": "user_id required"}, status=400, headers=NO_CACHE_HEADERS)
 
-    # Foydalanuvchini bazadan olish yoki yaratish
     user = await db.get_or_create_user(user_id, first_name, username)
-    
-    # Ruxsat etilgan biletlar ro'yxatini yuklash
     total_tickets = len(BILETS_DATA) or 70
     access_info = await db.get_unlocked_tickets(user_id, total_tickets)
     
+    unlocked_list = access_info["unlocked_tickets"]
+    max_ticket = max(unlocked_list) if unlocked_list else 3
+    if access_info["is_vip"]:
+        max_ticket = total_tickets
+
+    # Yangi va eski JS formatlari uchun birdek to'liq ma'lumot qaytarish
     return web.json_response({
         "telegram_id": user_id,
+        "user_id": user_id,
         "full_name": user.get("full_name"),
+        "first_name": user.get("full_name"),
         "username": user.get("username"),
         "is_vip": access_info["is_vip"],
         "vip_until": access_info["vip_until"],
-        "unlocked_tickets": access_info["unlocked_tickets"],
+        "unlocked_tickets": unlocked_list,
+        "unlocked_max_ticket": max_ticket,
         "total_tickets": total_tickets
-    })
+    }, headers=NO_CACHE_HEADERS)
 
 @routes.get("/api/questions")
 async def api_questions(request):
-    return web.json_response({
-        "bilets": BILETS_DATA,
-        "questions": QUESTIONS_DATA
-    })
+    # Massiv ko'rinishida qaytarish - telefon va noutbukdagi har qanday kesh uchun 100% xatosiz ishlaydi
+    return web.json_response(QUESTIONS_DATA, headers=NO_CACHE_HEADERS)
+
+@routes.get("/api/bilets")
+async def api_bilets(request):
+    return web.json_response(BILETS_DATA, headers=NO_CACHE_HEADERS)
 
 @routes.post("/api/answer")
 async def api_answer(request):
@@ -86,19 +113,19 @@ async def api_answer(request):
         else:
             await db.save_user_error(user_id, question_id)
 
-        return web.json_response({"status": "ok"})
+        return web.json_response({"status": "ok"}, headers=NO_CACHE_HEADERS)
     except Exception as e:
-        return web.json_response({"error": str(e)}, status=400)
+        return web.json_response({"error": str(e)}, status=400, headers=NO_CACHE_HEADERS)
 
 @routes.get("/api/mistakes")
 async def api_mistakes(request):
     user_id = int(request.query.get("user_id", "0"))
     if not user_id:
-        return web.json_response([])
+        return web.json_response([], headers=NO_CACHE_HEADERS)
 
     mistake_ids = await db.get_user_errors(user_id)
     mistake_questions = [QUESTIONS_BY_ID[qid] for qid in mistake_ids if qid in QUESTIONS_BY_ID]
-    return web.json_response(mistake_questions)
+    return web.json_response(mistake_questions, headers=NO_CACHE_HEADERS)
 
 @routes.post("/api/test_result")
 async def api_test_result(request):
@@ -110,14 +137,13 @@ async def api_test_result(request):
         total = int(data.get("total", 20))
 
         await db.record_test_result(user_id, ticket_id, score, total)
-        return web.json_response({"status": "ok"})
+        return web.json_response({"status": "ok"}, headers=NO_CACHE_HEADERS)
     except Exception as e:
-        return web.json_response({"error": str(e)}, status=400)
+        return web.json_response({"error": str(e)}, status=400, headers=NO_CACHE_HEADERS)
 
 def create_web_app():
     app = web.Application()
     app.add_routes(routes)
-    # Media rasmlarini statik tarqatish
     media_dir = BASE_DIR / "web" / "media"
     if media_dir.exists():
         app.router.add_static("/media", media_dir)
