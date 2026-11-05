@@ -45,6 +45,7 @@ let userMistakes = [];
 // Til lug'ati (Translations)
 const T = {
   uz: {
+    btn_contact: "📞 Aloqa",
     hero_title: "🚗 Rasmiy Davlat YHQ Testlari",
     hero_desc: "1200 ta rasmiy imtihon savollari va haqiqiy rasmlar",
     hero_btn: "⚡ 20 talik Tasodifiy Imtihon",
@@ -73,9 +74,81 @@ const T = {
     nav_vip: "Tariflar",
     badge_vip: "👑 VIP A'zo",
     badge_normal: "ta bilet ochiq",
-    loading: "Yuklanmoqda..."
+    loading: "Yuklanmoqda...",
+
+    // Mistakes View
+    mistakes_title: "🧠 Xatolar ustida ishlash (AI)",
+    mistakes_desc: "Noto'g'ri yechilgan savollaringiz to'g'ri javob berguningizcha saqlanadi.",
+    mistakes_count_label: "ta xato",
+    mistakes_empty_title: "Hozircha xatoliklar yo'q!",
+    mistakes_empty_desc: "Biletlarni yechib, bilimingizni sinab ko'ring.",
+    mistakes_empty_btn: "Biletlarga o'tish",
+    mistakes_solve_btn: "🔁 Faqat xatolarni qayta ishlash",
+
+    // Referral View
+    ref_title: "Do'stlarni taklif qiling!",
+    ref_desc: "Har bir taklif qilingan do'stingiz uchun <b>navbatdagi 1 ta bilet bepul</b> va doimiy ochiladi.",
+    ref_lbl_tickets: "Ochiq biletlar",
+    ref_lbl_vip: "Obuna holati",
+    ref_copy_btn: "Nusxalash",
+    ref_share_btn: "📲 Telegram'da do'stlarga ulashish",
+    ref_copy_alert: "Referral havolangiz nusxalandi! Do'stlaringizga yuboring.",
+    ref_share_text: "🚗 Haydovchilik guvohnomasi (Prava) imtihoniga tayyorgarlik ko'rish uchun rasmiy test boti! Sinab ko'ring:",
+
+    // Buy View
+    buy_title: "💎 Tariflar va Xarid",
+    buy_desc: "Kerakli xizmatni tanlang va to'lov qiling:",
+    tarif1_title: "📚 Ixtiyoriy 3 ta bilet",
+    tarif1_desc: "O'zingiz xohlagan 3 ta bilet (90 kun muddatga)",
+    tarif1_price: "5 000 so'm",
+    tarif1_btn: "Tanlash",
+    tarif2_title: "🎟 1 martalik Imtihon",
+    tarif2_desc: "1 marta 20 talik Davlat imtihoni topshirish",
+    tarif2_price: "2 000 so'm",
+    tarif2_btn: "Xarid",
+    tarif3_title: "⚡ 30 kunlik Cheksiz Imtihon",
+    tarif3_desc: "30 kun davomida istalgancha 20 talik test yechish",
+    tarif3_price: "15 000 so'm",
+    tarif3_btn: "Xarid",
+    tarif4_badge: "To'liq to'plam",
+    tarif4_title: "👑 VIP To'liq Kirish (90 kun)",
+    tarif4_desc: "Barcha 60 ta bilet (1200 ta savol) + cheksiz 20 talik imtihonlar",
+    tarif4_price: "30 000 so'm",
+    tarif4_btn: "Xarid",
+
+    // Picker Modal
+    picker_modal_title: "📚 3 ta bilet tanlang",
+    picker_modal_desc: "O'zingiz xohlagan <b>3 ta biletni</b> belgilang (90 kunga ochiladi):",
+    picker_status: "ta bilet tanlandi",
+    picker_confirm_btn: "Tanlangan biletlarni sotib olish (5 000 so'm)",
+    picker_max_alert: "Siz ko'pi bilan 3 ta bilet tanlashingiz mumkin!",
+    picker_chip_open: "Ochiq",
+
+    // Exam Modal
+    exam_modal_title: "⚡ Imtihon topshirish",
+    exam_modal_desc: "20 talik Davlat imtihoni simulyatorini topshirish uchun quyidagi qulay variantlardan birini tanlang:",
+    exam_m1_title: "🎟 1 martalik Imtihon",
+    exam_m1_desc: "Bitta to'liq 20 talik sinov",
+    exam_m2_title: "⚡ 30 kunlik Cheksiz",
+    exam_m2_desc: "30 kun xohlagancha topshirish",
+    exam_m3_badge: "Tavsiya",
+    exam_m3_title: "👑 VIP To'liq Kirish",
+    exam_m3_desc: "Hamma biletlar + cheksiz imtihon",
+    exam_btn_select: "Tanlash",
+
+    // Payment Modal
+    pay_title: "To'lov ma'lumotlari",
+    pay_card_label: "Karta raqam (UzCard / Humo):",
+    pay_copy_btn: "Nusxalash",
+    pay_holder: "Egasi: <b>K.E.</b>",
+    pay_step1: "1. Kartaga <b id=\"modal-instruct-amount\">to'lov</b> o'tkazing.",
+    pay_step2: "2. To'lov cheki skrinshotini botga rasm qilib yuboring.",
+    pay_step3: "3. Administrator tasdiqlashi bilan xizmatingiz darhol ochiladi!",
+    pay_submit_btn: "📸 Chekni botga yuborish",
+    pay_card_alert: "Karta raqami nusxalandi!"
   },
   ru: {
+    btn_contact: "📞 Связь",
     hero_title: "🚗 Официальные экзаменационные тесты ПДД",
     hero_desc: "1200 официальных экзаменационных билетов и реальные схемы",
     hero_btn: "⚡ Случайный экзамен (20 вопросов)",
@@ -104,7 +177,78 @@ const T = {
     nav_vip: "Тарифы",
     badge_vip: "👑 VIP Член",
     badge_normal: "билетов открыто",
-    loading: "Загрузка..."
+    loading: "Загрузка...",
+
+    // Mistakes View
+    mistakes_title: "🧠 Работа над ошибками (AI)",
+    mistakes_desc: "Вопросы, в которых вы ошиблись, сохраняются, пока вы не ответите правильно.",
+    mistakes_count_label: "ошибок",
+    mistakes_empty_title: "Ошибок пока нет!",
+    mistakes_empty_desc: "Решайте билеты и проверяйте свои знания.",
+    mistakes_empty_btn: "К билетам",
+    mistakes_solve_btn: "🔁 Решать только ошибки",
+
+    // Referral View
+    ref_title: "Приглашайте друзей!",
+    ref_desc: "За каждого приглашенного друга вам открывается <b>1 билет бесплатно</b> навсегда.",
+    ref_lbl_tickets: "Открыто билетов",
+    ref_lbl_vip: "Статус подписки",
+    ref_copy_btn: "Копировать",
+    ref_share_btn: "📲 Поделиться с друзьями в Telegram",
+    ref_copy_alert: "Реферальная ссылка скопирована! Отправьте её друзьям.",
+    ref_share_text: "🚗 Официальный бот для подготовки к экзамену по ПДД (Права)! Попробуйте:",
+
+    // Buy View
+    buy_title: "💎 Тарифы и покупка",
+    buy_desc: "Выберите нужный тариф и оплатите:",
+    tarif1_title: "📚 Любые 3 билета",
+    tarif1_desc: "Любые 3 билета на ваш выбор (на 90 дней)",
+    tarif1_price: "5 000 сум",
+    tarif1_btn: "Выбрать",
+    tarif2_title: "🎟 1 разовый экзамен",
+    tarif2_desc: "1 прохождение официального экзамена (20 вопросов)",
+    tarif2_price: "2 000 сум",
+    tarif2_btn: "Купить",
+    tarif3_title: "⚡ Безлимитный экзамен на 30 дней",
+    tarif3_desc: "Сдавайте сколько угодно тестов в течение 30 дней",
+    tarif3_price: "15 000 сум",
+    tarif3_btn: "Купить",
+    tarif4_badge: "Все включено",
+    tarif4_title: "👑 VIP Полный доступ (90 дней)",
+    tarif4_desc: "Все 60 билетов (1200 вопросов) + безлимитные экзамены",
+    tarif4_price: "30 000 сум",
+    tarif4_btn: "Купить",
+
+    // Picker Modal
+    picker_modal_title: "📚 Выберите 3 билета",
+    picker_modal_desc: "Выберите любые <b>3 билета</b> (открываются на 90 дней):",
+    picker_status: "билета выбрано",
+    picker_confirm_btn: "Купить выбранные билеты (5 000 сум)",
+    picker_max_alert: "Вы можете выбрать максимум 3 билета!",
+    picker_chip_open: "Открыто",
+
+    // Exam Modal
+    exam_modal_title: "⚡ Сдача экзамена",
+    exam_modal_desc: "Для прохождения официального 20-вопросного экзамена выберите тариф:",
+    exam_m1_title: "🎟 1 разовый экзамен",
+    exam_m1_desc: "Один полный тест из 20 вопросов",
+    exam_m2_title: "⚡ 30 дней безлимит",
+    exam_m2_desc: "30 дней без ограничений",
+    exam_m3_badge: "Рекомендуем",
+    exam_m3_title: "👑 VIP Полный доступ",
+    exam_m3_desc: "Все билеты + безлимитные экзамены",
+    exam_btn_select: "Выбрать",
+
+    // Payment Modal
+    pay_title: "Реквизиты для оплаты",
+    pay_card_label: "Номер карты (UzCard / Humo):",
+    pay_copy_btn: "Копировать",
+    pay_holder: "Владелец: <b>K.E.</b>",
+    pay_step1: "1. Переведите <b id=\"modal-instruct-amount\">сумму</b> на карту.",
+    pay_step2: "2. Отправьте скриншот чека в бот.",
+    pay_step3: "3. Администратор подтвердит и услуга откроется моментально!",
+    pay_submit_btn: "📸 Отправить чек в бот",
+    pay_card_alert: "Номер карты скопирован!"
   }
 };
 
@@ -136,17 +280,19 @@ function applyLanguageTexts() {
     const el = document.getElementById(id);
     if (el) el.innerText = text;
   };
+  const setHTML = (id, html) => {
+    const el = document.getElementById(id);
+    if (el) el.innerHTML = html;
+  };
 
+  setText('btn-contact', t.btn_contact);
   setText('tickets-title', `${t.tickets_title} (1 – ${allBilets.length || 60})`);
   setText('tickets-info-tag', t.tickets_free_tag);
-  
-  const heroH2 = document.querySelector('.hero-text h2');
-  if (heroH2) heroH2.innerText = t.hero_title;
-  const heroP = document.querySelector('.hero-text p');
-  if (heroP) heroP.innerText = t.hero_desc;
-  const heroBtn = document.querySelector('.hero-btn');
-  if (heroBtn) heroBtn.innerText = t.hero_btn;
+  setText('hero-title', t.hero_title);
+  setText('hero-desc', t.hero_desc);
+  setText('hero-btn', t.hero_btn);
 
+  // Bottom Nav
   const navT = document.querySelector('#nav-tickets .nav-label');
   if (navT) navT.innerText = t.nav_tickets;
   const navM = document.querySelector('#nav-mistakes .nav-label');
@@ -156,10 +302,82 @@ function applyLanguageTexts() {
   const navB = document.querySelector('#nav-buy .nav-label');
   if (navB) navB.innerText = t.nav_vip;
 
-  const backBtn = document.querySelector('.back-btn');
-  if (backBtn) backBtn.innerText = t.btn_back;
-  const prevBtn = document.getElementById('prev-btn');
-  if (prevBtn) prevBtn.innerText = t.btn_prev;
+  // Quiz buttons
+  setText('quiz-back-btn', t.btn_back);
+  setText('prev-btn', t.btn_prev);
+  const nextBtn = document.getElementById('next-btn');
+  if (nextBtn && currentQuiz.questions && currentQuiz.questions.length > 0) {
+    nextBtn.innerText = (currentQuiz.currentIndex === currentQuiz.questions.length - 1) ? t.btn_finish : t.btn_next;
+  }
+
+  // Result actions
+  setText('result-retry-btn', t.result_retry);
+  setText('result-mistakes-btn', t.result_mistakes);
+  setText('result-home-btn', t.result_home);
+
+  // Mistakes View
+  setText('mistakes-title', t.mistakes_title);
+  setText('mistakes-desc', t.mistakes_desc);
+  setText('mistakes-empty-title', t.mistakes_empty_title);
+  setText('mistakes-empty-desc', t.mistakes_empty_desc);
+  setText('mistakes-empty-btn', t.mistakes_empty_btn);
+  setText('solve-mistakes-btn', t.mistakes_solve_btn);
+  const countSpan = document.getElementById('mistakes-count');
+  if (countSpan) countSpan.innerText = `${userMistakes.length} ${t.mistakes_count_label}`;
+
+  // Referral View
+  setText('ref-title', t.ref_title);
+  setHTML('ref-desc', t.ref_desc);
+  setText('ref-lbl-tickets', t.ref_lbl_tickets);
+  setText('ref-lbl-vip', t.ref_lbl_vip);
+  setText('ref-copy-btn', t.ref_copy_btn);
+  setText('ref-share-btn', t.ref_share_btn);
+
+  // Buy View
+  setText('buy-title', t.buy_title);
+  setText('buy-desc', t.buy_desc);
+  setText('tarif1-title', t.tarif1_title);
+  setText('tarif1-desc', t.tarif1_desc);
+  setText('tarif1-price', t.tarif1_price);
+  setText('tarif1-btn', t.tarif1_btn);
+  setText('tarif2-title', t.tarif2_title);
+  setText('tarif2-desc', t.tarif2_desc);
+  setText('tarif2-price', t.tarif2_price);
+  setText('tarif2-btn', t.tarif2_btn);
+  setText('tarif3-title', t.tarif3_title);
+  setText('tarif3-desc', t.tarif3_desc);
+  setText('tarif3-price', t.tarif3_price);
+  setText('tarif3-btn', t.tarif3_btn);
+  setText('tarif4-badge', t.tarif4_badge);
+  setText('tarif4-title', t.tarif4_title);
+  setText('tarif4-desc', t.tarif4_desc);
+  setText('tarif4-price', t.tarif4_price);
+  setText('tarif4-btn', t.tarif4_btn);
+
+  // Modals
+  setText('picker-modal-title', t.picker_modal_title);
+  setHTML('picker-modal-desc', t.picker_modal_desc);
+  setText('picker-modal-price', t.tarif1_price);
+  setText('exam-modal-title', t.exam_modal_title);
+  setText('exam-modal-desc', t.exam_modal_desc);
+  setText('exam-m1-title', t.exam_m1_title);
+  setText('exam-m1-desc', t.exam_m1_desc);
+  setText('exam-m1-btn', t.exam_btn_select);
+  setText('exam-m2-title', t.exam_m2_title);
+  setText('exam-m2-desc', t.exam_m2_desc);
+  setText('exam-m2-btn', t.exam_btn_select);
+  setText('exam-m3-badge', t.exam_m3_badge);
+  setText('exam-m3-title', t.exam_m3_title);
+  setText('exam-m3-desc', t.exam_m3_desc);
+  setText('exam-m3-btn', t.exam_btn_select);
+
+  setText('pay-card-label', t.pay_card_label);
+  setText('pay-copy-btn', t.pay_copy_btn);
+  setHTML('pay-card-holder', t.pay_holder);
+  setHTML('pay-step-1', t.pay_step1);
+  setText('pay-step-2', t.pay_step2);
+  setText('pay-step-3', t.pay_step3);
+  setText('pay-submit-btn', t.pay_submit_btn);
 }
 
 // 1. Foydalanuvchi holatini ma'lumotlar bazasidan olish
@@ -278,7 +496,7 @@ function renderTickets() {
 
     card.innerHTML = `
       <div class="ticket-top">
-        <span class="ticket-num">${i}-${t.ticket_num}</span>
+        <span class="ticket-num">${(currentLang === 'ru') ? `Билет ${i}` : `${i}-Bilet`}</span>
         <span class="ticket-status-icon">${isUnlocked ? '🟢' : '🔒'}</span>
       </div>
       <div class="ticket-desc">${t.ticket_desc}</div>
@@ -670,11 +888,11 @@ function openTicketPickerModal(preselectNum = null) {
     const isAlreadyUnlocked = currentUser.unlocked_tickets && currentUser.unlocked_tickets.includes(i);
     const chip = document.createElement('div');
     chip.className = 'picker-chip';
-    chip.innerText = `${i}-Bilet`;
+    chip.innerText = (currentLang === 'ru') ? `Билет ${i}` : `${i}-Bilet`;
 
     if (isAlreadyUnlocked) {
       chip.classList.add('disabled');
-      chip.title = "Ochiq";
+      chip.title = (currentLang === 'ru') ? "Открыт" : "Ochiq";
     } else {
       if (selectedPickerTickets.has(i)) {
         chip.classList.add('selected');
@@ -686,7 +904,7 @@ function openTicketPickerModal(preselectNum = null) {
           chip.classList.remove('selected');
         } else {
           if (selectedPickerTickets.size >= 3) {
-            alert("Siz ko'pi bilan 3 ta bilet tanlashingiz mumkin!");
+            alert(T[currentLang].picker_max_alert);
             return;
           }
           selectedPickerTickets.add(i);
@@ -708,11 +926,13 @@ function updatePickerStatus() {
   const statusEl = document.getElementById('picker-status');
   const confirmBtn = document.getElementById('picker-confirm-btn');
 
+  const t = T[currentLang];
   if (statusEl) {
-    statusEl.innerText = `${count} / 3 ta bilet tanlandi`;
+    statusEl.innerText = `${count} / 3 ${t.picker_status}`;
   }
   if (confirmBtn) {
     confirmBtn.disabled = (count === 0);
+    confirmBtn.innerText = t.picker_confirm_btn;
   }
 }
 
@@ -726,9 +946,10 @@ function confirmTicketSelection() {
 
   const ticketsStr = arr.join(", ");
   closeTicketPickerModal();
+  const title = (currentLang === 'ru') ? `📚 Выбранные билеты: ${ticketsStr}` : `📚 Tanlangan biletlar: ${ticketsStr}`;
   openPaymentModal(
     'tickets_3',
-    `📚 Tanlangan biletlar: ${ticketsStr}`,
+    title,
     '5 000',
     ticketsStr
   );
@@ -766,9 +987,10 @@ async function syncSelectedPayment(pkgKey, title, price, extraDetails) {
 }
 
 function openPaymentModal(pkgKey, title, price, extraDetails = '') {
+  const currency = (currentLang === 'ru') ? 'сум' : "so'm";
   document.getElementById('modal-title').innerText = title;
-  document.getElementById('modal-price').innerText = `${price} so'm`;
-  document.getElementById('modal-instruct-amount').innerText = `${price} so'm`;
+  document.getElementById('modal-price').innerText = `${price} ${currency}`;
+  document.getElementById('modal-instruct-amount').innerText = `${price} ${currency}`;
   document.getElementById('payment-modal').classList.add('active');
 
   // Tanlangan biletlar yoki tarifni saqlab qo'yish va serverga yuborish
@@ -789,7 +1011,7 @@ function closePaymentModal() {
 function copyCardNumber() {
   const card = document.getElementById('modal-card').innerText;
   navigator.clipboard.writeText(card.replace(/\s+/g, ''));
-  alert("Karta raqami nusxalandi!");
+  alert(T[currentLang].pay_card_alert);
 }
 
 async function closeModalAndGoToBot() {
@@ -808,12 +1030,12 @@ function copyRefLink() {
   const input = document.getElementById('ref-link-input');
   input.select();
   navigator.clipboard.writeText(input.value);
-  alert("Referral havolangiz nusxalandi! Do'stlaringizga yuboring.");
+  alert(T[currentLang].ref_copy_alert);
 }
 
 function shareRefLink() {
   const link = document.getElementById('ref-link-input').value;
-  const text = encodeURIComponent("🚗 Haydovchilik guvohnomasi (Prava) imtihoniga tayyorgarlik ko'rish uchun rasmiy test boti! Sinab ko'ring:");
+  const text = encodeURIComponent(T[currentLang].ref_share_text);
   const shareUrl = `https://t.me/share/url?url=${encodeURIComponent(link)}&text=${text}`;
   if (tg) {
     tg.openTelegramLink(shareUrl);

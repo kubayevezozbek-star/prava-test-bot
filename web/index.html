@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Prava Test AI — Rasmiy YHQ Imtihoni</title>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
-  <link rel="stylesheet" href="/style.css?v=5.0">
+  <link rel="stylesheet" href="/style.css?v=6.0">
 </head>
 <body>
   <div id="app">
@@ -33,10 +33,10 @@
       <section id="view-tickets" class="view active">
         <div class="hero-card">
           <div class="hero-text">
-            <h2>🚗 Rasmiy Davlat YHQ Testlari</h2>
-            <p>1200 ta rasmiy imtihon savollari va haqiqiy rasmlar</p>
+            <h2 id="hero-title">🚗 Rasmiy Davlat YHQ Testlari</h2>
+            <p id="hero-desc">1200 ta rasmiy imtihon savollari va haqiqiy rasmlar</p>
           </div>
-          <button class="hero-btn" onclick="handleStartExamClick()">⚡ 20 talik Tasodifiy Imtihon</button>
+          <button class="hero-btn" id="hero-btn" onclick="handleStartExamClick()">⚡ 20 talik Tasodifiy Imtihon</button>
         </div>
 
         <!-- AI Tayyorgarlik va Natija Paneli -->
@@ -56,7 +56,7 @@
                 <div class="ai-bar-fill" id="ai-bar-fill" style="width: 0%;"></div>
               </div>
               <div class="ai-stats-row">
-                <span id="ai-learned-text">📚 0 / 679 o'rganildi</span>
+                <span id="ai-learned-text">📚 0 / 1200 o'rganildi</span>
                 <span id="ai-mistakes-text" class="ai-mistakes-pill">❌ 0 ta xato</span>
               </div>
             </div>
@@ -81,7 +81,7 @@
       <!-- VIEW 2: Test Yechish Ekrani -->
       <section id="view-quiz" class="view">
         <div class="quiz-header">
-          <button class="back-btn" onclick="exitQuiz()">⬅ Chiqish</button>
+          <button class="back-btn" id="quiz-back-btn" onclick="exitQuiz()">⬅ Chiqish</button>
           <div class="quiz-timer" id="quiz-timer">⏱ 20:00</div>
           <div class="quiz-counter" id="quiz-counter">1 / 20</div>
         </div>
@@ -102,7 +102,7 @@
 
         <!-- AI Izoh / Qoida tushuntirishi -->
         <div class="ai-box" id="ai-box" style="display: none;">
-          <div class="ai-title">🤖 <b>YHQ Qoidasi va Tushuntirish:</b></div>
+          <div class="ai-title" id="ai-title">🤖 <b>YHQ Qoidasi va Tushuntirish:</b></div>
           <div class="ai-text" id="ai-text"></div>
         </div>
 
@@ -121,9 +121,9 @@
           <p id="result-msg">Siz Davlat YHQ imtihonidan o'tdingiz!</p>
           
           <div class="result-actions">
-            <button class="hero-btn" onclick="restartCurrentQuiz()">🔄 Qaytadan ishlash</button>
-            <button class="secondary-btn" onclick="openMistakesView()">🤖 Xatolar ustida ishlash</button>
-            <button class="text-btn" onclick="switchTab('tickets')">Bosh sahifaga qaytish</button>
+            <button class="hero-btn" id="result-retry-btn" onclick="restartCurrentQuiz()">🔄 Qaytadan ishlash</button>
+            <button class="secondary-btn" id="result-mistakes-btn" onclick="openMistakesView()">🤖 Xatolar ustida ishlash</button>
+            <button class="text-btn" id="result-home-btn" onclick="switchTab('tickets')">Bosh sahifaga qaytish</button>
           </div>
         </div>
       </section>
@@ -131,16 +131,16 @@
       <!-- VIEW 4: AI Xatolar ustida ishlash -->
       <section id="view-mistakes" class="view">
         <div class="section-title">
-          <h3>🧠 Xatolar ustida ishlash (AI)</h3>
+          <h3 id="mistakes-title">🧠 Xatolar ustida ishlash (AI)</h3>
           <span class="info-tag" id="mistakes-count">0 ta xato</span>
         </div>
-        <p class="section-desc">Noto'g'ri yechilgan savollaringiz to'g'ri javob berguningizcha saqlanadi.</p>
+        <p class="section-desc" id="mistakes-desc">Noto'g'ri yechilgan savollaringiz to'g'ri javob berguningizcha saqlanadi.</p>
 
         <div id="mistakes-empty" class="empty-state">
           <div class="empty-icon">🌟</div>
-          <h4>Hozircha xatoliklar yo'q!</h4>
-          <p>Biletlarni yechib, bilimingizni sinab ko'ring.</p>
-          <button class="hero-btn" onclick="switchTab('tickets')">Biletlarga o'tish</button>
+          <h4 id="mistakes-empty-title">Hozircha xatoliklar yo'q!</h4>
+          <p id="mistakes-empty-desc">Biletlarni yechib, bilimingizni sinab ko'ring.</p>
+          <button class="hero-btn" id="mistakes-empty-btn" onclick="switchTab('tickets')">Biletlarga o'tish</button>
         </div>
 
         <div id="mistakes-list" class="mistakes-list">
@@ -156,76 +156,76 @@
       <section id="view-referral" class="view">
         <div class="referral-card">
           <div class="referral-icon">🎁</div>
-          <h2>Do'stlarni taklif qiling!</h2>
-          <p>Har bir taklif qilingan do'stingiz uchun <b>navbatdagi 1 ta bilet bepul</b> va doimiy ochiladi.</p>
+          <h2 id="ref-title">Do'stlarni taklif qiling!</h2>
+          <p id="ref-desc">Har bir taklif qilingan do'stingiz uchun <b>navbatdagi 1 ta bilet bepul</b> va doimiy ochiladi.</p>
 
           <div class="ref-stats">
             <div class="stat-box">
               <span class="stat-num" id="ref-unlocked-count">3</span>
-              <span class="stat-label">Ochiq biletlar</span>
+              <span class="stat-label" id="ref-lbl-tickets">Ochiq biletlar</span>
             </div>
             <div class="stat-box">
               <span class="stat-num" id="ref-vip-status">Oddiy</span>
-              <span class="stat-label">Obuna holati</span>
+              <span class="stat-label" id="ref-lbl-vip">Obuna holati</span>
             </div>
           </div>
 
           <div class="share-box">
             <input type="text" id="ref-link-input" readonly value="Yuklanmoqda...">
-            <button class="copy-btn" onclick="copyRefLink()">Nusxalash</button>
+            <button class="copy-btn" id="ref-copy-btn" onclick="copyRefLink()">Nusxalash</button>
           </div>
 
-          <button class="hero-btn" onclick="shareRefLink()">📲 Telegram'da do'stlarga ulashish</button>
+          <button class="hero-btn" id="ref-share-btn" onclick="shareRefLink()">📲 Telegram'da do'stlarga ulashish</button>
         </div>
       </section>
 
       <!-- VIEW 6: Tariflar va Xarid -->
       <section id="view-buy" class="view">
         <div class="section-title">
-          <h3>💎 Tariflar va Xarid</h3>
+          <h3 id="buy-title">💎 Tariflar va Xarid</h3>
         </div>
-        <p class="section-desc">Kerakli xizmatni tanlang va to'lov qiling:</p>
+        <p class="section-desc" id="buy-desc">Kerakli xizmatni tanlang va to'lov qiling:</p>
 
         <div class="tarifs-container">
           <!-- 1. Ixtiyoriy 3 ta bilet -->
           <div class="tarif-item">
             <div class="tarif-info">
-              <h4>📚 Ixtiyoriy 3 ta bilet</h4>
-              <p>O'zingiz xohlagan 3 ta bilet (90 kun muddatga)</p>
+              <h4 id="tarif1-title">📚 Ixtiyoriy 3 ta bilet</h4>
+              <p id="tarif1-desc">O'zingiz xohlagan 3 ta bilet (90 kun muddatga)</p>
             </div>
-            <div class="tarif-price">5 000 so'm</div>
-            <button class="buy-btn" onclick="openTicketPickerModal()">Tanlash</button>
+            <div class="tarif-price" id="tarif1-price">5 000 so'm</div>
+            <button class="buy-btn" id="tarif1-btn" onclick="openTicketPickerModal()">Tanlash</button>
           </div>
 
           <!-- 2. 1 martalik imtihon -->
           <div class="tarif-item">
             <div class="tarif-info">
-              <h4>🎟 1 martalik Imtihon</h4>
-              <p>1 marta 20 talik Davlat imtihoni topshirish</p>
+              <h4 id="tarif2-title">🎟 1 martalik Imtihon</h4>
+              <p id="tarif2-desc">1 marta 20 talik Davlat imtihoni topshirish</p>
             </div>
-            <div class="tarif-price">2 000 so'm</div>
-            <button class="buy-btn" onclick="openPaymentModal('exam_1', '🎟 1 martalik Imtihon', '2 000', '')">Xarid</button>
+            <div class="tarif-price" id="tarif2-price">2 000 so'm</div>
+            <button class="buy-btn" id="tarif2-btn" onclick="openPaymentModal('exam_1', '🎟 1 martalik Imtihon', '2 000', '')">Xarid</button>
           </div>
 
           <!-- 3. 30 kunlik cheksiz imtihon -->
           <div class="tarif-item">
             <div class="tarif-info">
-              <h4>⚡ 30 kunlik Cheksiz Imtihon</h4>
-              <p>30 kun davomida istalgancha 20 talik test yechish</p>
+              <h4 id="tarif3-title">⚡ 30 kunlik Cheksiz Imtihon</h4>
+              <p id="tarif3-desc">30 kun davomida istalgancha 20 talik test yechish</p>
             </div>
-            <div class="tarif-price">15 000 so'm</div>
-            <button class="buy-btn" onclick="openPaymentModal('exam_30', '⚡ 30 kunlik Cheksiz Imtihon', '15 000', '')">Xarid</button>
+            <div class="tarif-price" id="tarif3-price">15 000 so'm</div>
+            <button class="buy-btn" id="tarif3-btn" onclick="openPaymentModal('exam_30', '⚡ 30 kunlik Cheksiz Imtihon', '15 000', '')">Xarid</button>
           </div>
 
           <!-- 4. VIP To'liq Kirish -->
           <div class="tarif-item popular">
-            <div class="popular-badge">To'liq to'plam</div>
+            <div class="popular-badge" id="tarif4-badge">To'liq to'plam</div>
             <div class="tarif-info">
-              <h4>👑 VIP To'liq Kirish (90 kun)</h4>
-              <p>Barcha 60 ta bilet (1200 ta savol) + cheksiz 20 talik imtihonlar</p>
+              <h4 id="tarif4-title">👑 VIP To'liq Kirish (90 kun)</h4>
+              <p id="tarif4-desc">Barcha 60 ta bilet (1200 ta savol) + cheksiz 20 talik imtihonlar</p>
             </div>
-            <div class="tarif-price">30 000 so'm</div>
-            <button class="buy-btn" onclick="openPaymentModal('vip_90', '👑 VIP To\'liq Kirish (90 kun)', '30 000', '')">Xarid</button>
+            <div class="tarif-price" id="tarif4-price">30 000 so'm</div>
+            <button class="buy-btn" id="tarif4-btn" onclick="openPaymentModal('vip_90', '👑 VIP To\'liq Kirish (90 kun)', '30 000', '')">Xarid</button>
           </div>
         </div>
       </section>
@@ -236,10 +236,10 @@
       <div class="modal-content">
         <button class="close-modal" onclick="closeTicketPickerModal()">✕</button>
         <div class="modal-header">
-          <h3>📚 3 ta bilet tanlang</h3>
-          <div class="modal-price">5 000 so'm</div>
+          <h3 id="picker-modal-title">📚 3 ta bilet tanlang</h3>
+          <div class="modal-price" id="picker-modal-price">5 000 so'm</div>
         </div>
-        <p class="picker-desc">O'zingiz xohlagan <b>3 ta biletni</b> belgilang (90 kunga ochiladi):</p>
+        <p class="picker-desc" id="picker-modal-desc">O'zingiz xohlagan <b>3 ta biletni</b> belgilang (90 kunga ochiladi):</p>
         
         <div class="picker-grid" id="picker-grid">
           <!-- Checkbox chips for locked tickets -->
@@ -258,37 +258,37 @@
       <div class="modal-content">
         <button class="close-modal" onclick="closeExamAccessModal()">✕</button>
         <div class="modal-header">
-          <h3>⚡ Imtihon topshirish</h3>
+          <h3 id="exam-modal-title">⚡ Imtihon topshirish</h3>
         </div>
-        <p class="picker-desc">20 talik Davlat imtihoni simulyatorini topshirish uchun quyidagi qulay variantlardan birini tanlang:</p>
+        <p class="picker-desc" id="exam-modal-desc">20 talik Davlat imtihoni simulyatorini topshirish uchun quyidagi qulay variantlardan birini tanlang:</p>
 
         <div class="tarifs-container">
           <div class="tarif-item">
             <div class="tarif-info">
-              <h4>🎟 1 martalik Imtihon</h4>
-              <p>Bitta to'liq 20 talik sinov</p>
+              <h4 id="exam-m1-title">🎟 1 martalik Imtihon</h4>
+              <p id="exam-m1-desc">Bitta to'liq 20 talik sinov</p>
             </div>
-            <div class="tarif-price">2 000 so'm</div>
-            <button class="buy-btn" onclick="closeExamAccessModal(); openPaymentModal('exam_1', '🎟 1 martalik Imtihon', '2 000', '');">Tanlash</button>
+            <div class="tarif-price" id="exam-m1-price">2 000 so'm</div>
+            <button class="buy-btn" id="exam-m1-btn" onclick="closeExamAccessModal(); openPaymentModal('exam_1', '🎟 1 martalik Imtihon', '2 000', '');">Tanlash</button>
           </div>
 
           <div class="tarif-item">
             <div class="tarif-info">
-              <h4>⚡ 30 kunlik Cheksiz</h4>
-              <p>30 kun xohlagancha topshirish</p>
+              <h4 id="exam-m2-title">⚡ 30 kunlik Cheksiz</h4>
+              <p id="exam-m2-desc">30 kun xohlagancha topshirish</p>
             </div>
-            <div class="tarif-price">15 000 so'm</div>
-            <button class="buy-btn" onclick="closeExamAccessModal(); openPaymentModal('exam_30', '⚡ 30 kunlik Cheksiz Imtihon', '15 000', '');">Tanlash</button>
+            <div class="tarif-price" id="exam-m2-price">15 000 so'm</div>
+            <button class="buy-btn" id="exam-m2-btn" onclick="closeExamAccessModal(); openPaymentModal('exam_30', '⚡ 30 kunlik Cheksiz Imtihon', '15 000', '');">Tanlash</button>
           </div>
 
           <div class="tarif-item popular">
-            <div class="popular-badge">Tavsiya</div>
+            <div class="popular-badge" id="exam-m3-badge">Tavsiya</div>
             <div class="tarif-info">
-              <h4>👑 VIP To'liq Kirish</h4>
-              <p>Hamma biletlar + cheksiz imtihon</p>
+              <h4 id="exam-m3-title">👑 VIP To'liq Kirish</h4>
+              <p id="exam-m3-desc">Hamma biletlar + cheksiz imtihon</p>
             </div>
-            <div class="tarif-price">30 000 so'm</div>
-            <button class="buy-btn" onclick="closeExamAccessModal(); openPaymentModal('vip_90', '👑 VIP To\'liq Kirish (90 kun)', '30 000', '');">Tanlash</button>
+            <div class="tarif-price" id="exam-m3-price">30 000 so'm</div>
+            <button class="buy-btn" id="exam-m3-btn" onclick="closeExamAccessModal(); openPaymentModal('vip_90', '👑 VIP To\'liq Kirish (90 kun)', '30 000', '');">Tanlash</button>
           </div>
         </div>
       </div>
@@ -303,19 +303,19 @@
           <div class="modal-price" id="modal-price">5 000 so'm</div>
         </div>
         <div class="card-box">
-          <span class="card-label">Karta raqam (UzCard / Humo):</span>
+          <span class="card-label" id="pay-card-label">Karta raqam (UzCard / Humo):</span>
           <div class="card-number-row">
             <code id="modal-card">9860 1606 3439 0605</code>
-            <button class="card-copy-btn" onclick="copyCardNumber()">Nusxalash</button>
+            <button class="card-copy-btn" id="pay-copy-btn" onclick="copyCardNumber()">Nusxalash</button>
           </div>
-          <span class="card-holder">Egasi: <b>K.E.</b></span>
+          <span class="card-holder" id="pay-card-holder">Egasi: <b>K.E.</b></span>
         </div>
-        <div class="modal-instruct">
-          <p>1. Kartaga <b id="modal-instruct-amount">to'lov</b> o'tkazing.</p>
-          <p>2. To'lov cheki skrinshotini botga rasm qilib yuboring.</p>
-          <p>3. Administrator tasdiqlashi bilan xizmatingiz darhol ochiladi!</p>
+        <div class="modal-instruct" id="pay-instruct">
+          <p id="pay-step-1">1. Kartaga <b id="modal-instruct-amount">to'lov</b> o'tkazing.</p>
+          <p id="pay-step-2">2. To'lov cheki skrinshotini botga rasm qilib yuboring.</p>
+          <p id="pay-step-3">3. Administrator tasdiqlashi bilan xizmatingiz darhol ochiladi!</p>
         </div>
-        <button class="hero-btn" onclick="closeModalAndGoToBot()">📸 Chekni botga yuborish</button>
+        <button class="hero-btn" id="pay-submit-btn" onclick="closeModalAndGoToBot()">📸 Chekni botga yuborish</button>
       </div>
     </div>
 
@@ -340,6 +340,6 @@
     </nav>
   </div>
 
-  <script src="/app.js?v=5.0"></script>
+  <script src="/app.js?v=6.0"></script>
 </body>
 </html>
