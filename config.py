@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 BASE_DIR = Path(__file__).parent
 load_dotenv(BASE_DIR / ".env")
 
-BOT_TOKEN = os.getenv("BOT_TOKEN", "9289282529:AAGjNjOlA1rXrGofD_bsoaiEsGv78Q6EX8M").strip()
+BOT_TOKEN = os.getenv("BOT_TOKEN", "").strip()
 ADMIN_ID = int(os.getenv("ADMIN_ID", "1438313297"))
 CARD_NUMBER = os.getenv("CARD_NUMBER", "9860 1606 3439 0605").strip()
 CARD_HOLDER = os.getenv("CARD_HOLDER", "K.E.").strip()
