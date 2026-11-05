@@ -2,7 +2,7 @@ import json
 from aiohttp import web
 from pathlib import Path
 import database as db
-from config import BASE_DIR, QUESTIONS_FILE
+from config import BASE_DIR, QUESTIONS_FILE, TOTAL_TICKETS
 
 routes = web.RouteTableDef()
 
@@ -18,7 +18,6 @@ else:
     b_nums = sorted(list({q.get("biletNumber", q.get("ticket_id", 1)) for q in QUESTIONS_DATA}))
     BILETS_DATA = [{"number": n, "title": f"{n}-Bilet"} for n in b_nums]
 
-# Eski va yangi versiyalar bilan 100% moslik uchun savollarni boyitish
 for q in QUESTIONS_DATA:
     tid = q.get("biletNumber", q.get("ticket_id", 1))
     q["ticket_id"] = tid
@@ -26,6 +25,16 @@ for q in QUESTIONS_DATA:
     txt = q.get("text", q.get("question", ""))
     q["text"] = txt
     q["question"] = txt
+    q["text_uz"] = q.get("text_uz", txt)
+    q["text_ru"] = q.get("text_ru", txt)
+    opts = q.get("options", [])
+    q["options"] = opts
+    q["options_uz"] = q.get("options_uz", opts)
+    q["options_ru"] = q.get("options_ru", opts)
+    exp = q.get("explanation", "")
+    q["explanation"] = exp
+    q["explanation_uz"] = q.get("explanation_uz", exp)
+    q["explanation_ru"] = q.get("explanation_ru", exp)
     c_idx = q.get("correctOptionIndex", q.get("correct", 0))
     q["correctOptionIndex"] = c_idx
     q["correct"] = c_idx
@@ -69,15 +78,14 @@ async def api_user_status(request):
         return web.json_response({"error": "user_id required"}, status=400, headers=NO_CACHE_HEADERS)
 
     user = await db.get_or_create_user(user_id, first_name, username)
-    total_tickets = len(BILETS_DATA) or 70
-    access_info = await db.get_unlocked_tickets(user_id, total_tickets)
-    
+    total_tickets = len(BILETS_DATA) or TOTAL_TICKETS
+    access_info = await db.get_user_access(user_id, total_tickets)
+
     unlocked_list = access_info["unlocked_tickets"]
     max_ticket = max(unlocked_list) if unlocked_list else 3
     if access_info["is_vip"]:
         max_ticket = total_tickets
 
-    # Yangi va eski JS formatlari uchun birdek to'liq ma'lumot qaytarish
     return web.json_response({
         "telegram_id": user_id,
         "user_id": user_id,
@@ -86,14 +94,30 @@ async def api_user_status(request):
         "username": user.get("username"),
         "is_vip": access_info["is_vip"],
         "vip_until": access_info["vip_until"],
+        "has_exam_pass": access_info["has_exam_pass"],
+        "exam_pass_until": access_info["exam_pass_until"],
+        "exam_attempts": access_info["exam_attempts"],
+        "can_take_exam": access_info["can_take_exam"],
         "unlocked_tickets": unlocked_list,
         "unlocked_max_ticket": max_ticket,
         "total_tickets": total_tickets
     }, headers=NO_CACHE_HEADERS)
 
+@routes.post("/api/consume_exam")
+async def api_consume_exam(request):
+    try:
+        data = await request.json()
+        user_id = int(data.get("user_id", 0))
+        if not user_id:
+            return web.json_response({"ok": False, "error": "user_id missing"}, status=400)
+
+        success = await db.consume_exam_attempt(user_id)
+        return web.json_response({"ok": success}, headers=NO_CACHE_HEADERS)
+    except Exception as e:
+        return web.json_response({"ok": False, "error": str(e)}, status=400, headers=NO_CACHE_HEADERS)
+
 @routes.get("/api/questions")
 async def api_questions(request):
-    # Massiv ko'rinishida qaytarish - telefon va noutbukdagi har qanday kesh uchun 100% xatosiz ishlaydi
     return web.json_response(QUESTIONS_DATA, headers=NO_CACHE_HEADERS)
 
 @routes.get("/api/bilets")

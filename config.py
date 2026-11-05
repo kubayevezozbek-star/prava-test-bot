@@ -16,10 +16,18 @@ WEBAPP_URL = os.getenv("WEBAPP_URL", "https://prava-test-bot.onrender.com").stri
 DB_PATH = BASE_DIR / "prava_database.db"
 QUESTIONS_FILE = BASE_DIR / "data" / "questions_1200.json"
 
-# VIP Tarif (90 kunlik to'liq kirish huquqi)
-VIP_PRICE = 30000
-VIP_PRICE_STR = "30 000 so'm"
-VIP_DURATION_DAYS = 90
+# Tariflar narxlari
+PRICE_3_TICKETS = 5000       # 3 ta ixtiyoriy bilet (90 kun)
+PRICE_3_TICKETS_STR = "5 000 so'm"
 
-# Bepul biletlar
+PRICE_EXAM_1 = 2000          # 1 martalik 20 talik imtihon
+PRICE_EXAM_1_STR = "2 000 so'm"
+
+PRICE_EXAM_30 = 15000        # 30 kunlik cheksiz imtihon
+PRICE_EXAM_30_STR = "15 000 so'm"
+
+PRICE_VIP_90 = 30000         # VIP To'liq obuna (90 kun barcha biletlar + cheksiz imtihon)
+PRICE_VIP_90_STR = "30 000 so'm"
+
 FREE_TICKETS = [1, 2, 3]
+TOTAL_TICKETS = 70

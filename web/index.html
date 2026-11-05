@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Prava Test AI — Rasmiy YHQ Imtihoni</title>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
-  <link rel="stylesheet" href="/style.css?v=2.5">
+  <link rel="stylesheet" href="/style.css?v=3.0">
 </head>
 <body>
   <div id="app">
@@ -36,7 +36,7 @@
             <h2>🚗 Rasmiy Davlat YHQ Testlari</h2>
             <p>1200 ta rasmiy imtihon savollari va haqiqiy rasmlar</p>
           </div>
-          <button class="hero-btn" onclick="startExamMode()">⚡ 20 talik Tasodifiy Imtihon</button>
+          <button class="hero-btn" onclick="handleStartExamClick()">⚡ 20 talik Tasodifiy Imtihon</button>
         </div>
 
         <div class="section-title">
@@ -150,39 +150,128 @@
         </div>
       </section>
 
-      <!-- VIEW 6: VIP Tariflar -->
+      <!-- VIEW 6: Tariflar va Xarid -->
       <section id="view-buy" class="view">
         <div class="section-title">
-          <h3>👑 VIP Obuna</h3>
+          <h3>💎 Tariflar va Xarid</h3>
         </div>
-        <p class="section-desc">Barcha rasmiy biletlar <b>3 oy (90 kun)</b> davomida to'liq ochiladi.</p>
+        <p class="section-desc">Kerakli xizmatni tanlang va to'lov qiling:</p>
 
         <div class="tarifs-container">
-          <div class="tarif-item popular">
-            <div class="popular-badge">Eng ommabop</div>
+          <!-- 1. Ixtiyoriy 3 ta bilet -->
+          <div class="tarif-item">
             <div class="tarif-info">
-              <h4>👑 VIP To'liq Kirish (3 oy)</h4>
-              <p>Barcha 1200 ta rasmiy savol va biletlar ochiq</p>
+              <h4>📚 Ixtiyoriy 3 ta bilet</h4>
+              <p>O'zingiz xohlagan 3 ta bilet (90 kun muddatga)</p>
+            </div>
+            <div class="tarif-price">5 000 so'm</div>
+            <button class="buy-btn" onclick="openTicketPickerModal()">Tanlash</button>
+          </div>
+
+          <!-- 2. 1 martalik imtihon -->
+          <div class="tarif-item">
+            <div class="tarif-info">
+              <h4>🎟 1 martalik Imtihon</h4>
+              <p>1 marta 20 talik Davlat imtihoni topshirish</p>
+            </div>
+            <div class="tarif-price">2 000 so'm</div>
+            <button class="buy-btn" onclick="openPaymentModal('exam_1', '🎟 1 martalik Imtihon', '2 000', '')">Xarid</button>
+          </div>
+
+          <!-- 3. 30 kunlik cheksiz imtihon -->
+          <div class="tarif-item">
+            <div class="tarif-info">
+              <h4>⚡ 30 kunlik Cheksiz Imtihon</h4>
+              <p>30 kun davomida istalgancha 20 talik test yechish</p>
+            </div>
+            <div class="tarif-price">15 000 so'm</div>
+            <button class="buy-btn" onclick="openPaymentModal('exam_30', '⚡ 30 kunlik Cheksiz Imtihon', '15 000', '')">Xarid</button>
+          </div>
+
+          <!-- 4. VIP To'liq Kirish -->
+          <div class="tarif-item popular">
+            <div class="popular-badge">To'liq to'plam</div>
+            <div class="tarif-info">
+              <h4>👑 VIP To'liq Kirish (90 kun)</h4>
+              <p>Barcha 70 ta bilet + cheksiz 20 talik imtihonlar</p>
             </div>
             <div class="tarif-price">30 000 so'm</div>
-            <button class="buy-btn" onclick="openPaymentModal('vip_90', '👑 VIP To\'liq Kirish (90 kun)', '30 000')">Tanlash</button>
+            <button class="buy-btn" onclick="openPaymentModal('vip_90', '👑 VIP To\'liq Kirish (90 kun)', '30 000', '')">Xarid</button>
           </div>
-        </div>
-
-        <div class="help-card">
-          <h4>💡 To'lov qanday tasdiqlanadi?</h4>
-          <p>Karta raqamiga <b>30 000 so'm</b> o'tkazing va to'lov cheki skrinshotini botga rasm qilib yuboring. Admin tasdiqlashi bilan barcha biletlar 3 oyga ochiladi!</p>
         </div>
       </section>
     </main>
 
-    <!-- Payment Modal -->
+    <!-- Modal 1: 3 ta bilet tanlash modali -->
+    <div id="ticket-picker-modal" class="modal">
+      <div class="modal-content">
+        <button class="close-modal" onclick="closeTicketPickerModal()">✕</button>
+        <div class="modal-header">
+          <h3>📚 3 ta bilet tanlang</h3>
+          <div class="modal-price">5 000 so'm</div>
+        </div>
+        <p class="picker-desc">O'zingiz xohlagan <b>3 ta biletni</b> belgilang (90 kunga ochiladi):</p>
+        
+        <div class="picker-grid" id="picker-grid">
+          <!-- Checkbox chips for locked tickets -->
+        </div>
+
+        <div class="picker-status" id="picker-status">0 / 3 ta tanlandi</div>
+
+        <button class="hero-btn" id="picker-confirm-btn" onclick="confirmTicketSelection()" disabled>
+          Tanlangan biletlarni sotib olish (5 000 so'm)
+        </button>
+      </div>
+    </div>
+
+    <!-- Modal 2: Imtihon ruxsati kerak modali -->
+    <div id="exam-access-modal" class="modal">
+      <div class="modal-content">
+        <button class="close-modal" onclick="closeExamAccessModal()">✕</button>
+        <div class="modal-header">
+          <h3>⚡ Imtihon topshirish</h3>
+        </div>
+        <p class="picker-desc">20 talik Davlat imtihoni simulyatorini topshirish uchun quyidagi qulay variantlardan birini tanlang:</p>
+
+        <div class="tarifs-container">
+          <div class="tarif-item">
+            <div class="tarif-info">
+              <h4>🎟 1 martalik Imtihon</h4>
+              <p>Bitta to'liq 20 talik sinov</p>
+            </div>
+            <div class="tarif-price">2 000 so'm</div>
+            <button class="buy-btn" onclick="closeExamAccessModal(); openPaymentModal('exam_1', '🎟 1 martalik Imtihon', '2 000', '');">Tanlash</button>
+          </div>
+
+          <div class="tarif-item">
+            <div class="tarif-info">
+              <h4>⚡ 30 kunlik Cheksiz</h4>
+              <p>30 kun xohlagancha topshirish</p>
+            </div>
+            <div class="tarif-price">15 000 so'm</div>
+            <button class="buy-btn" onclick="closeExamAccessModal(); openPaymentModal('exam_30', '⚡ 30 kunlik Cheksiz Imtihon', '15 000', '');">Tanlash</button>
+          </div>
+
+          <div class="tarif-item popular">
+            <div class="popular-badge">Tavsiya</div>
+            <div class="tarif-info">
+              <h4>👑 VIP To'liq Kirish</h4>
+              <p>Hamma biletlar + cheksiz imtihon</p>
+            </div>
+            <div class="tarif-price">30 000 so'm</div>
+            <button class="buy-btn" onclick="closeExamAccessModal(); openPaymentModal('vip_90', '👑 VIP To\'liq Kirish (90 kun)', '30 000', '');">Tanlash</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal 3: To'lov rekvizitlari va chek yuborish -->
     <div id="payment-modal" class="modal">
       <div class="modal-content">
         <button class="close-modal" onclick="closePaymentModal()">✕</button>
         <div class="modal-header">
           <h3 id="modal-title">To'lov ma'lumotlari</h3>
-          <div class="modal-price" id="modal-price">30 000 so'm</div>
+          <div class="modal-price" id="modal-price">5 000 so'm</div>
         </div>
         <div class="card-box">
           <span class="card-label">Karta raqam (UzCard / Humo):</span>
@@ -193,9 +282,9 @@
           <span class="card-holder">Egasi: <b>K.E.</b></span>
         </div>
         <div class="modal-instruct">
-          <p>1. Yuqoridagi kartaga to'lov qiling (30 000 so'm).</p>
-          <p>2. To'lov cheki skrinshotini botga rasm sifatida yuboring.</p>
-          <p>3. Administrator tasdiqlashi bilan barcha biletlar 90 kunga ochiladi!</p>
+          <p>1. Kartaga <b id="modal-instruct-amount">to'lov</b> o'tkazing.</p>
+          <p>2. To'lov cheki skrinshotini botga rasm qilib yuboring.</p>
+          <p>3. Administrator tasdiqlashi bilan xizmatingiz darhol ochiladi!</p>
         </div>
         <button class="hero-btn" onclick="closeModalAndGoToBot()">📸 Chekni botga yuborish</button>
       </div>
@@ -216,12 +305,12 @@
         <span class="nav-label">Do'stlar</span>
       </button>
       <button class="nav-item" onclick="switchTab('buy')" id="nav-buy">
-        <span class="nav-icon">👑</span>
-        <span class="nav-label">VIP Obuna</span>
+        <span class="nav-icon">💎</span>
+        <span class="nav-label">Tariflar</span>
       </button>
     </nav>
   </div>
 
-  <script src="/app.js?v=2.5"></script>
+  <script src="/app.js?v=3.0"></script>
 </body>
 </html>

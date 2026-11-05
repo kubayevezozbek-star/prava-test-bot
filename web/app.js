@@ -18,21 +18,26 @@ let currentUser = {
   username: tg?.initDataUnsafe?.user?.username || "",
   is_vip: false,
   vip_until: null,
+  has_exam_pass: false,
+  exam_pass_until: null,
+  exam_attempts: 0,
+  can_take_exam: false,
   unlocked_tickets: [1, 2, 3],
   total_tickets: 70
 };
 
 let allBilets = [];
 let allQuestions = [];
+let selectedPickerTickets = new Set();
 
 let currentQuiz = {
   mode: 'ticket', // 'ticket' | 'exam' | 'mistakes'
   ticketId: 1,
   questions: [],
   currentIndex: 0,
-  answers: {}, // questionId: selectedIndex
+  answers: {},
   timerInterval: null,
-  timeLeft: 20 * 60 // 20 minutes
+  timeLeft: 20 * 60
 };
 
 let userMistakes = [];
@@ -62,16 +67,11 @@ const T = {
     result_retry: "🔄 Qaytadan ishlash",
     result_mistakes: "🤖 Xatolar ustida ishlash",
     result_home: "Bosh sahifaga qaytish",
-    mistakes_title: "🧠 Xatolar ustida ishlash (AI)",
-    mistakes_desc: "Noto'g'ri yechilgan savollaringiz to'g'ri javob berguningizcha saqlanadi.",
-    mistakes_empty_title: "Hozircha xatoliklar yo'q!",
-    mistakes_empty_desc: "Biletlarni yechib, bilimingizni sinab ko'ring.",
-    mistakes_btn_practice: "🔁 Faqat xatolarni qayta ishlash",
     nav_tickets: "Biletlar",
     nav_mistakes: "Xatolar",
     nav_referral: "Do'stlar",
-    nav_vip: "VIP Obuna",
-    badge_vip: "👑 VIP (Barcha biletlar ochiq)",
+    nav_vip: "Tariflar",
+    badge_vip: "👑 VIP A'zo",
     badge_normal: "ta bilet ochiq",
     loading: "Yuklanmoqda..."
   },
@@ -98,35 +98,29 @@ const T = {
     result_retry: "🔄 Пройти заново",
     result_mistakes: "🤖 Работа над ошибками",
     result_home: "На главную",
-    mistakes_title: "🧠 Работа над ошибками (AI)",
-    mistakes_desc: "Вопросы с ошибками будут повторяться, пока вы не ответите правильно.",
-    mistakes_empty_title: "Ошибок пока нет!",
-    mistakes_empty_desc: "Решайте билеты и проверяйте свои знания.",
-    mistakes_btn_practice: "🔁 Решать только ошибки",
     nav_tickets: "Билеты",
     nav_mistakes: "Ошибки",
     nav_referral: "Друзья",
-    nav_vip: "VIP Подписка",
-    badge_vip: "👑 VIP (Все билеты открыты)",
+    nav_vip: "Тарифы",
+    badge_vip: "👑 VIP Член",
     badge_normal: "билетов открыто",
     loading: "Загрузка..."
   }
 };
 
-// Tilni almashtirish funksiyasi
 function setLanguage(lang) {
   currentLang = lang;
   localStorage.setItem('prava_app_lang', lang);
 
-  // Switcher UI
-  document.getElementById('lang-uz').classList.toggle('active', lang === 'uz');
-  document.getElementById('lang-ru').classList.toggle('active', lang === 'ru');
+  const uzBtn = document.getElementById('lang-uz');
+  const ruBtn = document.getElementById('lang-ru');
+  if (uzBtn) uzBtn.classList.toggle('active', lang === 'uz');
+  if (ruBtn) ruBtn.classList.toggle('active', lang === 'ru');
 
   applyLanguageTexts();
   updateHeaderUI();
   renderTickets();
 
-  // Agar test oynasi ochiq bo'lsa, joriy savolni ham tanlangan tilda qayta chizamiz
   if (currentQuiz.questions && currentQuiz.questions.length > 0) {
     renderCurrentQuestion();
   }
@@ -145,7 +139,6 @@ function applyLanguageTexts() {
   setText('tickets-title', `${t.tickets_title} (1 – ${allBilets.length || 70})`);
   setText('tickets-info-tag', t.tickets_free_tag);
   
-  // Hero
   const heroH2 = document.querySelector('.hero-text h2');
   if (heroH2) heroH2.innerText = t.hero_title;
   const heroP = document.querySelector('.hero-text p');
@@ -153,7 +146,6 @@ function applyLanguageTexts() {
   const heroBtn = document.querySelector('.hero-btn');
   if (heroBtn) heroBtn.innerText = t.hero_btn;
 
-  // Nav labels
   const navT = document.querySelector('#nav-tickets .nav-label');
   if (navT) navT.innerText = t.nav_tickets;
   const navM = document.querySelector('#nav-mistakes .nav-label');
@@ -163,14 +155,13 @@ function applyLanguageTexts() {
   const navB = document.querySelector('#nav-buy .nav-label');
   if (navB) navB.innerText = t.nav_vip;
 
-  // Quiz buttons
   const backBtn = document.querySelector('.back-btn');
   if (backBtn) backBtn.innerText = t.btn_back;
   const prevBtn = document.getElementById('prev-btn');
   if (prevBtn) prevBtn.innerText = t.btn_prev;
 }
 
-// 1. Foydalanuvchi holatini ma'lumotlar bazasidan olish (Doimiy saqlanadi!)
+// 1. Foydalanuvchi holatini ma'lumotlar bazasidan olish
 async function loadUserData() {
   try {
     const res = await fetch(`/api/user_status?user_id=${currentUser.id}&first_name=${encodeURIComponent(currentUser.first_name)}&username=${encodeURIComponent(currentUser.username)}`);
@@ -180,6 +171,10 @@ async function loadUserData() {
         ...currentUser,
         is_vip: data.is_vip || false,
         vip_until: data.vip_until || null,
+        has_exam_pass: data.has_exam_pass || false,
+        exam_pass_until: data.exam_pass_until || null,
+        exam_attempts: data.exam_attempts || 0,
+        can_take_exam: data.can_take_exam || false,
         unlocked_tickets: Array.isArray(data.unlocked_tickets) ? data.unlocked_tickets : [1, 2, 3],
         total_tickets: data.total_tickets || 70
       };
@@ -193,7 +188,7 @@ async function loadUserData() {
   }
 }
 
-// 2. 1200 ta rasmiy savollarni yuklash
+// 2. Savollarni yuklash
 async function loadQuestions() {
   try {
     const res = await fetch('/api/questions');
@@ -217,26 +212,30 @@ async function loadQuestions() {
 
 // 3. Header panelini yangilash
 function updateHeaderUI() {
-  document.getElementById('user-name').innerText = currentUser.first_name;
+  const nameEl = document.getElementById('user-name');
+  if (nameEl) nameEl.innerText = currentUser.first_name;
+  
   const t = T[currentLang];
   const badge = document.getElementById('user-badge');
 
-  if (currentUser.is_vip) {
-    badge.innerText = t.badge_vip;
-    badge.style.background = "#fef3c7";
-    badge.style.color = "#b45309";
-  } else {
-    const count = currentUser.unlocked_tickets ? currentUser.unlocked_tickets.length : 3;
-    badge.innerText = `🟢 ${count} ${t.badge_normal}`;
-    badge.style.background = "#d1fae5";
-    badge.style.color = "#065f46";
+  if (badge) {
+    if (currentUser.is_vip) {
+      badge.innerText = t.badge_vip;
+      badge.style.background = "#fef3c7";
+      badge.style.color = "#b45309";
+    } else {
+      const count = currentUser.unlocked_tickets ? currentUser.unlocked_tickets.length : 3;
+      badge.innerText = `🟢 ${count} ${t.badge_normal}`;
+      badge.style.background = "#d1fae5";
+      badge.style.color = "#065f46";
+    }
   }
 
   // Referral UI
   const refCount = document.getElementById('ref-unlocked-count');
   if (refCount) refCount.innerText = currentUser.unlocked_tickets ? currentUser.unlocked_tickets.length : 3;
   const refVip = document.getElementById('ref-vip-status');
-  if (refVip) refVip.innerText = currentUser.is_vip ? "👑 VIP" : "Oddiy";
+  if (refVip) refVip.innerText = currentUser.is_vip ? "👑 VIP" : (currentUser.has_exam_pass ? "⚡ Imtihon" : "Oddiy");
   
   const botUser = "prava_test_AI_bot";
   const refLink = `https://t.me/${botUser}?start=ref_${currentUser.id}`;
@@ -287,7 +286,8 @@ function renderTickets() {
       if (isUnlocked) {
         startQuizForTicket(i);
       } else {
-        openPaymentModal('vip_90', `👑 ${i}-${t.ticket_num} (${t.nav_vip})`, '30 000');
+        // Qulflangan bilet bosilganda 3 ta bilet tanlash oynasini ochamiz!
+        openTicketPickerModal(i);
       }
     };
 
@@ -318,7 +318,23 @@ function startQuizForTicket(ticketNumber) {
   startTimer();
 }
 
-// 6. Tasodifiy 20 talik Davlat Imtihoni rejimi
+// 6. 20 talik Imtihonni topshirish
+function handleStartExamClick() {
+  if (currentUser.can_take_exam) {
+    // 1 ta urinishni sarflash
+    fetch('/api/consume_exam', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ user_id: currentUser.id })
+    }).catch(e => console.warn(e));
+
+    startExamMode();
+  } else {
+    // Imtihon ruxsatini xarid qilish oynasini ochish
+    openExamAccessModal();
+  }
+}
+
 function startExamMode() {
   if (!allQuestions.length) {
     alert(T[currentLang].loading);
@@ -341,7 +357,7 @@ function startExamMode() {
   startTimer();
 }
 
-// 7. Savolni ekranga chiqarish (Tilga mos holda)
+// 7. Savolni ekranga chiqarish
 function renderCurrentQuestion() {
   const q = currentQuiz.questions[currentQuiz.currentIndex];
   if (!q) return;
@@ -352,7 +368,6 @@ function renderCurrentQuestion() {
   const pct = ((currentQuiz.currentIndex + 1) / currentQuiz.questions.length) * 100;
   document.getElementById('progress-fill').style.width = `${pct}%`;
 
-  // Haqiqiy imtihon rasmini yuklash
   const mediaContainer = document.getElementById('question-media');
   const imgUrl = q.imageUrl || (q.image ? `/media/${q.image}` : null);
 
@@ -364,11 +379,9 @@ function renderCurrentQuestion() {
     mediaContainer.innerHTML = '';
   }
 
-  // Savol matni (Tilga qarab: O'zbekcha Lotin yoki Ruscha)
   const qText = (currentLang === 'ru') ? (q.text_ru || q.text) : (q.text_uz || q.text);
   document.getElementById('question-text').innerText = qText;
 
-  // Variantlar ro'yxati (Tilga qarab)
   const list = document.getElementById('options-list');
   list.innerHTML = '';
 
@@ -397,7 +410,6 @@ function renderCurrentQuestion() {
     list.appendChild(btn);
   });
 
-  // AI va YHQ Qoidasi tushuntirish qutisi
   const aiBox = document.getElementById('ai-box');
   const qExp = (currentLang === 'ru') ? (q.explanation_ru || q.explanation) : (q.explanation_uz || q.explanation);
   
@@ -410,7 +422,6 @@ function renderCurrentQuestion() {
     aiBox.style.display = 'none';
   }
 
-  // Oldingi / Keyingi tugmalari
   document.getElementById('prev-btn').disabled = currentQuiz.currentIndex === 0;
   document.getElementById('next-btn').innerText = (currentQuiz.currentIndex === currentQuiz.questions.length - 1) ? t.btn_finish : t.btn_next;
 }
@@ -423,7 +434,6 @@ function selectOption(selectedIdx) {
   const correctIdx = (q.correctOptionIndex !== undefined) ? q.correctOptionIndex : q.correct;
   const isCorrect = (selectedIdx === correctIdx);
 
-  // Xatolar tahlili uchun serverga yuborish
   fetch('/api/answer', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -432,7 +442,7 @@ function selectOption(selectedIdx) {
       question_id: q.id,
       is_correct: isCorrect
     })
-  }).catch(e => console.warn("API answer error:", e));
+  }).catch(e => console.warn(e));
 
   renderCurrentQuestion();
 }
@@ -453,7 +463,7 @@ function prevQuestion() {
   }
 }
 
-// 9. Testni yakunlash va natija
+// 9. Testni yakunlash
 function finishQuiz() {
   clearInterval(currentQuiz.timerInterval);
   const t = T[currentLang];
@@ -474,7 +484,6 @@ function finishQuiz() {
   document.getElementById('result-status').innerText = passed ? t.result_passed : t.result_failed;
   document.getElementById('result-msg').innerText = passed ? t.result_msg_passed : t.result_msg_failed;
 
-  // Test natijasini bazaga yozish
   if (currentQuiz.mode === 'ticket') {
     fetch('/api/test_result', {
       method: 'POST',
@@ -485,7 +494,7 @@ function finishQuiz() {
         score: correctCount,
         total: total
       })
-    }).catch(e => console.warn("Result save error:", e));
+    }).catch(e => console.warn(e));
   }
 
   showView('result');
@@ -504,7 +513,6 @@ function exitQuiz() {
   showView('tickets');
 }
 
-// 10. Taymer
 function startTimer() {
   clearInterval(currentQuiz.timerInterval);
   currentQuiz.timeLeft = 20 * 60;
@@ -523,7 +531,7 @@ function startTimer() {
   }, 1000);
 }
 
-// 11. Xatolar ustida ishlash
+// 10. Xatolar ustida ishlash
 async function loadMistakes() {
   try {
     const res = await fetch(`/api/mistakes?user_id=${currentUser.id}`);
@@ -591,7 +599,7 @@ function openMistakesView() {
   switchTab('mistakes');
 }
 
-// 12. Sahifalar almashinuvi
+// 11. Sahifalar almashinuvi
 function switchTab(tab) {
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
@@ -618,11 +626,109 @@ function showView(viewName) {
   if (el) el.classList.add('active');
 }
 
-// 13. To'lov modali
-function openPaymentModal(pkgKey, title, price) {
+// 12. 3 ta bilet tanlash modali
+function openTicketPickerModal(preselectNum = null) {
+  selectedPickerTickets.clear();
+  if (preselectNum && !currentUser.unlocked_tickets.includes(preselectNum)) {
+    selectedPickerTickets.add(preselectNum);
+  }
+
+  const grid = document.getElementById('picker-grid');
+  grid.innerHTML = '';
+
+  const totalCount = allBilets.length > 0 ? allBilets.length : (currentUser.total_tickets || 70);
+
+  for (let i = 4; i <= totalCount; i++) {
+    const isAlreadyUnlocked = currentUser.unlocked_tickets && currentUser.unlocked_tickets.includes(i);
+    const chip = document.createElement('div');
+    chip.className = 'picker-chip';
+    chip.innerText = `${i}-Bilet`;
+
+    if (isAlreadyUnlocked) {
+      chip.classList.add('disabled');
+      chip.title = "Ochiq";
+    } else {
+      if (selectedPickerTickets.has(i)) {
+        chip.classList.add('selected');
+      }
+
+      chip.onclick = () => {
+        if (selectedPickerTickets.has(i)) {
+          selectedPickerTickets.delete(i);
+          chip.classList.remove('selected');
+        } else {
+          if (selectedPickerTickets.size >= 3) {
+            alert("Siz ko'pi bilan 3 ta bilet tanlashingiz mumkin!");
+            return;
+          }
+          selectedPickerTickets.add(i);
+          chip.classList.add('selected');
+        }
+        updatePickerStatus();
+      };
+    }
+
+    grid.appendChild(chip);
+  }
+
+  updatePickerStatus();
+  document.getElementById('ticket-picker-modal').classList.add('active');
+}
+
+function updatePickerStatus() {
+  const count = selectedPickerTickets.size;
+  const statusEl = document.getElementById('picker-status');
+  const confirmBtn = document.getElementById('picker-confirm-btn');
+
+  if (statusEl) {
+    statusEl.innerText = `${count} / 3 ta bilet tanlandi`;
+  }
+  if (confirmBtn) {
+    confirmBtn.disabled = (count === 0);
+  }
+}
+
+function closeTicketPickerModal() {
+  document.getElementById('ticket-picker-modal').classList.remove('active');
+}
+
+function confirmTicketSelection() {
+  const arr = Array.from(selectedPickerTickets).sort((a,b) => a - b);
+  if (!arr.length) return;
+
+  const ticketsStr = arr.join(", ");
+  closeTicketPickerModal();
+  openPaymentModal(
+    'tickets_3',
+    `📚 Tanlangan biletlar: ${ticketsStr}`,
+    '5 000',
+    ticketsStr
+  );
+}
+
+// 13. Imtihon ruxsati modali
+function openExamAccessModal() {
+  document.getElementById('exam-access-modal').classList.add('active');
+}
+
+function closeExamAccessModal() {
+  document.getElementById('exam-access-modal').classList.remove('active');
+}
+
+// 14. To'lov modali
+function openPaymentModal(pkgKey, title, price, extraDetails = '') {
   document.getElementById('modal-title').innerText = title;
   document.getElementById('modal-price').innerText = `${price} so'm`;
+  document.getElementById('modal-instruct-amount').innerText = `${price} so'm`;
   document.getElementById('payment-modal').classList.add('active');
+
+  // Tanlangan biletlar yoki tarifni saqlab qo'yish
+  window.currentSelectedPayment = {
+    pkgKey: pkgKey,
+    title: title,
+    price: price,
+    extra: extraDetails
+  };
 }
 
 function closePaymentModal() {
@@ -642,7 +748,7 @@ function closeModalAndGoToBot() {
   }
 }
 
-// 14. Referal havolasini ulashish
+// 15. Referal ulashish
 function copyRefLink() {
   const input = document.getElementById('ref-link-input');
   input.select();
@@ -661,7 +767,7 @@ function shareRefLink() {
   }
 }
 
-// 15. Dastur yuklanishi
+// 16. Yuklanish
 window.onload = async () => {
   setLanguage(currentLang);
   await loadUserData();

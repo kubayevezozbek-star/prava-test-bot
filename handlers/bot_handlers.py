@@ -9,7 +9,7 @@ from aiogram.types import (
 )
 from aiogram.filters import CommandStart
 import database as db
-from config import ADMIN_USERNAME, WEBAPP_URL, VIP_PRICE_STR
+from config import ADMIN_USERNAME, WEBAPP_URL, PRICE_3_TICKETS_STR, PRICE_VIP_90_STR, PRICE_EXAM_1_STR
 
 router = Router()
 
@@ -21,7 +21,7 @@ def get_main_keyboard(webapp_url: str) -> ReplyKeyboardMarkup:
         buttons.append([KeyboardButton(text="🚗 Imtihonni boshlash")])
 
     buttons.append([
-        KeyboardButton(text="👑 VIP obuna (30 000 so'm)"),
+        KeyboardButton(text="💎 Tariflar va Xarid"),
         KeyboardButton(text="👥 Do'stlarni taklif qilish")
     ])
     buttons.append([KeyboardButton(text="📞 Adminga murojaat")])
@@ -34,7 +34,7 @@ async def cmd_start(message: Message, bot: Bot):
     first_name = message.from_user.first_name or "Foydalanuvchi"
     username = message.from_user.username or ""
 
-    # Referal parametrini ajratib olish
+    # Referal parametrini tekshirish
     args = message.text.split()
     referrer_id = None
     if len(args) > 1 and args[1].startswith("ref_"):
@@ -45,17 +45,17 @@ async def cmd_start(message: Message, bot: Bot):
         except ValueError:
             pass
 
-    # Foydalanuvchini bazada saqlash / yangilash
+    # Foydalanuvchini ro'yxatga olish
     user = await db.get_or_create_user(user_id, first_name, username, referrer_id)
 
-    # Agar do'st taklif qilgan bo'lsa, taklif qilganga xabar yuborish
+    # Agar do'st taklif qilingan bo'lsa, taklif qilganga yangi bilet ochilgani haqida xabar
     if referrer_id and user.get("referred_by") == referrer_id:
         try:
             await bot.send_message(
                 referrer_id,
                 f"🎉 <b>Ajoyib yangilik!</b>\n\n"
                 f"Siz taklif qilgan do'stingiz (<b>{first_name}</b>) botga qo'shildi!\n"
-                f"🎁 Sizga navbatdagi bilet bepul va doimiy ochildi!",
+                f"🎁 Sizga navbatdagi qulflangan bilet bepul va doimiy ochildi!",
                 parse_mode="HTML"
             )
         except Exception:
@@ -63,16 +63,16 @@ async def cmd_start(message: Message, bot: Bot):
 
     caption = (
         f"Assalomu alaykum, <b>{first_name}</b>! 🚗\n\n"
-        "<b>Prava Test AI</b> — O'zbekiston Yo'l Harakati Qoidalari (YHQ) bo'yicha rasmiy testlar va Davlat imtihon simulyatoriga xush kelibsiz!\n\n"
-        "✨ <b>Imkoniyatlar:</b>\n"
+        "<b>Prava Test AI</b> — O'zbekiston Davlat haydovchilik guvohnomasi (YHQ) imtihon simulyatoriga xush kelibsiz!\n\n"
+        "✨ <b>Asosiy imkoniyatlar:</b>\n"
         "• 🟢 <b>1, 2 va 3-biletlar</b> — mutlaqo bepul va doimiy ochiq!\n"
-        "• ⏱ <b>20 daqiqalik</b> rasmiy Davlat imtihoni rejimi;\n"
-        "• 📸 <b>Haqiqiy imtihon rasmlari</b> va savollari (rasmiy YHQ standarti);\n"
-        "• 🤖 <b>AI Xatolar tahlili</b> — adashgan har bir savolingiz bo'yicha qoidani tushuntirib beradi;\n"
-        "• 🔄 <b>Xatolar ustida ishlash</b> — noto'g'ri yechilgan savollarni qayta mashq qilish;\n"
-        "• 👥 Har bir taklif qilingan do'st uchun +1 ta bepul bilet;\n"
-        f"• 👑 <b>VIP obuna ({VIP_PRICE_STR})</b> — barcha biletlarni 3 oyga to'liq ochadi!\n\n"
-        "Testni boshlash uchun quyidagi <b>'🚗 Imtihonni boshlash'</b> tugmasini bosing:"
+        f"• 📚 <b>Ixtiyoriy 3 ta bilet</b> — {PRICE_3_TICKETS_STR} (3 oy kafolatli);\n"
+        f"• 🎟 <b>1 martalik Imtihon</b> — {PRICE_EXAM_1_STR};\n"
+        "• ⚡ <b>30 kunlik Cheksiz Imtihon</b> — 15 000 so'm;\n"
+        f"• 👑 <b>VIP To'liq Kirish (90 kun)</b> — {PRICE_VIP_90_STR};\n"
+        "• 👥 Har bir taklif qilingan do'st uchun navbatdagi 1 ta bilet bepul;\n"
+        "• 🌐 O'zbekcha (Lotin) va Ruscha til rejimlari.\n\n"
+        "Sinovni boshlash uchun quyidagi <b>'🚗 Imtihonni boshlash'</b> tugmasini bosing:"
     )
 
     await message.answer(
@@ -99,7 +99,7 @@ async def open_app_button(message: Message, bot: Bot):
 async def contact_admin(message: Message):
     text = (
         "📞 <b>Administrator bilan aloqa</b>\n\n"
-        "Savollar, takliflar yoki to'lov bo'yicha yordam kerak bo'lsa, adminga yozishingiz mumkin:\n\n"
+        "Savollar, to'lovlar yoki takliflar bo'yicha adminga to'g'ridan-to'g'ri murojaat qilishingiz mumkin:\n\n"
         f"👉 <b>Admin:</b> @{ADMIN_USERNAME}"
     )
     ikb = InlineKeyboardMarkup(inline_keyboard=[
@@ -115,12 +115,13 @@ async def invite_friends_handler(message: Message, bot: Bot):
 
     text = (
         "🎁 <b>Do'stlarni taklif qiling va bepul biletlar oching!</b>\n\n"
-        "Har bir do'stingiz sizning havolangiz orqali botga kirganda, sizga <b>navbatdagi 1 ta bilet</b> bepul va butunlay ochiladi!\n\n"
-        f"🔗 <b>Sizning shaxsiy taklif havolangiz:</b>\n"
+        "Har bir do'stingiz sizning havolangiz orqali botga kirganda, sizga navbatdagi qulflangan bilet "
+        "<b>mutlaqo bepul</b> va doimiy ochiladi!\n\n"
+        f"🔗 <b>Sizning taklif havolangiz:</b>\n"
         f"<code>{ref_link}</code>"
     )
 
-    share_text = "🚗 Prava imtihoniga tayyorgarlik ko'rish uchun rasmiy YHQ test boti! Sinab ko'ring:"
+    share_text = "🚗 Prava imtihoniga tayyorgarlik ko'rish uchun rasmiy test boti! Sinab ko'ring:"
     share_url = f"https://t.me/share/url?url={ref_link}&text={share_text}"
 
     ikb = InlineKeyboardMarkup(inline_keyboard=[
