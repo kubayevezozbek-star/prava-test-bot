@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Prava Test AI — Rasmiy YHQ Imtihoni</title>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
-  <link rel="stylesheet" href="/style.css?v=2.1">
+  <link rel="stylesheet" href="/style.css?v=2.5">
 </head>
 <body>
   <div id="app">
@@ -19,7 +19,11 @@
         </div>
       </div>
       <div class="header-action">
-        <a href="https://t.me/Kubayev_E" target="_blank" class="admin-btn">📞 Bog'lanish</a>
+        <div class="lang-switcher">
+          <button id="lang-uz" class="lang-btn active" onclick="setLanguage('uz')">O'zbek</button>
+          <button id="lang-ru" class="lang-btn" onclick="setLanguage('ru')">Рус</button>
+        </div>
+        <a href="https://t.me/Kubayev_E" target="_blank" class="admin-btn" id="btn-contact">📞 Aloqa</a>
       </div>
     </header>
 
@@ -218,6 +222,6 @@
     </nav>
   </div>
 
-  <script src="/app.js?v=2.1"></script>
+  <script src="/app.js?v=2.5"></script>
 </body>
 </html>

@@ -10,6 +10,8 @@ if (tg) {
 }
 
 // Global App State
+let currentLang = localStorage.getItem('prava_app_lang') || 'uz'; // 'uz' | 'ru'
+
 let currentUser = {
   id: tg?.initDataUnsafe?.user?.id || 1438313297,
   first_name: tg?.initDataUnsafe?.user?.first_name || "Foydalanuvchi",
@@ -34,6 +36,139 @@ let currentQuiz = {
 };
 
 let userMistakes = [];
+
+// Til lug'ati (Translations)
+const T = {
+  uz: {
+    hero_title: "🚗 Rasmiy Davlat YHQ Testlari",
+    hero_desc: "1200 ta rasmiy imtihon savollari va haqiqiy rasmlar",
+    hero_btn: "⚡ 20 talik Tasodifiy Imtihon",
+    tickets_title: "📚 Biletlar ro'yxati",
+    tickets_free_tag: "1–3 biletlar BEPUL",
+    ticket_num: "Bilet",
+    ticket_desc: "20 ta savol • 20 daqiqa",
+    badge_free: "BEPUL",
+    badge_unlocked: "OCHILGAN",
+    badge_locked: "🔒 QULFLANGAN",
+    btn_back: "⬅ Chiqish",
+    btn_prev: "⬅ Oldingisi",
+    btn_next: "Keyingisi ➡",
+    btn_finish: "Yakunlash 🏁",
+    ai_title: "🤖 YHQ Qoidasi va Tushuntirish:",
+    result_passed: "Muvaffaqiyatli topshirdingiz!",
+    result_failed: "Yana tayyorgarlik ko'ring",
+    result_msg_passed: "Ajoyib natija! Siz haqiqiy Davlat YHQ nazariy imtihoniga to'liq tayyorsiz.",
+    result_msg_failed: "Davlat imtihonidan o'tish uchun kamida 18 ta to'g'ri javob talab etiladi. Xatolar ustida ishlang!",
+    result_retry: "🔄 Qaytadan ishlash",
+    result_mistakes: "🤖 Xatolar ustida ishlash",
+    result_home: "Bosh sahifaga qaytish",
+    mistakes_title: "🧠 Xatolar ustida ishlash (AI)",
+    mistakes_desc: "Noto'g'ri yechilgan savollaringiz to'g'ri javob berguningizcha saqlanadi.",
+    mistakes_empty_title: "Hozircha xatoliklar yo'q!",
+    mistakes_empty_desc: "Biletlarni yechib, bilimingizni sinab ko'ring.",
+    mistakes_btn_practice: "🔁 Faqat xatolarni qayta ishlash",
+    nav_tickets: "Biletlar",
+    nav_mistakes: "Xatolar",
+    nav_referral: "Do'stlar",
+    nav_vip: "VIP Obuna",
+    badge_vip: "👑 VIP (Barcha biletlar ochiq)",
+    badge_normal: "ta bilet ochiq",
+    loading: "Yuklanmoqda..."
+  },
+  ru: {
+    hero_title: "🚗 Официальные экзаменационные тесты ПДД",
+    hero_desc: "1200 официальных экзаменационных билетов и реальные схемы",
+    hero_btn: "⚡ Случайный экзамен (20 вопросов)",
+    tickets_title: "📚 Список билетов",
+    tickets_free_tag: "1–3 билеты БЕСПЛАТНО",
+    ticket_num: "Билет",
+    ticket_desc: "20 вопросов • 20 минут",
+    badge_free: "БЕСПЛАТНО",
+    badge_unlocked: "ОТКРЫТО",
+    badge_locked: "🔒 ЗАКРЫТО",
+    btn_back: "⬅ Выход",
+    btn_prev: "⬅ Предыдущий",
+    btn_next: "Следующий ➡",
+    btn_finish: "Завершить 🏁",
+    ai_title: "🤖 Пояснение ПДД:",
+    result_passed: "Экзамен успешно сдан!",
+    result_failed: "Попробуйте ещё раз",
+    result_msg_passed: "Отличный результат! Вы полностью готовы к официальному экзамену ПДД.",
+    result_msg_failed: "Для сдачи экзамена необходимо минимум 18 правильных ответов. Работайте над ошибками!",
+    result_retry: "🔄 Пройти заново",
+    result_mistakes: "🤖 Работа над ошибками",
+    result_home: "На главную",
+    mistakes_title: "🧠 Работа над ошибками (AI)",
+    mistakes_desc: "Вопросы с ошибками будут повторяться, пока вы не ответите правильно.",
+    mistakes_empty_title: "Ошибок пока нет!",
+    mistakes_empty_desc: "Решайте билеты и проверяйте свои знания.",
+    mistakes_btn_practice: "🔁 Решать только ошибки",
+    nav_tickets: "Билеты",
+    nav_mistakes: "Ошибки",
+    nav_referral: "Друзья",
+    nav_vip: "VIP Подписка",
+    badge_vip: "👑 VIP (Все билеты открыты)",
+    badge_normal: "билетов открыто",
+    loading: "Загрузка..."
+  }
+};
+
+// Tilni almashtirish funksiyasi
+function setLanguage(lang) {
+  currentLang = lang;
+  localStorage.setItem('prava_app_lang', lang);
+
+  // Switcher UI
+  document.getElementById('lang-uz').classList.toggle('active', lang === 'uz');
+  document.getElementById('lang-ru').classList.toggle('active', lang === 'ru');
+
+  applyLanguageTexts();
+  updateHeaderUI();
+  renderTickets();
+
+  // Agar test oynasi ochiq bo'lsa, joriy savolni ham tanlangan tilda qayta chizamiz
+  if (currentQuiz.questions && currentQuiz.questions.length > 0) {
+    renderCurrentQuestion();
+  }
+  if (userMistakes.length > 0) {
+    renderMistakesUI();
+  }
+}
+
+function applyLanguageTexts() {
+  const t = T[currentLang];
+  const setText = (id, text) => {
+    const el = document.getElementById(id);
+    if (el) el.innerText = text;
+  };
+
+  setText('tickets-title', `${t.tickets_title} (1 – ${allBilets.length || 70})`);
+  setText('tickets-info-tag', t.tickets_free_tag);
+  
+  // Hero
+  const heroH2 = document.querySelector('.hero-text h2');
+  if (heroH2) heroH2.innerText = t.hero_title;
+  const heroP = document.querySelector('.hero-text p');
+  if (heroP) heroP.innerText = t.hero_desc;
+  const heroBtn = document.querySelector('.hero-btn');
+  if (heroBtn) heroBtn.innerText = t.hero_btn;
+
+  // Nav labels
+  const navT = document.querySelector('#nav-tickets .nav-label');
+  if (navT) navT.innerText = t.nav_tickets;
+  const navM = document.querySelector('#nav-mistakes .nav-label');
+  if (navM) navM.innerText = t.nav_mistakes;
+  const navR = document.querySelector('#nav-referral .nav-label');
+  if (navR) navR.innerText = t.nav_referral;
+  const navB = document.querySelector('#nav-buy .nav-label');
+  if (navB) navB.innerText = t.nav_vip;
+
+  // Quiz buttons
+  const backBtn = document.querySelector('.back-btn');
+  if (backBtn) backBtn.innerText = t.btn_back;
+  const prevBtn = document.getElementById('prev-btn');
+  if (prevBtn) prevBtn.innerText = t.btn_prev;
+}
 
 // 1. Foydalanuvchi holatini ma'lumotlar bazasidan olish (Doimiy saqlanadi!)
 async function loadUserData() {
@@ -72,6 +207,7 @@ async function loadQuestions() {
         allQuestions = data.questions;
         allBilets = data.bilets || [];
       }
+      applyLanguageTexts();
       renderTickets();
     }
   } catch (e) {
@@ -82,26 +218,30 @@ async function loadQuestions() {
 // 3. Header panelini yangilash
 function updateHeaderUI() {
   document.getElementById('user-name').innerText = currentUser.first_name;
-  
+  const t = T[currentLang];
   const badge = document.getElementById('user-badge');
+
   if (currentUser.is_vip) {
-    badge.innerText = "👑 VIP (Barcha biletlar ochiq)";
+    badge.innerText = t.badge_vip;
     badge.style.background = "#fef3c7";
     badge.style.color = "#b45309";
   } else {
     const count = currentUser.unlocked_tickets ? currentUser.unlocked_tickets.length : 3;
-    badge.innerText = `🟢 ${count} ta bilet ochiq`;
+    badge.innerText = `🟢 ${count} ${t.badge_normal}`;
     badge.style.background = "#d1fae5";
     badge.style.color = "#065f46";
   }
 
   // Referral UI
-  document.getElementById('ref-unlocked-count').innerText = currentUser.unlocked_tickets ? currentUser.unlocked_tickets.length : 3;
-  document.getElementById('ref-vip-status').innerText = currentUser.is_vip ? "👑 VIP Faol" : "Oddiy";
+  const refCount = document.getElementById('ref-unlocked-count');
+  if (refCount) refCount.innerText = currentUser.unlocked_tickets ? currentUser.unlocked_tickets.length : 3;
+  const refVip = document.getElementById('ref-vip-status');
+  if (refVip) refVip.innerText = currentUser.is_vip ? "👑 VIP" : "Oddiy";
   
   const botUser = "prava_test_AI_bot";
   const refLink = `https://t.me/${botUser}?start=ref_${currentUser.id}`;
-  document.getElementById('ref-link-input').value = refLink;
+  const refInput = document.getElementById('ref-link-input');
+  if (refInput) refInput.value = refLink;
 }
 
 // 4. Biletlar ro'yxatini chiqarish
@@ -110,34 +250,36 @@ function renderTickets() {
   if (!container) return;
   container.innerHTML = '';
 
-  const totalCount = allBilets.length > 0 ? allBilets.length : (currentUser.total_tickets || 60);
-  document.getElementById('tickets-title').innerText = `📚 Biletlar (1 – ${totalCount})`;
+  const t = T[currentLang];
+  const totalCount = allBilets.length > 0 ? allBilets.length : (currentUser.total_tickets || 70);
+  
+  const titleEl = document.getElementById('tickets-title');
+  if (titleEl) titleEl.innerText = `${t.tickets_title} (1 – ${totalCount})`;
 
   for (let i = 1; i <= totalCount; i++) {
-    // Ruxsat tekshiruvi: VIP bo'lsa yoki unlocked_tickets ro'yxatida bo'lsa
     const isUnlocked = currentUser.is_vip || (currentUser.unlocked_tickets && currentUser.unlocked_tickets.includes(i));
     const card = document.createElement('div');
     card.className = `ticket-card ${isUnlocked ? 'unlocked' : 'locked'}`;
 
     let badgeClass = 'locked-badge';
-    let badgeText = '🔒 QULFLANGAN';
+    let badgeText = t.badge_locked;
 
     if (isUnlocked) {
       if (i <= 3) {
         badgeClass = 'free';
-        badgeText = 'BEPUL';
+        badgeText = t.badge_free;
       } else {
         badgeClass = 'passed';
-        badgeText = 'OCHILGAN';
+        badgeText = t.badge_unlocked;
       }
     }
 
     card.innerHTML = `
       <div class="ticket-top">
-        <span class="ticket-num">${i}-Bilet</span>
+        <span class="ticket-num">${i}-${t.ticket_num}</span>
         <span class="ticket-status-icon">${isUnlocked ? '🟢' : '🔒'}</span>
       </div>
-      <div class="ticket-desc">20 ta savol • 20 daqiqa</div>
+      <div class="ticket-desc">${t.ticket_desc}</div>
       <span class="ticket-badge ${badgeClass}">${badgeText}</span>
     `;
 
@@ -145,7 +287,7 @@ function renderTickets() {
       if (isUnlocked) {
         startQuizForTicket(i);
       } else {
-        openPaymentModal('vip_90', `👑 ${i}-Bilet va Barcha Biletlar (VIP)`, '30 000');
+        openPaymentModal('vip_90', `👑 ${i}-${t.ticket_num} (${t.nav_vip})`, '30 000');
       }
     };
 
@@ -157,7 +299,7 @@ function renderTickets() {
 function startQuizForTicket(ticketNumber) {
   const ticketQuestions = allQuestions.filter(q => (q.biletNumber === ticketNumber || q.ticket_id === ticketNumber));
   if (!ticketQuestions.length) {
-    alert("Ushbu bilet savollari yuklanmoqda...");
+    alert(T[currentLang].loading);
     return;
   }
 
@@ -179,10 +321,9 @@ function startQuizForTicket(ticketNumber) {
 // 6. Tasodifiy 20 talik Davlat Imtihoni rejimi
 function startExamMode() {
   if (!allQuestions.length) {
-    alert("Savollar bazasi yuklanmoqda...");
+    alert(T[currentLang].loading);
     return;
   }
-  // Barcha savollardan 20 tasini tasodifiy olish
   const shuffled = [...allQuestions].sort(() => 0.5 - Math.random()).slice(0, 20);
 
   currentQuiz = {
@@ -200,10 +341,12 @@ function startExamMode() {
   startTimer();
 }
 
-// 7. Savolni ekranga chiqarish (Haqiqiy rasm va variantlar)
+// 7. Savolni ekranga chiqarish (Tilga mos holda)
 function renderCurrentQuestion() {
   const q = currentQuiz.questions[currentQuiz.currentIndex];
   if (!q) return;
+
+  const t = T[currentLang];
 
   document.getElementById('quiz-counter').innerText = `${currentQuiz.currentIndex + 1} / ${currentQuiz.questions.length}`;
   const pct = ((currentQuiz.currentIndex + 1) / currentQuiz.questions.length) * 100;
@@ -221,10 +364,11 @@ function renderCurrentQuestion() {
     mediaContainer.innerHTML = '';
   }
 
-  // Savol matni
-  document.getElementById('question-text').innerText = q.text || q.question;
+  // Savol matni (Tilga qarab: O'zbekcha Lotin yoki Ruscha)
+  const qText = (currentLang === 'ru') ? (q.text_ru || q.text) : (q.text_uz || q.text);
+  document.getElementById('question-text').innerText = qText;
 
-  // Variantlar ro'yxati
+  // Variantlar ro'yxati (Tilga qarab)
   const list = document.getElementById('options-list');
   list.innerHTML = '';
 
@@ -232,7 +376,7 @@ function renderCurrentQuestion() {
   const hasAnswered = currentQuiz.answers[q.id] !== undefined;
   const correctIdx = (q.correctOptionIndex !== undefined) ? q.correctOptionIndex : q.correct;
 
-  const options = q.options || [];
+  const options = (currentLang === 'ru') ? (q.options_ru || q.options || []) : (q.options_uz || q.options || []);
   options.forEach((optText, idx) => {
     const btn = document.createElement('button');
     btn.className = 'option-btn';
@@ -255,8 +399,12 @@ function renderCurrentQuestion() {
 
   // AI va YHQ Qoidasi tushuntirish qutisi
   const aiBox = document.getElementById('ai-box');
-  if (hasAnswered && q.explanation) {
-    document.getElementById('ai-text').innerText = q.explanation;
+  const qExp = (currentLang === 'ru') ? (q.explanation_ru || q.explanation) : (q.explanation_uz || q.explanation);
+  
+  if (hasAnswered && qExp) {
+    const aiTitle = document.querySelector('.ai-title');
+    if (aiTitle) aiTitle.innerHTML = `<b>${t.ai_title}</b>`;
+    document.getElementById('ai-text').innerText = qExp;
     aiBox.style.display = 'block';
   } else {
     aiBox.style.display = 'none';
@@ -264,7 +412,7 @@ function renderCurrentQuestion() {
 
   // Oldingi / Keyingi tugmalari
   document.getElementById('prev-btn').disabled = currentQuiz.currentIndex === 0;
-  document.getElementById('next-btn').innerText = (currentQuiz.currentIndex === currentQuiz.questions.length - 1) ? 'Yakunlash 🏁' : 'Keyingisi ➡';
+  document.getElementById('next-btn').innerText = (currentQuiz.currentIndex === currentQuiz.questions.length - 1) ? t.btn_finish : t.btn_next;
 }
 
 // 8. Variant tanlanganda
@@ -308,6 +456,7 @@ function prevQuestion() {
 // 9. Testni yakunlash va natija
 function finishQuiz() {
   clearInterval(currentQuiz.timerInterval);
+  const t = T[currentLang];
 
   let correctCount = 0;
   currentQuiz.questions.forEach(q => {
@@ -322,10 +471,8 @@ function finishQuiz() {
 
   document.getElementById('result-score').innerText = `${correctCount} / ${total}`;
   document.getElementById('result-icon').innerText = passed ? '🎉' : '⚠️';
-  document.getElementById('result-status').innerText = passed ? "Imtihondan o'tdingiz!" : "Yana tayyorgarlik ko'ring";
-  document.getElementById('result-msg').innerText = passed 
-    ? "Ajoyib natija! Siz haqiqiy Davlat YHQ nazariy imtihoniga to'liq tayyorsiz." 
-    : "Davlat imtihonidan o'tish uchun kamida 18 ta to'g'ri javob talab etiladi. Xatolar ustida ishlang!";
+  document.getElementById('result-status').innerText = passed ? t.result_passed : t.result_failed;
+  document.getElementById('result-msg').innerText = passed ? t.result_msg_passed : t.result_msg_failed;
 
   // Test natijasini bazaga yozish
   if (currentQuiz.mode === 'ticket') {
@@ -390,30 +537,34 @@ async function loadMistakes() {
 }
 
 function renderMistakesUI() {
+  const t = T[currentLang];
   const countSpan = document.getElementById('mistakes-count');
   const emptyDiv = document.getElementById('mistakes-empty');
   const listDiv = document.getElementById('mistakes-list');
   const btn = document.getElementById('solve-mistakes-btn');
 
-  countSpan.innerText = `${userMistakes.length} ta xato`;
+  if (countSpan) countSpan.innerText = `${userMistakes.length} ta xato`;
 
   if (userMistakes.length === 0) {
-    emptyDiv.style.display = 'block';
-    listDiv.innerHTML = '';
-    btn.style.display = 'none';
+    if (emptyDiv) emptyDiv.style.display = 'block';
+    if (listDiv) listDiv.innerHTML = '';
+    if (btn) btn.style.display = 'none';
     return;
   }
 
-  emptyDiv.style.display = 'none';
-  btn.style.display = 'block';
-  listDiv.innerHTML = '';
+  if (emptyDiv) emptyDiv.style.display = 'none';
+  if (btn) btn.style.display = 'block';
+  if (listDiv) listDiv.innerHTML = '';
 
   userMistakes.forEach((q, idx) => {
     const item = document.createElement('div');
     item.className = 'mistake-item';
+    const qText = (currentLang === 'ru') ? (q.text_ru || q.text) : (q.text_uz || q.text);
+    const qExp = (currentLang === 'ru') ? (q.explanation_ru || q.explanation) : (q.explanation_uz || q.explanation);
+
     item.innerHTML = `
-      <h4>${idx + 1}. ${q.text || q.question}</h4>
-      <p>💡 <b>YHQ Qoidasi:</b> ${q.explanation || "Yo'l harakati qoidasini ko'rib chiqing."}</p>
+      <h4>${idx + 1}. ${qText}</h4>
+      <p>💡 <b>${t.ai_title}</b> ${qExp || "..."}</p>
     `;
     listDiv.appendChild(item);
   });
@@ -512,6 +663,7 @@ function shareRefLink() {
 
 // 15. Dastur yuklanishi
 window.onload = async () => {
+  setLanguage(currentLang);
   await loadUserData();
   await loadQuestions();
 };

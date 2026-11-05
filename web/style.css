@@ -77,6 +77,38 @@ body {
   display: inline-block;
 }
 
+.header-action {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.lang-switcher {
+  display: flex;
+  background: #f1f5f9;
+  border-radius: 20px;
+  padding: 2px;
+  border: 1px solid #e2e8f0;
+}
+
+.lang-btn {
+  background: none;
+  border: none;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 5px 8px;
+  border-radius: 16px;
+  cursor: pointer;
+  color: var(--tg-theme-hint-color);
+  transition: all 0.2s;
+}
+
+.lang-btn.active {
+  background: var(--accent-color);
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.3);
+}
+
 .admin-btn {
   background: #f3f4f6;
   color: #374151;
