@@ -1,6 +1,29 @@
-.venv/
-venv/
+# Ikki joyda saqlangan rasmlar (GitHub'ga yuklash shart emas)
+data/images/
+web/media/
+
+# Vaqtinchalik skriptlar
+data/download_*.py
+data/find_files.py
+data/inspect_repo.py
+data/test_img.py
+data/check_images.py
+
+# Python
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+*.egg-info/
+
+# Database (Render'da mahalliy saqlanadi)
 *.db
+
+# .env
 .env
+
+# IDE
+.vscode/
+.idea/

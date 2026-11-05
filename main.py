@@ -6,9 +6,17 @@ from aiogram import Bot, Dispatcher
 from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
 
+# Render build: rasmlar va savollarni yuklab olish
+try:
+    import build_setup
+    build_setup.download_questions()
+    build_setup.download_images()
+except Exception as _e:
+    print(f"Build setup warning (ignored): {_e}")
+
 from config import BOT_TOKEN, PORT
 import database as db
-from handlers import bot_handlers
+from handlers import bot_handlers, payment_handlers, admin_handlers
 from web_server import create_web_app
 
 logging.basicConfig(
@@ -26,7 +34,7 @@ async def main():
     logger.info("Ma'lumotlar bazasi tayyorlanmoqda...")
     await db.init_db()
 
-    # 2. Veb serverni ishga tushirish (Mini App + REST API + Keep-Alive)
+    # 2. Veb serverni ishga tushirish (Mini App + REST API + Statik rasmlar)
     web_app = create_web_app()
     runner = web.AppRunner(web_app)
     await runner.setup()
@@ -38,9 +46,12 @@ async def main():
     bot = Bot(token=BOT_TOKEN, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
     dp = Dispatcher()
 
+    # Routerlarni ulash
+    dp.include_router(admin_handlers.router)
+    dp.include_router(payment_handlers.router)
     dp.include_router(bot_handlers.router)
 
-    # Eski yangilanishlarni tozalash
+    # Eski kutilayotgan so'rovlarni tozalash
     await bot.delete_webhook(drop_pending_updates=True)
 
     bot_info = await bot.get_me()

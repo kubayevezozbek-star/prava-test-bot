@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>AvtoTest YHQ — Prava Imtihoni</title>
+  <title>Prava Test AI — Rasmiy YHQ Imtihoni</title>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <link rel="stylesheet" href="/style.css">
 </head>
@@ -15,7 +15,7 @@
         <div class="user-avatar" id="user-avatar">🚗</div>
         <div class="user-info">
           <span class="user-name" id="user-name">Foydalanuvchi</span>
-          <span class="user-badge" id="user-badge">3 ta bilet ochiq</span>
+          <span class="user-badge" id="user-badge">Yuklanmoqda...</span>
         </div>
       </div>
       <div class="header-action">
@@ -29,15 +29,15 @@
       <section id="view-tickets" class="view active">
         <div class="hero-card">
           <div class="hero-text">
-            <h2>🚗 YHQ Davlat Testlari</h2>
-            <p>O'zbekiston rasmiy haydovchilik imtihoniga tayyorgarlik</p>
+            <h2>🚗 Rasmiy Davlat YHQ Testlari</h2>
+            <p>1200 ta rasmiy imtihon savollari va haqiqiy rasmlar</p>
           </div>
-          <button class="hero-btn" onclick="startExamMode()">⚡ 20 talik Imtihonni topshirish</button>
+          <button class="hero-btn" onclick="startExamMode()">⚡ 20 talik Tasodifiy Imtihon</button>
         </div>
 
         <div class="section-title">
-          <h3>📚 Biletlar (1 – 10)</h3>
-          <span class="info-tag">1 bilet = 20 ta savol</span>
+          <h3 id="tickets-title">📚 Biletlar ro'yxati</h3>
+          <span class="info-tag" id="tickets-info-tag">1–3 biletlar BEPUL</span>
         </div>
 
         <div class="tickets-grid" id="tickets-grid">
@@ -59,7 +59,7 @@
 
         <div class="question-card" id="question-card">
           <div class="question-media" id="question-media">
-            <!-- Road diagram / sign SVG -->
+            <!-- Official exam image / diagram -->
           </div>
           <h3 class="question-text" id="question-text">Savol yuklanmoqda...</h3>
           <div class="options-list" id="options-list">
@@ -69,7 +69,7 @@
 
         <!-- AI Izoh / Qoida tushuntirishi -->
         <div class="ai-box" id="ai-box" style="display: none;">
-          <div class="ai-title">🤖 <b>AI Qoida Tahlili:</b></div>
+          <div class="ai-title">🤖 <b>YHQ Qoidasi va Tushuntirish:</b></div>
           <div class="ai-text" id="ai-text"></div>
         </div>
 
@@ -90,7 +90,7 @@
           <div class="result-actions">
             <button class="hero-btn" onclick="restartCurrentQuiz()">🔄 Qaytadan ishlash</button>
             <button class="secondary-btn" onclick="openMistakesView()">🤖 Xatolar ustida ishlash</button>
-            <button class="text-btn" onclick="switchTab('tickets')">Bosh menyuga qaytish</button>
+            <button class="text-btn" onclick="switchTab('tickets')">Bosh sahifaga qaytish</button>
           </div>
         </div>
       </section>
@@ -101,12 +101,12 @@
           <h3>🧠 Xatolar ustida ishlash (AI)</h3>
           <span class="info-tag" id="mistakes-count">0 ta xato</span>
         </div>
-        <p class="section-desc">Siz adashgan savollar to'g'ri javob berguningizcha qayta takrorlanadi.</p>
+        <p class="section-desc">Noto'g'ri yechilgan savollaringiz to'g'ri javob berguningizcha saqlanadi.</p>
 
         <div id="mistakes-empty" class="empty-state">
           <div class="empty-icon">🌟</div>
-          <h4>Hozircha xatolar yo'q!</h4>
-          <p>Biletlarni ishlab, bilimingizni sinab ko'ring.</p>
+          <h4>Hozircha xatoliklar yo'q!</h4>
+          <p>Biletlarni yechib, bilimingizni sinab ko'ring.</p>
           <button class="hero-btn" onclick="switchTab('tickets')">Biletlarga o'tish</button>
         </div>
 
@@ -124,16 +124,16 @@
         <div class="referral-card">
           <div class="referral-icon">🎁</div>
           <h2>Do'stlarni taklif qiling!</h2>
-          <p>Har bir taklif qilingan do'stingiz uchun <b>1 ta yangi bilet bepul</b> ochiladi.</p>
+          <p>Har bir taklif qilingan do'stingiz uchun <b>navbatdagi 1 ta bilet bepul</b> va doimiy ochiladi.</p>
 
           <div class="ref-stats">
             <div class="stat-box">
-              <span class="stat-num" id="ref-invited-count">0</span>
-              <span class="stat-label">Taklif qilingan do'stlar</span>
+              <span class="stat-num" id="ref-unlocked-count">3</span>
+              <span class="stat-label">Ochiq biletlar</span>
             </div>
             <div class="stat-box">
-              <span class="stat-num" id="ref-earned-tickets">+0</span>
-              <span class="stat-label">Ochilgan biletlar</span>
+              <span class="stat-num" id="ref-vip-status">Oddiy</span>
+              <span class="stat-label">Obuna holati</span>
             </div>
           </div>
 
@@ -142,50 +142,32 @@
             <button class="copy-btn" onclick="copyRefLink()">Nusxalash</button>
           </div>
 
-          <button class="hero-btn" onclick="shareRefLink()">📲 Telegram'da ulashish</button>
+          <button class="hero-btn" onclick="shareRefLink()">📲 Telegram'da do'stlarga ulashish</button>
         </div>
       </section>
 
-      <!-- VIEW 6: Bilet sotib olish / Obuna -->
+      <!-- VIEW 6: VIP Tariflar -->
       <section id="view-buy" class="view">
         <div class="section-title">
-          <h3>💳 Biletlar to'plami va Tariflar</h3>
+          <h3>👑 VIP Obuna</h3>
         </div>
-        <p class="section-desc">To'langan biletlar <b>3 oy (90 kun)</b> davomida profilingizda faol saqlanadi.</p>
+        <p class="section-desc">Barcha rasmiy biletlar <b>3 oy (90 kun)</b> davomida to'liq ochiladi.</p>
 
         <div class="tarifs-container">
-          <div class="tarif-item">
-            <div class="tarif-info">
-              <h4>🥉 4–6 biletlar (60 ta savol)</h4>
-              <p>Muddati: 3 oy kafolatlangan</p>
-            </div>
-            <div class="tarif-price">5 000 so'm</div>
-            <button class="buy-btn" onclick="openPaymentModal('pack_4_6', '4–6 biletlar', '5 000')">Tanlash</button>
-          </div>
-
           <div class="tarif-item popular">
-            <div class="popular-badge">Tavsiya etiladi</div>
+            <div class="popular-badge">Eng ommabop</div>
             <div class="tarif-info">
-              <h4>🥈 7–10 biletlar (80 ta savol)</h4>
-              <p>Muddati: 3 oy kafolatlangan</p>
+              <h4>👑 VIP To'liq Kirish (3 oy)</h4>
+              <p>Barcha 1200 ta rasmiy savol va biletlar ochiq</p>
             </div>
-            <div class="tarif-price">10 000 so'm</div>
-            <button class="buy-btn" onclick="openPaymentModal('pack_7_10', '7–10 biletlar', '10 000')">Tanlash</button>
-          </div>
-
-          <div class="tarif-item">
-            <div class="tarif-info">
-              <h4>🥇 11–14 biletlar (80 ta savol)</h4>
-              <p>Muddati: 3 oy kafolatlangan</p>
-            </div>
-            <div class="tarif-price">10 000 so'm</div>
-            <button class="buy-btn" onclick="openPaymentModal('pack_11_14', '11–14 biletlar', '10 000')">Tanlash</button>
+            <div class="tarif-price">30 000 so'm</div>
+            <button class="buy-btn" onclick="openPaymentModal('vip_90', '👑 VIP To\'liq Kirish (90 kun)', '30 000')">Tanlash</button>
           </div>
         </div>
 
         <div class="help-card">
-          <h4>💡 To'lov qanday amalga oshiriladi?</h4>
-          <p>Tarifni tanlab, ko'rsatilgan karta raqamiga pul o'tkazing va to'lov cheki skrinshotini botga yuboring. Administrator tekshirib darhol biletlarni ochib beradi.</p>
+          <h4>💡 To'lov qanday tasdiqlanadi?</h4>
+          <p>Karta raqamiga <b>30 000 so'm</b> o'tkazing va to'lov cheki skrinshotini botga rasm qilib yuboring. Admin tasdiqlashi bilan barcha biletlar 3 oyga ochiladi!</p>
         </div>
       </section>
     </main>
@@ -196,7 +178,7 @@
         <button class="close-modal" onclick="closePaymentModal()">✕</button>
         <div class="modal-header">
           <h3 id="modal-title">To'lov ma'lumotlari</h3>
-          <div class="modal-price" id="modal-price">5 000 so'm</div>
+          <div class="modal-price" id="modal-price">30 000 so'm</div>
         </div>
         <div class="card-box">
           <span class="card-label">Karta raqam (UzCard / Humo):</span>
@@ -207,9 +189,9 @@
           <span class="card-holder">Egasi: <b>K.E.</b></span>
         </div>
         <div class="modal-instruct">
-          <p>1. Yuqoridagi kartaga to'lov qiling.</p>
-          <p>2. To'lov cheki (skrinshotini) botga rasm qilib yuboring.</p>
-          <p>3. Admin tasdiqlashi bilan biletlar 3 oyga ochiladi!</p>
+          <p>1. Yuqoridagi kartaga to'lov qiling (30 000 so'm).</p>
+          <p>2. To'lov cheki skrinshotini botga rasm sifatida yuboring.</p>
+          <p>3. Administrator tasdiqlashi bilan barcha biletlar 90 kunga ochiladi!</p>
         </div>
         <button class="hero-btn" onclick="closeModalAndGoToBot()">📸 Chekni botga yuborish</button>
       </div>
@@ -230,8 +212,8 @@
         <span class="nav-label">Do'stlar</span>
       </button>
       <button class="nav-item" onclick="switchTab('buy')" id="nav-buy">
-        <span class="nav-icon">💎</span>
-        <span class="nav-label">Tariflar</span>
+        <span class="nav-icon">👑</span>
+        <span class="nav-label">VIP Obuna</span>
       </button>
     </nav>
   </div>

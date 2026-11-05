@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: prava-test-bot
+    env: python
+    region: oregon
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python main.py
+    autoDeploy: true
+    envVars:
+      - key: PORT
+        value: 10000
+      - key: BOT_TOKEN
+        sync: false
+      - key: ADMIN_ID
+        value: 1438313297
+      - key: ADMIN_USERNAME
+        value: Kubayev_E
+      - key: CARD_NUMBER
+        value: 9860 1606 3439 0605
+      - key: CARD_HOLDER
+        value: K.E.
+      - key: WEBAPP_URL
+        value: https://prava-test-bot.onrender.com

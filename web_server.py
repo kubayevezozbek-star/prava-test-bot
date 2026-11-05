@@ -6,16 +6,25 @@ from config import BASE_DIR, QUESTIONS_FILE
 
 routes = web.RouteTableDef()
 
-# Load questions once in memory for high speed
+# Savollar bazasini xotiraga yuklash
 with open(QUESTIONS_FILE, "r", encoding="utf-8") as f:
-    QUESTIONS_DATA = json.load(f)
+    RAW_DATA = json.load(f)
+
+# Agar format dict (bilets va questions) bo'lsa
+if isinstance(RAW_DATA, dict):
+    BILETS_DATA = RAW_DATA.get("bilets", [])
+    QUESTIONS_DATA = RAW_DATA.get("questions", [])
+else:
+    QUESTIONS_DATA = RAW_DATA
+    # Avtomatik biletlar ro'yxatini shakllantirish
+    b_nums = sorted(list({q.get("biletNumber", q.get("ticket_id", 1)) for q in QUESTIONS_DATA}))
+    BILETS_DATA = [{"number": n, "title": f"{n}-Bilet"} for n in b_nums]
 
 QUESTIONS_BY_ID = {q["id"]: q for q in QUESTIONS_DATA}
 
 @routes.get("/")
 async def serve_index(request):
-    index_file = BASE_DIR / "web" / "index.html"
-    return web.FileResponse(index_file)
+    return web.FileResponse(BASE_DIR / "web" / "index.html")
 
 @routes.get("/style.css")
 async def serve_css(request):
@@ -40,12 +49,29 @@ async def api_user_status(request):
     if not user_id:
         return web.json_response({"error": "user_id required"}, status=400)
 
+    # Foydalanuvchini bazadan olish yoki yaratish
     user = await db.get_or_create_user(user_id, first_name, username)
-    return web.json_response(user)
+    
+    # Ruxsat etilgan biletlar ro'yxatini yuklash
+    total_tickets = len(BILETS_DATA) or 70
+    access_info = await db.get_unlocked_tickets(user_id, total_tickets)
+    
+    return web.json_response({
+        "telegram_id": user_id,
+        "full_name": user.get("full_name"),
+        "username": user.get("username"),
+        "is_vip": access_info["is_vip"],
+        "vip_until": access_info["vip_until"],
+        "unlocked_tickets": access_info["unlocked_tickets"],
+        "total_tickets": total_tickets
+    })
 
 @routes.get("/api/questions")
 async def api_questions(request):
-    return web.json_response(QUESTIONS_DATA)
+    return web.json_response({
+        "bilets": BILETS_DATA,
+        "questions": QUESTIONS_DATA
+    })
 
 @routes.post("/api/answer")
 async def api_answer(request):
@@ -56,9 +82,9 @@ async def api_answer(request):
         is_correct = bool(data.get("is_correct"))
 
         if is_correct:
-            await db.resolve_mistake(user_id, question_id)
+            await db.resolve_user_error(user_id, question_id)
         else:
-            await db.record_mistake(user_id, question_id)
+            await db.save_user_error(user_id, question_id)
 
         return web.json_response({"status": "ok"})
     except Exception as e:
@@ -70,7 +96,7 @@ async def api_mistakes(request):
     if not user_id:
         return web.json_response([])
 
-    mistake_ids = await db.get_user_mistakes(user_id)
+    mistake_ids = await db.get_user_errors(user_id)
     mistake_questions = [QUESTIONS_BY_ID[qid] for qid in mistake_ids if qid in QUESTIONS_BY_ID]
     return web.json_response(mistake_questions)
 
@@ -91,4 +117,8 @@ async def api_test_result(request):
 def create_web_app():
     app = web.Application()
     app.add_routes(routes)
+    # Media rasmlarini statik tarqatish
+    media_dir = BASE_DIR / "web" / "media"
+    if media_dir.exists():
+        app.router.add_static("/media", media_dir)
     return app

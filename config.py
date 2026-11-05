@@ -11,51 +11,15 @@ CARD_NUMBER = os.getenv("CARD_NUMBER", "9860 1606 3439 0605").strip()
 CARD_HOLDER = os.getenv("CARD_HOLDER", "K.E.").strip()
 ADMIN_USERNAME = os.getenv("ADMIN_USERNAME", "Kubayev_E").strip()
 PORT = int(os.getenv("PORT", "8080"))
-WEBAPP_URL = os.getenv("WEBAPP_URL", "").strip()
+WEBAPP_URL = os.getenv("WEBAPP_URL", "https://prava-test-bot.onrender.com").strip()
 
 DB_PATH = BASE_DIR / "prava_database.db"
-QUESTIONS_FILE = BASE_DIR / "data" / "questions.json"
+QUESTIONS_FILE = BASE_DIR / "data" / "questions_1200.json"
 
-# Biletlar paketlari
-PACKAGES = {
-    "pack_4_6": {
-        "title": "4–6 biletlar (60 ta savol)",
-        "from_ticket": 4,
-        "to_ticket": 6,
-        "price": 5000,
-        "price_str": "5 000 so'm",
-        "duration_days": 90
-    },
-    "pack_7_10": {
-        "title": "7–10 biletlar (80 ta savol)",
-        "from_ticket": 7,
-        "to_ticket": 10,
-        "price": 10000,
-        "price_str": "10 000 so'm",
-        "duration_days": 90
-    },
-    "pack_11_14": {
-        "title": "11–14 biletlar (80 ta savol)",
-        "from_ticket": 11,
-        "to_ticket": 14,
-        "price": 10000,
-        "price_str": "10 000 so'm",
-        "duration_days": 90
-    },
-    "pack_15_18": {
-        "title": "15–18 biletlar (80 ta savol)",
-        "from_ticket": 15,
-        "to_ticket": 18,
-        "price": 10000,
-        "price_str": "10 000 so'm",
-        "duration_days": 90
-    },
-    "pack_19_22": {
-        "title": "19–22 biletlar (80 ta savol)",
-        "from_ticket": 19,
-        "to_ticket": 22,
-        "price": 10000,
-        "price_str": "10 000 so'm",
-        "duration_days": 90
-    }
-}
+# VIP Tarif (90 kunlik to'liq kirish huquqi)
+VIP_PRICE = 30000
+VIP_PRICE_STR = "30 000 so'm"
+VIP_DURATION_DAYS = 90
+
+# Bepul biletlar
+FREE_TICKETS = [1, 2, 3]
