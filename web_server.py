@@ -86,8 +86,10 @@ async def api_user_status(request):
     if access_info["is_vip"]:
         max_ticket = total_tickets
 
-    total_q = len(QUESTIONS_DATA) or 679
+    total_q = len(QUESTIONS_DATA) or 1200
     progress = await db.get_user_learning_stats(user_id, total_q)
+    ref_stats = await db.get_referral_stats(user_id)
+    streak_days = await db.update_user_streak(user_id)
 
     return web.json_response({
         "telegram_id": user_id,
@@ -104,7 +106,9 @@ async def api_user_status(request):
         "unlocked_tickets": unlocked_list,
         "unlocked_max_ticket": max_ticket,
         "total_tickets": total_tickets,
-        "progress": progress
+        "progress": progress,
+        "referral_stats": ref_stats,
+        "streak_days": streak_days
     }, headers=NO_CACHE_HEADERS)
 
 @routes.post("/api/consume_exam")
@@ -156,7 +160,7 @@ async def api_answer(request):
         is_correct = bool(data.get("is_correct"))
 
         await db.record_question_answer(user_id, question_id, is_correct)
-        total_q = len(QUESTIONS_DATA) or 679
+        total_q = len(QUESTIONS_DATA) or 1200
         progress = await db.get_user_learning_stats(user_id, total_q)
 
         return web.json_response({"status": "ok", "progress": progress}, headers=NO_CACHE_HEADERS)

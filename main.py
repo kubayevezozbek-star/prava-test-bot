@@ -14,16 +14,57 @@ try:
 except Exception as _e:
     print(f"Build setup warning (ignored): {_e}")
 
-from config import BOT_TOKEN, PORT
+from config import BOT_TOKEN, PORT, WEBAPP_URL
 import database as db
 from handlers import bot_handlers, payment_handlers, admin_handlers
 from web_server import create_web_app
+import random
+from datetime import datetime, timedelta
+from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, WebAppInfo
 
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(name)s - %(message)s"
 )
 logger = logging.getLogger(__name__)
+
+async def daily_reminder_loop(bot: Bot):
+    """Har kuni soat 19:30 da (O'zbekiston vaqti bilan) foydalanuvchilarga eslatma yuboradi"""
+    last_sent_date = None
+    reminder_texts = [
+        "⏰ <b>Kechki mashg'ulot vaqti!</b>\n\n🚗 Bugun 1 ta bilet ishlab bilimingizni sinab ko'ring. Imtihondan o'tish ehtimolingiz oshadi!",
+        "🚦 <b>Kunlik YHQ eslatmasi:</b>\n\n🎯 Doimiy mashg'ulot — haqiqiy Davlat imtihonidan 1-urinishda o'tish garovi! Kiring va test yeching:",
+        "🧠 <b>Bilimingizni sinang!</b>\n\nBugun 20 ta savolga javob bering va xatolar ustida ishlang. Haydovchilik guvohnomasi sari yana bir qadam! 🚗",
+        "🔥 <b>Faollik seriyasini to'xtatmang!</b>\n\nHar kuni test yechib o'z reytingingizni oshiring. 5 kunlik faollik uchun bepul imtihon beriladi!"
+    ]
+
+    while True:
+        try:
+            # Tashkent vaqti (UTC+5)
+            now = datetime.utcnow() + timedelta(hours=5)
+            today_str = now.strftime("%Y-%m-%d")
+
+            # Har kuni soat 19:30 dan 20:30 gacha oraliqda 1 marta yuboriladi
+            if now.hour == 19 and now.minute >= 30 and last_sent_date != today_str:
+                last_sent_date = today_str
+                logger.info("Avtomatik kunlik eslatmalar yuborilmoqda...")
+                user_ids = await db.get_all_user_ids()
+                text = random.choice(reminder_texts)
+                ikb = InlineKeyboardMarkup(inline_keyboard=[
+                    [InlineKeyboardButton(text="🚗 Test topshirish", web_app=WebAppInfo(url=WEBAPP_URL))] if WEBAPP_URL else []
+                ])
+                sent_count = 0
+                for uid in user_ids:
+                    try:
+                        await bot.send_message(uid, text, parse_mode="HTML", reply_markup=ikb if WEBAPP_URL else None)
+                        sent_count += 1
+                        await asyncio.sleep(0.05)
+                    except Exception:
+                        pass
+                logger.info(f"Kunlik eslatma {sent_count} ta foydalanuvchiga yuborildi.")
+        except Exception as e:
+            logger.warning(f"Reminder loop xatoligi: {e}")
+        await asyncio.sleep(60)
 
 async def main():
     if not BOT_TOKEN:
@@ -56,6 +97,9 @@ async def main():
 
     bot_info = await bot.get_me()
     logger.info(f"Bot muvaffaqiyatli ishga tushdi: @{bot_info.username} ({bot_info.first_name})")
+
+    # Kunlik eslatmalar fonda ishga tushadi
+    asyncio.create_task(daily_reminder_loop(bot))
 
     try:
         await dp.start_polling(bot)

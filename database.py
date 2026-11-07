@@ -35,6 +35,10 @@ def _sync_init_db():
             db.execute("ALTER TABLE users ADD COLUMN exam_pass_until TEXT DEFAULT NULL")
         if "exam_attempts" not in cols:
             db.execute("ALTER TABLE users ADD COLUMN exam_attempts INTEGER DEFAULT 0")
+        if "streak_days" not in cols:
+            db.execute("ALTER TABLE users ADD COLUMN streak_days INTEGER DEFAULT 0")
+        if "last_active_date" not in cols:
+            db.execute("ALTER TABLE users ADD COLUMN last_active_date TEXT DEFAULT NULL")
 
         # 2. unlocked_tickets
         db.execute("""
@@ -181,12 +185,13 @@ def _sync_get_or_create_user(telegram_id: int, full_name: str, username: str, re
 
         # Yangi foydalanuvchi
         valid_ref = None
+        ref_result = None
         if referred_by and referred_by != telegram_id:
             c = db.execute("SELECT telegram_id FROM users WHERE telegram_id = ?", (referred_by,))
             if c.fetchone():
                 valid_ref = referred_by
-                # Taklif qilganga navbatdagi qulflangan biletni ochish
-                _sync_unlock_next_referral_ticket(db, valid_ref)
+                # Taklif qilganga bilet ochish va 10 ta bo'lsa 3 oylik VIP berish
+                ref_result = _sync_process_referral(db, valid_ref)
 
         db.execute("""
             INSERT INTO users (telegram_id, full_name, username, referred_by, created_at)
@@ -204,24 +209,49 @@ def _sync_get_or_create_user(telegram_id: int, full_name: str, username: str, re
             "exam_attempts": 0,
             "is_vip": False,
             "has_exam_pass": False,
-            "created_at": now
+            "created_at": now,
+            "ref_result": ref_result
         }
 
-def _sync_unlock_next_referral_ticket(db: sqlite3.Connection, telegram_id: int) -> Optional[int]:
-    """Referal orqali hali ochilmagan eng birinchi biletni topib ochadi"""
-    cur = db.execute("SELECT ticket_number FROM unlocked_tickets WHERE telegram_id = ?", (telegram_id,))
+def _sync_process_referral(db: sqlite3.Connection, referrer_id: int) -> Dict[str, Any]:
+    """Referal orqali navbatdagi qulflangan biletni ochadi va 10 ta taklif bo'lsa 90 kunlik VIP beradi"""
+    # Takliflar soni (yangi kirayotgan do'st hisobga olinadi)
+    cur = db.execute("SELECT COUNT(*) FROM users WHERE referred_by = ?", (referrer_id,))
+    total_refs = cur.fetchone()[0] + 1
+
+    # 1. Navbatdagi qulflangan biletni ochish (8-bilet va undan yuqori)
+    cur = db.execute("SELECT ticket_number FROM unlocked_tickets WHERE telegram_id = ?", (referrer_id,))
     already_unlocked = {r[0] for r in cur.fetchall()}
-    
-    for t_num in range(4, TOTAL_TICKETS + 1):
+    opened_ticket = None
+    first_locked = max(FREE_TICKETS) + 1  # 8
+    for t_num in range(first_locked, TOTAL_TICKETS + 1):
         if t_num not in already_unlocked:
             now = datetime.now()
             exp = (now + timedelta(days=90)).isoformat()
             db.execute("""
                 INSERT OR REPLACE INTO unlocked_tickets (telegram_id, ticket_number, expires_at, created_at)
                 VALUES (?, ?, ?, ?)
-            """, (telegram_id, t_num, exp, now.isoformat()))
-            return t_num
-    return None
+            """, (referrer_id, t_num, exp, now.isoformat()))
+            opened_ticket = t_num
+            break
+
+    # 2. 10 ta do'st taklif qilinganda 90 kunlik (3 oylik) VIP obuna sovg'a
+    vip_granted = False
+    if total_refs == 10 or (total_refs > 10 and total_refs % 10 == 0):
+        now = datetime.now()
+        exp = (now + timedelta(days=90)).isoformat()
+        db.execute("UPDATE users SET vip_until = ? WHERE telegram_id = ?", (exp, referrer_id))
+        vip_granted = True
+
+    return {
+        "total_referrals": total_refs,
+        "opened_ticket": opened_ticket,
+        "vip_granted": vip_granted
+    }
+
+def _sync_unlock_next_referral_ticket(db: sqlite3.Connection, telegram_id: int) -> Optional[int]:
+    res = _sync_process_referral(db, telegram_id)
+    return res.get("opened_ticket")
 
 async def get_or_create_user(telegram_id: int, full_name: str, username: str, referred_by: Optional[int] = None) -> Dict[str, Any]:
     return await asyncio.to_thread(_sync_get_or_create_user, telegram_id, full_name, username, referred_by)
@@ -563,7 +593,7 @@ def _sync_get_user_learning_stats(telegram_id: int, total_questions: int) -> Dic
         recent_tests = cur.fetchall()
 
     if total_questions <= 0:
-        total_questions = 679
+        total_questions = 1200
 
     percent = round((learned_count / total_questions) * 100, 1) if total_questions else 0.0
     if percent > 100.0:
@@ -623,3 +653,53 @@ def _sync_get_unlearned_question_ids(telegram_id: int, all_question_ids: List[in
 
 async def get_unlearned_question_ids(telegram_id: int, all_question_ids: List[int]) -> List[int]:
     return await asyncio.to_thread(_sync_get_unlearned_question_ids, telegram_id, all_question_ids)
+
+def _sync_get_referral_stats(telegram_id: int) -> Dict[str, Any]:
+    with sqlite3.connect(DB_PATH) as db:
+        cur = db.execute("SELECT COUNT(*) FROM users WHERE referred_by = ?", (telegram_id,))
+        count = cur.fetchone()[0] or 0
+        target = 10
+        rem = max(0, target - count)
+        pct = min(100, int((count / target) * 100))
+        return {
+            "count": count,
+            "target": target,
+            "remaining": rem,
+            "percent": pct
+        }
+
+async def get_referral_stats(telegram_id: int) -> Dict[str, Any]:
+    return await asyncio.to_thread(_sync_get_referral_stats, telegram_id)
+
+def _sync_update_user_streak(telegram_id: int) -> int:
+    today_str = datetime.now().strftime("%Y-%m-%d")
+    yesterday_str = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
+    with sqlite3.connect(DB_PATH) as db:
+        cur = db.execute("SELECT streak_days, last_active_date, exam_attempts FROM users WHERE telegram_id = ?", (telegram_id,))
+        row = cur.fetchone()
+        if not row:
+            return 1
+        streak = row[0] or 0
+        last_date = row[1]
+        attempts = row[2] or 0
+
+        if last_date == today_str:
+            return streak or 1
+        elif last_date == yesterday_str:
+            new_streak = streak + 1
+        else:
+            new_streak = 1
+
+        bonus_attempts = attempts
+        if new_streak > 0 and new_streak % 5 == 0:
+            bonus_attempts += 1
+
+        db.execute("""
+            UPDATE users SET streak_days = ?, last_active_date = ?, exam_attempts = ?
+            WHERE telegram_id = ?
+        """, (new_streak, today_str, bonus_attempts, telegram_id))
+        db.commit()
+        return new_streak
+
+async def update_user_streak(telegram_id: int) -> int:
+    return await asyncio.to_thread(_sync_update_user_streak, telegram_id)

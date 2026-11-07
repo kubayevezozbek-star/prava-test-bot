@@ -22,7 +22,7 @@ let currentUser = {
   exam_pass_until: null,
   exam_attempts: 0,
   can_take_exam: false,
-  unlocked_tickets: [1, 2, 3],
+  unlocked_tickets: [1, 2, 3, 4, 5, 6, 7],
   total_tickets: 60
 };
 
@@ -50,7 +50,7 @@ const T = {
     hero_desc: "1200 ta rasmiy imtihon savollari va haqiqiy rasmlar",
     hero_btn: "⚡ 20 talik Tasodifiy Imtihon",
     tickets_title: "📚 Biletlar ro'yxati",
-    tickets_free_tag: "1–3 biletlar BEPUL",
+    tickets_free_tag: "1–7 biletlar BEPUL",
     ticket_num: "Bilet",
     ticket_desc: "20 ta savol • 20 daqiqa",
     badge_free: "BEPUL",
@@ -86,8 +86,10 @@ const T = {
     mistakes_solve_btn: "🔁 Faqat xatolarni qayta ishlash",
 
     // Referral View
-    ref_title: "Do'stlarni taklif qiling!",
-    ref_desc: "Har bir taklif qilingan do'stingiz uchun <b>navbatdagi 1 ta bilet bepul</b> va doimiy ochiladi.",
+    ref_title: "Do'stlarni taklif qiling va 3 oylik VIP oling!",
+    ref_desc: "10 ta do'stingizni taklif qiling va <b>3 oylik to'liq VIP obunani BEPUL</b> qo'lga kiriting! Har bir do'st uchun navbatdagi bilet ochiladi.",
+    ref_vip_goal: "👑 10 ta do'st = 3 oylik VIP BEPUL!",
+    ref_vip_unlocked: "🎉 TABRIKLAYMIZ! 3 OYLIK VIP OCHILDI!",
     ref_lbl_tickets: "Ochiq biletlar",
     ref_lbl_vip: "Obuna holati",
     ref_copy_btn: "Nusxalash",
@@ -153,7 +155,7 @@ const T = {
     hero_desc: "1200 официальных экзаменационных билетов и реальные схемы",
     hero_btn: "⚡ Случайный экзамен (20 вопросов)",
     tickets_title: "📚 Список билетов",
-    tickets_free_tag: "1–3 билеты БЕСПЛАТНО",
+    tickets_free_tag: "1–7 билеты БЕСПЛАТНО",
     ticket_num: "Билет",
     ticket_desc: "20 вопросов • 20 минут",
     badge_free: "БЕСПЛАТНО",
@@ -189,8 +191,10 @@ const T = {
     mistakes_solve_btn: "🔁 Решать только ошибки",
 
     // Referral View
-    ref_title: "Приглашайте друзей!",
-    ref_desc: "За каждого приглашенного друга вам открывается <b>1 билет бесплатно</b> навсегда.",
+    ref_title: "Приглашайте друзей и получите VIP на 3 месяца!",
+    ref_desc: "Пригласите 10 друзей и получите <b>VIP подписку на 3 месяца БЕСПЛАТНО</b>! За каждого друга открывается следующий билет.",
+    ref_vip_goal: "👑 10 друзей = 3 месяца VIP БЕСПЛАТНО!",
+    ref_vip_unlocked: "🎉 ПОЗДРАВЛЯЕМ! VIP НА 3 МЕСЯЦА ОТКРЫТ!",
     ref_lbl_tickets: "Открыто билетов",
     ref_lbl_vip: "Статус подписки",
     ref_copy_btn: "Копировать",
@@ -327,6 +331,7 @@ function applyLanguageTexts() {
 
   // Referral View
   setText('ref-title', t.ref_title);
+  setText('ref-vip-goal-title', t.ref_vip_goal);
   setHTML('ref-desc', t.ref_desc);
   setText('ref-lbl-tickets', t.ref_lbl_tickets);
   setText('ref-lbl-vip', t.ref_lbl_vip);
@@ -394,9 +399,11 @@ async function loadUserData() {
         exam_pass_until: data.exam_pass_until || null,
         exam_attempts: data.exam_attempts || 0,
         can_take_exam: data.can_take_exam || false,
-        unlocked_tickets: Array.isArray(data.unlocked_tickets) ? data.unlocked_tickets : [1, 2, 3],
+        unlocked_tickets: Array.isArray(data.unlocked_tickets) ? data.unlocked_tickets : [1, 2, 3, 4, 5, 6, 7],
         total_tickets: data.total_tickets || 60,
-        progress: data.progress || null
+        progress: data.progress || null,
+        referral_stats: data.referral_stats || { count: 0, target: 10, remaining: 10, percent: 0 },
+        streak_days: data.streak_days || 1
       };
       updateHeaderUI();
       renderTickets();
@@ -464,9 +471,25 @@ function updateHeaderUI() {
 
   // Referral UI
   const refCount = document.getElementById('ref-unlocked-count');
-  if (refCount) refCount.innerText = currentUser.unlocked_tickets ? currentUser.unlocked_tickets.length : 3;
+  if (refCount) refCount.innerText = currentUser.unlocked_tickets ? currentUser.unlocked_tickets.length : 7;
   const refVip = document.getElementById('ref-vip-status');
   if (refVip) refVip.innerText = currentUser.is_vip ? "👑 VIP" : (currentUser.has_exam_pass ? "⚡ Imtihon" : "Oddiy");
+
+  const refStats = currentUser.referral_stats || { count: 0, target: 10, remaining: 10, percent: 0 };
+  const refFill = document.getElementById('ref-vip-fill');
+  if (refFill) refFill.style.width = `${refStats.percent}%`;
+  const refVipText = document.getElementById('ref-vip-status-text');
+  if (refVipText) {
+    if (refStats.count >= 10 || currentUser.is_vip) {
+      refVipText.innerText = T[currentLang].ref_vip_unlocked;
+      refVipText.style.color = "#10b981";
+      refVipText.style.fontWeight = "bold";
+    } else {
+      refVipText.innerText = (currentLang === 'ru') 
+        ? `${refStats.count} / 10 приглашено (Осталось ${refStats.remaining})`
+        : `${refStats.count} / 10 ta do'st taklif qilindi (Yana ${refStats.remaining} ta qoldi)`;
+    }
+  }
   
   const botUser = "prava_test_AI_bot";
   const refLink = `https://t.me/${botUser}?start=ref_${currentUser.id}`;
@@ -495,7 +518,7 @@ function renderTickets() {
     let badgeText = t.badge_locked;
 
     if (isUnlocked) {
-      if (i <= 3) {
+      if (i <= 7) {
         badgeClass = 'free';
         badgeText = t.badge_free;
       } else {
@@ -909,7 +932,7 @@ function openTicketPickerModal(preselectNum = null) {
 
   const totalCount = allBilets.length > 0 ? allBilets.length : (currentUser.total_tickets || 60);
 
-  for (let i = 4; i <= totalCount; i++) {
+  for (let i = 8; i <= totalCount; i++) {
     const isAlreadyUnlocked = currentUser.unlocked_tickets && currentUser.unlocked_tickets.includes(i);
     const chip = document.createElement('div');
     chip.className = 'picker-chip';

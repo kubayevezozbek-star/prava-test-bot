@@ -29,5 +29,8 @@ PRICE_EXAM_30_STR = "15 000 so'm"
 PRICE_VIP_90 = 30000         # VIP To'liq obuna (90 kun barcha biletlar + cheksiz imtihon)
 PRICE_VIP_90_STR = "30 000 so'm"
 
-FREE_TICKETS = [1, 2, 3]
+FREE_TICKETS = [1, 2, 3, 4, 5, 6, 7]
 TOTAL_TICKETS = 60
+TOTAL_QUESTIONS = 1200
+REFERRALS_FOR_VIP = 10
+VIP_DAYS_FROM_REFERRALS = 90
